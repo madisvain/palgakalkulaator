@@ -1,16 +1,18 @@
-import "../styles/globals.css";
-
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/router";
-import type { AppProps } from "next/app";
-
 import Head from "next/head";
 import Script from "next/script";
+import Drift from "react-driftjs";
 
+import Navigation from "./navigation";
 import { GTM_ID, pageview } from "../utils/gtm";
 
-function App({ Component, pageProps }: AppProps) {
+const env = process.env.NODE_ENV;
+
+const Layout = ({ children }) => {
   const router = useRouter();
+
+  // Google analytics
   useEffect(() => {
     router.events.on("routeChangeComplete", pageview);
     return () => {
@@ -24,10 +26,6 @@ function App({ Component, pageProps }: AppProps) {
         <title>Palgakalkulaator</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta
-          name="description"
-          content="Arvuta palgakalkulaatoriga maksud ja saada palgalehed."
-        />
       </Head>
 
       {/* Google Tag Manager */}
@@ -51,9 +49,13 @@ function App({ Component, pageProps }: AppProps) {
         }}
       />
 
-      <Component {...pageProps} />
+      <Navigation />
+
+      {children}
+
+      {env == "production" && <Drift appId="afddzn3vz7bx" />}
     </>
   );
-}
+};
 
-export default App;
+export default Layout;

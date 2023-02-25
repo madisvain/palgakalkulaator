@@ -3,24 +3,38 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "extract": "lingui extract",
+    "compile": "lingui compile",
+    "add-locale": "lingui add-locale"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.3",
-    "@heroicons/react": "^2.0.12",
-    "next": "latest",
-    "react": "18.1.0",
-    "react-dom": "18.1.0",
-    "react-hook-form": "^7.37.0"
+    "@headlessui/react": "^1.7.12",
+    "@heroicons/react": "^2.0.16",
+    "@lingui/react": "^3.17.2",
+    "hamburger-react": "^2.5.0",
+    "lodash": "^4.17.21",
+    "next": "13.2.1",
+    "nookies": "^2.5.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-driftjs": "^1.2.2",
+    "react-hook-form": "^7.43.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.21.0",
+    "@babel/preset-react": "^7.18.6",
+    "@lingui/cli": "^3.17.2",
+    "@lingui/loader": "^3.17.2",
+    "@lingui/macro": "^3.17.2",
+    "@lingui/swc-plugin": "^0.2.3",
     "@tailwindcss/forms": "^0.5.3",
-    "@types/node": "17.0.35",
-    "@types/react": "18.0.9",
-    "@types/react-dom": "18.0.5",
-    "autoprefixer": "^10.4.7",
-    "postcss": "^8.4.14",
-    "tailwindcss": "^3.1.2",
-    "typescript": "4.7.2"
+    "@types/node": "18.14.1",
+    "@types/react": "18.0.28",
+    "@types/react-dom": "18.0.11",
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.7",
+    "typescript": "4.9.5"
   }
 }
