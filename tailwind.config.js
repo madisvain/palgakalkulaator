@@ -31,23 +31,33 @@ module.exports = {
       addBase({
         h1: {
           fontFamily: theme("fontFamily.general"),
-          fontSize: theme("fontSize.5xl"),
-          lineHeight: theme("lineHeight.tight"),
+          fontSize: "56px",
+          lineHeight: 1.2,
         },
         h2: {
           fontFamily: theme("fontFamily.general"),
-          fontSize: theme("fontSize.4xl"),
-          lineHeight: theme("lineHeight.tight"),
+          fontSize: "48px",
+          lineHeight: 1.2,
         },
         h3: {
           fontFamily: theme("fontFamily.general"),
-          fontSize: theme("fontSize.3xl"),
-          lineHeight: theme("lineHeight.tight"),
+          fontSize: "40px",
+          lineHeight: 1.3,
         },
         h4: {
           fontFamily: theme("fontFamily.general"),
-          fontSize: theme("fontSize.2xl"),
-          lineHeight: theme("lineHeight.tight"),
+          fontSize: "32px",
+          lineHeight: 1.3,
+        },
+        h5: {
+          fontFamily: theme("fontFamily.general"),
+          fontSize: "24px",
+          lineHeight: 1.3,
+        },
+        h6: {
+          fontFamily: theme("fontFamily.general"),
+          fontSize: "20px",
+          lineHeight: 1.3,
         },
       });
     }),
