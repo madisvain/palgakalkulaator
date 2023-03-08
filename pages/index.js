@@ -1,13 +1,13 @@
-import { Fragment } from "react";
+import React, { useMemo, useState } from "react";
 import { Trans } from "@lingui/macro";
-import { Popover, Transition } from "@headlessui/react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 import Link from "next/link";
 
-const NEXT_PUBLIC_LIVE = process.env.NEXT_PUBLIC_LIVE;
+const DEFAULT_GROSS_AMOUNT = 1000;
 
 const Home = () => {
+  const [grossSalary, setGrossSalary] = useState(DEFAULT_GROSS_AMOUNT);
   const {
     register,
     handleSubmit,
@@ -15,22 +15,46 @@ const Home = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      sum: 1000,
-      type: "gross",
+      amount: DEFAULT_GROSS_AMOUNT,
+      amountType: "gross",
     },
   });
   const onSubmit = (data) => console.log(data);
 
-  const navigation = [
-    { name: "About", href: "#" },
-    { name: "Blog", href: "#" },
-    { name: "Jobs", href: "#" },
-    { name: "Press", href: "#" },
-    { name: "Accessibility", href: "#" },
-    { name: "Partners", href: "#" },
-  ];
+  watch((values) => {
+    if (values.amountType === "total") {
+    } else if (values.amountType === "gross") {
+      setGrossSalary(values.amount);
+    } else if (values.amountType === "net") {
+    }
+  });
 
-  const amount_types = [
+  const taxFreeIncome = 654;
+  const incomeTax = () =>
+    (grossSalary -
+      taxFreeIncome -
+      fundedPension() -
+      employeeUnemploymentInsuranceTax()) *
+    0.2;
+  const socialTax = () => grossSalary * 0.33;
+  const employerUnemploymentInsuranceTax = () => grossSalary * 0.008;
+  const employeeUnemploymentInsuranceTax = () => grossSalary * 0.016;
+  const fundedPension = () => grossSalary * 0.02;
+
+  const salaryFund = useMemo(() => {
+    return grossSalary + socialTax() + employerUnemploymentInsuranceTax();
+  }, [grossSalary]);
+
+  const netSalary = useMemo(() => {
+    return (
+      grossSalary -
+      incomeTax() -
+      employeeUnemploymentInsuranceTax() -
+      fundedPension()
+    );
+  }, [grossSalary]);
+
+  const amountTypes = [
     { id: "total", title: "Tööandja kulu" },
     { id: "gross", title: "Brutopalk" },
     { id: "net", title: "Netopalk" },
@@ -41,173 +65,184 @@ const Home = () => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-row mt-24 mb-28">
           <div className="basis-2/5">
-            <div className="flex items-center relative w-[350px] h-[88px] bg-white rounded-[50px] shadow-sm pl-12 pr-20">
-              <input
-                type="number"
-                placeholder="1000.00"
-                className="border-transparent appearance-none h-[88px] w-full text-[56px] font-general text-right px-0"
-              />
-              <div className="pointer-events-none absolute inset-y-0 right-8 flex items-center text-[56px] font-general">
-                €
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="flex items-center relative w-[350px] h-[88px] bg-white rounded-[50px] shadow-sm pl-12 pr-20">
+                <input
+                  {...register("amount", {
+                    required: true,
+                    valueAsNumber: true,
+                  })}
+                  type="number"
+                  placeholder="1000.00"
+                  className="border-transparent appearance-none h-[88px] w-full text-[56px] font-general text-right px-0"
+                />
+                <div className="pointer-events-none absolute inset-y-0 right-8 flex items-center text-[56px] font-general">
+                  €
+                </div>
               </div>
-            </div>
 
-            <fieldset className="mt-7">
-              <legend className="sr-only">Notification method</legend>
-              <div className="space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
-                {amount_types.map((amount_type) => (
-                  <div key={amount_type.id} className="flex items-center">
-                    <input
-                      id={amount_type.id}
-                      name="x"
-                      type="radio"
-                      defaultChecked={amount_type.id === "gross"}
-                      className="h-4 w-4 border-gray-300 text-dark-blue focus:ring-transparent"
-                    />
-                    <label
-                      htmlFor={amount_type.id}
-                      className="ml-2 block text-sm font-semibold"
-                    >
-                      {amount_type.title}
-                    </label>
-                  </div>
-                ))}
-              </div>
-            </fieldset>
+              <fieldset className="mt-7">
+                <legend className="sr-only">
+                  <Trans>Summa tüüp</Trans>
+                </legend>
+                <div className="space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
+                  {amountTypes.map((amountType) => (
+                    <div key={amountType.id} className="flex items-center">
+                      <input
+                        value={amountType.id}
+                        type="radio"
+                        {...register("amountType")}
+                        className="h-4 w-4 border-gray-300 text-dark-blue focus:ring-transparent"
+                      />
+                      <label
+                        htmlFor={amountType.id}
+                        className="ml-2 block text-sm font-semibold"
+                      >
+                        {amountType.title}
+                      </label>
+                    </div>
+                  ))}
+                </div>
+              </fieldset>
 
-            <fieldset className="mt-[72px] space-y-3">
-              <legend>
-                <h6>Mahaarvamised:</h6>
-              </legend>
-              <div className="flex items-center">
-                <input
-                  id="comments"
-                  aria-describedby="comments-description"
-                  name="comments"
-                  type="checkbox"
-                  className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                />
-                <label
-                  htmlFor="comments"
-                  className="text-sm font-semibold ml-2"
-                >
-                  Sotsiaalmaksu min. kuumäär
-                </label>
-              </div>
-              <div className="flex items-center">
-                <input
-                  id="comments"
-                  aria-describedby="comments-description"
-                  name="comments"
-                  type="checkbox"
-                  className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                />
-                <label
-                  htmlFor="comments"
-                  className="text-sm font-semibold ml-2"
-                >
-                  Maksuvaba tulu{" "}
-                  <span className="font-general text-lg leading-[1.3] px-2 py-1 border-b border-dark-blue">
-                    654 €
-                  </span>
-                </label>
-              </div>
-              <div className="flex items-center">
-                <input
-                  id="comments"
-                  aria-describedby="comments-description"
-                  name="comments"
-                  type="checkbox"
-                  className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                />
-                <label
-                  htmlFor="comments"
-                  className="text-sm font-semibold ml-2"
-                >
-                  Tööandja töötuskindlustusmakse (0.8%)
-                </label>
-              </div>
-              <div className="flex items-center">
-                <input
-                  id="comments"
-                  aria-describedby="comments-description"
-                  name="comments"
-                  type="checkbox"
-                  className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                />
-                <label
-                  htmlFor="comments"
-                  className="text-sm font-semibold ml-2"
-                >
-                  Töötaja töötuskindlustusmakse (1.6%)
-                </label>
-              </div>
-              <div className="flex items-center">
-                <input
-                  id="comments"
-                  aria-describedby="comments-description"
-                  name="comments"
-                  type="checkbox"
-                  className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                />
-                <label
-                  htmlFor="comments"
-                  className="text-sm font-semibold ml-2"
-                >
-                  Kogumispension (2%)
-                </label>
-              </div>
-            </fieldset>
+              <fieldset className="mt-[72px] space-y-3">
+                <legend>
+                  <h6>
+                    <Trans>Mahaarvamised:</Trans>
+                  </h6>
+                </legend>
+                <div className="flex items-center">
+                  <input
+                    {...register("socialTaxMinimum")}
+                    type="checkbox"
+                    className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                  />
+                  <label
+                    htmlFor="socialTaxMinimum"
+                    className="text-sm font-semibold ml-2"
+                  >
+                    Sotsiaalmaksu min. kuumäär
+                  </label>
+                </div>
+                <div className="flex items-center">
+                  <input
+                    {...register("taxFreeIncome")}
+                    type="checkbox"
+                    className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                  />
+                  <label
+                    htmlFor="taxFreeIncome"
+                    className="text-sm font-semibold ml-2"
+                  >
+                    Maksuvaba tulu{" "}
+                    <span className="font-general text-lg leading-[1.3] px-2 py-1 border-b border-dark-blue">
+                      654 €
+                    </span>
+                  </label>
+                </div>
+                <div className="flex items-center">
+                  <input
+                    {...register("employerUnemploymentInsurance")}
+                    type="checkbox"
+                    className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                  />
+                  <label
+                    htmlFor="employerUnemploymentInsurance"
+                    className="text-sm font-semibold ml-2"
+                  >
+                    Tööandja töötuskindlustusmakse (0.8%)
+                  </label>
+                </div>
+                <div className="flex items-center">
+                  <input
+                    {...register("employeeUnemploymentInsurance")}
+                    type="checkbox"
+                    className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                  />
+                  <label
+                    htmlFor="employeeUnemploymentInsurance"
+                    className="text-sm font-semibold ml-2"
+                  >
+                    Töötaja töötuskindlustusmakse (1.6%)
+                  </label>
+                </div>
+                <div className="flex items-center">
+                  <input
+                    {...register("fundedPension")}
+                    type="checkbox"
+                    className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                  />
+                  <label
+                    htmlFor="fundedPension"
+                    className="text-sm font-semibold ml-2"
+                  >
+                    Kogumispensioniga liitunud (2%)
+                  </label>
+                </div>
+              </fieldset>
+            </form>
           </div>
           <div className="basis-3/5">
             <div className="pt-16 pb-12 px-16 bg-white">
               <table className="w-full border-separate border-spacing-y-3 mb-10">
-                <tr>
-                  <td>
-                    <h4>Tööandja kulu</h4>
-                  </td>
-                  <td className="font-general text-2xl text-right">
-                    1338.00 €
-                  </td>
-                </tr>
-                <tr>
-                  <td>Sotsiaalmaks</td>
-                  <td className="text-right">330.00 €</td>
-                </tr>
-                <tr>
-                  <td>Tööandja töötuskindlustusmakse</td>
-                  <td className="text-right">8.00 €</td>
-                </tr>
+                <tbody>
+                  <tr>
+                    <td>
+                      <h4>Tööandja kulu</h4>
+                    </td>
+                    <td className="font-general text-2xl text-right">
+                      {salaryFund} €
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Sotsiaalmaks</td>
+                    <td className="text-right">{socialTax()} €</td>
+                  </tr>
+                  <tr>
+                    <td>Tööandja töötuskindlustusmakse</td>
+                    <td className="text-right">
+                      {employerUnemploymentInsuranceTax()} €
+                    </td>
+                  </tr>
+                </tbody>
               </table>
               <table className="w-full border-separate border-spacing-y-3 mb-10">
-                <tr>
-                  <td>
-                    <h4>Brutopalk</h4>
-                  </td>
-                  <td className="font-general text-2xl text-right">
-                    1000.00 €
-                  </td>
-                </tr>
-                <tr>
-                  <td>Kogumispension</td>
-                  <td className="text-right">20.00 €</td>
-                </tr>
-                <tr>
-                  <td>Töötaja töötuskindlustusmakse</td>
-                  <td className="text-right">16.00 €</td>
-                </tr>
-                <tr>
-                  <td>Tulumaks</td>
-                  <td className="text-right">62.00 €</td>
-                </tr>
+                <tbody>
+                  <tr>
+                    <td>
+                      <h4>Brutopalk</h4>
+                    </td>
+                    <td className="font-general text-2xl text-right">
+                      {grossSalary} €
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Kogumispension</td>
+                    <td className="text-right">{fundedPension()} €</td>
+                  </tr>
+                  <tr>
+                    <td>Töötaja töötuskindlustusmakse</td>
+                    <td className="text-right">
+                      {employeeUnemploymentInsuranceTax()} €
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Tulumaks</td>
+                    <td className="text-right">{incomeTax()} €</td>
+                  </tr>
+                </tbody>
               </table>
               <table className="w-full border-separate border-spacing-y-3">
-                <tr>
-                  <td>
-                    <h4>Netopalk</h4>
-                  </td>
-                  <td className="font-general text-2xl text-right">902.00 €</td>
-                </tr>
+                <tbody>
+                  <tr>
+                    <td>
+                      <h4>Netopalk</h4>
+                    </td>
+                    <td className="font-general text-2xl text-right">
+                      {netSalary} €
+                    </td>
+                  </tr>
+                </tbody>
               </table>
             </div>
             <button
@@ -235,13 +270,13 @@ const Home = () => {
       </div>
       <div className="bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-row pt-24">
+          <div className="flex flex-row pt-24 pb-32 items-center">
             <div className="basis-2/5">
               <img src="./taxes.svg" alt="Taxes" />
             </div>
             <div className="basis-3/5">
               <h4 className="mb-6">Maksuinfo 2023</h4>
-              <ul className="list-inside list-disc font-light space-y-4">
+              <ul className="list-outside list-disc space-y-4 ml-4">
                 <li>
                   Tulumaksu kinnipidamise määr on{" "}
                   <strong className="font-bold">20%</strong>{" "}
@@ -254,42 +289,91 @@ const Home = () => {
                 </li>
                 <li>
                   Maksuvaba tulu varieeruv 0...7848 / 12 ={" "}
-                  <strong>0...654 EUR/kuus</strong> TMS § 23 lg 1 ja lg 2
+                  <strong>0...654 EUR/kuus</strong>{" "}
+                  <Link
+                    href="#"
+                    className="font-semibold text-xs underline underline-offset-4"
+                  >
+                    TMS § 23 lg 1 ja lg 2
+                  </Link>
                 </li>
-                <li>Sotsiaalmaksu määr on 33% SMS § 7 lg 1</li>
+                <li>
+                  Sotsiaalmaksu määr on 33%{" "}
+                  <Link
+                    href="#"
+                    className="font-semibold text-xs underline underline-offset-4"
+                  >
+                    SMS § 7 lg 1
+                  </Link>
+                </li>
                 <li>
                   Sotsiaalmaksu kuumäär on <strong>654 EUR</strong>, st
-                  sotsiaalmaksu minimaalne kohustus on 654 x 0.33 ≈{" "}
-                  <strong>216 EUR/kuus</strong>
-                  2023 RES § 2 lg 7, SMS § 2 lg 2, SMS § 21
+                  sotsiaalmaksu minimaalne kohustus on 654 x 0.33 ={" "}
+                  <strong>215,82 EUR/kuus</strong>{" "}
+                  <Link
+                    href="#"
+                    className="font-semibold text-xs underline underline-offset-4"
+                  >
+                    2023 RES § 2 lg 7, SMS § 2 lg 2, SMS § 21
+                  </Link>
                 </li>
-                <li>Töötuskindlustusmakse määrad on:</li>
-                <ul>
-                  <li>
-                    töötajale <strong>1.6%</strong> VV määrus 15.09.2022 nr 88
-                  </li>
-                  <li>
-                    tööandjale <strong>0.8%</strong> VV määrus 15.09.2022 nr 88
-                  </li>
-                </ul>
+                <li>
+                  Töötuskindlustusmakse määrad on:
+                  <ul className="list-outside list-disc ml-8">
+                    <li>
+                      töötajale <strong>1.6%</strong>{" "}
+                      <Link
+                        href="#"
+                        className="font-semibold text-xs underline underline-offset-4"
+                      >
+                        VV määrus 15.09.2022 nr 88
+                      </Link>
+                    </li>
+                    <li>
+                      tööandjale <strong>0.8%</strong>{" "}
+                      <Link
+                        href="#"
+                        className="font-semibold text-xs underline underline-offset-4"
+                      >
+                        VV määrus 15.09.2022 nr 88
+                      </Link>
+                    </li>
+                  </ul>
+                </li>
                 <li>
                   Kogumispensioni makse määr on <strong>liitunutele 2%</strong>{" "}
                   ja <strong>mitteliitunutele 0%</strong>. Kogumispensioniga
                   liitumist saab kontrollida{" "}
-                  <Link href="#">
+                  <Link href="#" className="underline underline-offset-4">
                     <strong>siit</strong>
                   </Link>{" "}
-                  KPS § 9
+                  <Link
+                    href="#"
+                    className="font-semibold text-xs underline underline-offset-4"
+                  >
+                    KPS § 9
+                  </Link>
                 </li>
                 <li>
                   Töötasu alammäär (miinimumpalk) on:
-                  <ul>
+                  <ul className="list-outside list-disc ml-8">
                     <li>
-                      kuus <strong>725 EUR</strong> VV määrus 09.12.2022 nr 124
+                      kuus <strong>725 EUR</strong>{" "}
+                      <Link
+                        href="#"
+                        className="font-semibold text-xs underline underline-offset-4"
+                      >
+                        VV määrus 09.12.2022 nr 124
+                      </Link>
                     </li>
                     <li>
-                      tunnis <strong>4.3 EUR</strong> VV määrus 09.12.2022 nr
-                      124
+                      tunnis <strong>4.3 EUR</strong>{" "}
+                      <Link
+                        href="#"
+                        className="font-semibold text-xs underline underline-offset-4"
+                      >
+                        VV määrus 09.12.2022 nr 124
+                      </Link>
                     </li>
                   </ul>
                 </li>

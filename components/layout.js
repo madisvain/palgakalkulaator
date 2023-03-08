@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Script from "next/script";
-import Drift from "react-driftjs";
 
 import Navigation from "./navigation";
+import Footer from "./footer";
 import { GTM_ID, pageview } from "../utils/gtm";
 
 const env = process.env.NODE_ENV;
@@ -53,7 +53,7 @@ const Layout = ({ children }) => {
 
       {children}
 
-      {env == "production" && <Drift appId="afddzn3vz7bx" />}
+      <Footer />
     </>
   );
 };
