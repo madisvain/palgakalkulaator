@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { Trans } from "@lingui/macro";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { derivative, parse, simplify, evaluate } from "mathjs";
+import { parse, simplify, round } from "mathjs";
 
 import Link from "next/link";
 
@@ -44,8 +44,23 @@ const Home = () => {
 
       const f = parse(`x - ${fp} - ${eu} - ((x - 654 - ${fp} - ${eu}) * 0.2)`);
       const simplified = simplify(f);
-      console.log(simplified.toString());
-      console.log(simplified.evaluate({ x: values.amount }));
+
+      let seeker = values.amount;
+      [1, 0.001].forEach((step, i, array) => {
+        do {
+          seeker += step;
+          /*console.log(
+            simplified.evaluate({ x: seeker }),
+            simplified.evaluate({ x: seeker }) < values.amount
+          );*/
+        } while (
+          i === array.length - 1
+            ? round(simplified.evaluate({ x: seeker }), 2) <=
+              round(values.amount, 2)
+            : round(simplified.evaluate({ x: seeker })) < values.amount
+        );
+      });
+      setGrossSalary(round(seeker, 2));
     }
   });
 
