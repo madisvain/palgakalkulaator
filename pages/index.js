@@ -17,22 +17,53 @@ const Home = () => {
     defaultValues: {
       amount: DEFAULT_GROSS_AMOUNT,
       amountType: "gross",
+      taxFreeIncome: true,
+      employeeUnemploymentInsurance: true,
+      employerUnemploymentInsurance: true,
+      fundedPension: true,
     },
   });
   const onSubmit = (data) => console.log(data);
 
   watch((values) => {
     if (values.amountType === "total") {
+      // Slary fund
+      if (values.employeeUnemploymentInsurance) {
+        setGrossSalary(values.amount / 1.338);
+      } else {
+        setGrossSalary(values.amount / 1.33);
+      }
     } else if (values.amountType === "gross") {
+      // Gross
       setGrossSalary(values.amount);
     } else if (values.amountType === "net") {
+      // Net
+      /*
+      const fp = values.fundedPension ? `x * 0.02` : 0; // Funded pension
+      const eu = values.employeeUnemploymentInsurance ? `x * 0.016` : 0; // Employee unemployment insurance
+
+      const f = parse(
+        `x - ${fp} - ${eu} - ((x - 654 - ${fp} - ${eu}) * 0.2) == ${values.amount}`
+      );
+      const simplified = simplify(f);
+      console.log(simplified.toString());
+      */
     }
   });
 
-  const taxFreeIncome = 654;
+  const taxFreeIncome = () => {
+    // TODO: implement input values
+    if (grossSalary < 1200) {
+      return 654;
+    } else if (grossSalary > 1200 && grossSalary < 2100) {
+      return (7848 - (7848 / 10800) * (grossSalary * 12 - 14400)) / 12;
+    } else if (grossSalary > 2100) {
+      return 0;
+    }
+  };
   const incomeTax = () =>
     (grossSalary -
-      taxFreeIncome -
+      taxFreeIncome() -
       fundedPension() -
       employeeUnemploymentInsuranceTax()) *
     0.2;
@@ -74,6 +105,7 @@ const Home = () => {
                   })}
                   type="number"
                   placeholder="1000.00"
+                  step="0.01"
                   className="border-transparent appearance-none h-[88px] w-full text-[56px] font-general text-right px-0"
                 />
                 <div className="pointer-events-none absolute inset-y-0 right-8 flex items-center text-[56px] font-general">
