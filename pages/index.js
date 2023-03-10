@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { Trans } from "@lingui/macro";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { derivative, parse, simplify, evaluate } from "mathjs";
 
 import Link from "next/link";
 
@@ -38,16 +39,13 @@ const Home = () => {
       setGrossSalary(values.amount);
     } else if (values.amountType === "net") {
       // Net
-      /*
       const fp = values.fundedPension ? `x * 0.02` : 0; // Funded pension
       const eu = values.employeeUnemploymentInsurance ? `x * 0.016` : 0; // Employee unemployment insurance
 
-      const f = parse(
-        `x - ${fp} - ${eu} - ((x - 654 - ${fp} - ${eu}) * 0.2) == ${values.amount}`
-      );
+      const f = parse(`x - ${fp} - ${eu} - ((x - 654 - ${fp} - ${eu}) * 0.2)`);
       const simplified = simplify(f);
       console.log(simplified.toString());
-      */
+      console.log(simplified.evaluate({ x: values.amount }));
     }
   });
 
