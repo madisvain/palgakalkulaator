@@ -7,6 +7,28 @@ import Link from "next/link";
 
 const DEFAULT_GROSS_AMOUNT = 1000;
 
+const bisectionMethod = (leftSideStr, rightSide, lowerBound, upperBound) => {
+  const tolerance = 0.0001; // Set the tolerance level
+  let a = lowerBound; // Set the lower bound
+  let b = upperBound; // Set the upper bound
+
+  // Create a new Function object that takes x as an argument and evaluates the left side of the equation
+  const leftSide = new Function("x", `return ${leftSideStr};`);
+
+  while ((b - a) / 2 > tolerance) {
+    const c = (a + b) / 2; // Calculate the midpoint
+    const result = leftSide(c); // Calculate the result of the left side of the equation
+    if (result < rightSide) {
+      a = c; // Update the lower bound
+    } else {
+      b = c; // Update the upper bound
+    }
+  }
+
+  const x = (a + b) / 2; // Calculate the final value of x
+  return x;
+};
+
 const Home = () => {
   const [grossSalary, setGrossSalary] = useState(DEFAULT_GROSS_AMOUNT);
   const {
@@ -27,6 +49,7 @@ const Home = () => {
   const onSubmit = (data) => console.log(data);
 
   watch((values) => {
+    console.log(values);
     if (values.amountType === "total") {
       // Slary fund
       if (values.employeeUnemploymentInsurance) {
@@ -44,23 +67,18 @@ const Home = () => {
 
       const f = parse(`x - ${fp} - ${eu} - ((x - 654 - ${fp} - ${eu}) * 0.2)`);
       const simplified = simplify(f);
+      console.log(simplified.toString());
 
-      let seeker = values.amount;
-      [1, 0.001].forEach((step, i, array) => {
-        do {
-          seeker += step;
-          /*console.log(
-            simplified.evaluate({ x: seeker }),
-            simplified.evaluate({ x: seeker }) < values.amount
-          );*/
-        } while (
-          i === array.length - 1
-            ? round(simplified.evaluate({ x: seeker }), 2) <=
-              round(values.amount, 2)
-            : round(simplified.evaluate({ x: seeker })) < values.amount
-        );
-      });
-      setGrossSalary(round(seeker, 2));
+      // solve the equation
+      const solution = bisectionMethod(
+        simplified.toString(),
+        values.amount,
+        values.amount,
+        values.amount * 2
+      );
+
+      console.log(solution);
+      setGrossSalary(round(solution, 2));
     }
   });
 
@@ -236,17 +254,17 @@ const Home = () => {
                       <h4>Tööandja kulu</h4>
                     </td>
                     <td className="font-general text-2xl text-right">
-                      {salaryFund} €
+                      {round(salaryFund, 2)} €
                     </td>
                   </tr>
                   <tr>
                     <td>Sotsiaalmaks</td>
-                    <td className="text-right">{socialTax()} €</td>
+                    <td className="text-right">{round(socialTax(), 2)} €</td>
                   </tr>
                   <tr>
                     <td>Tööandja töötuskindlustusmakse</td>
                     <td className="text-right">
-                      {employerUnemploymentInsuranceTax()} €
+                      {round(employerUnemploymentInsuranceTax(), 2)} €
                     </td>
                   </tr>
                 </tbody>
@@ -258,22 +276,24 @@ const Home = () => {
                       <h4>Brutopalk</h4>
                     </td>
                     <td className="font-general text-2xl text-right">
-                      {grossSalary} €
+                      {round(grossSalary, 2)} €
                     </td>
                   </tr>
                   <tr>
                     <td>Kogumispension</td>
-                    <td className="text-right">{fundedPension()} €</td>
+                    <td className="text-right">
+                      {round(fundedPension(), 2)} €
+                    </td>
                   </tr>
                   <tr>
                     <td>Töötaja töötuskindlustusmakse</td>
                     <td className="text-right">
-                      {employeeUnemploymentInsuranceTax()} €
+                      {round(employeeUnemploymentInsuranceTax(), 2)} €
                     </td>
                   </tr>
                   <tr>
                     <td>Tulumaks</td>
-                    <td className="text-right">{incomeTax()} €</td>
+                    <td className="text-right">{round(incomeTax(), 2)} €</td>
                   </tr>
                 </tbody>
               </table>
@@ -284,7 +304,7 @@ const Home = () => {
                       <h4>Netopalk</h4>
                     </td>
                     <td className="font-general text-2xl text-right">
-                      {netSalary} €
+                      {round(netSalary, 2)} €
                     </td>
                   </tr>
                 </tbody>
