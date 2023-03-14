@@ -39,6 +39,10 @@ body {
   }
 }
 
+.bg-rainbow {
+  background: linear-gradient(142.8deg, #F2FFCD 0.2%, #DDF9EC 102.27%);
+}
+
 .background {
   z-index: -100;
   position: fixed;
