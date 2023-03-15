@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { Trans } from "@lingui/macro";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { parse, simplify, round } from "mathjs";
+import { format, min, parse, simplify } from "mathjs";
 
 import Payslip from "../components/payslip";
 import TaxInfo from "../components/tax-info";
@@ -30,12 +30,16 @@ const bisectionMethod = (leftSideStr, rightSide, lowerBound, upperBound) => {
   return x;
 };
 
+const formatCurreny = (amount, symbol) =>
+  `${format(amount, { notation: "fixed", precision: 2 })} ${symbol}`;
+
 const Home = () => {
   const [grossSalary, setGrossSalary] = useState(DEFAULT_GROSS_AMOUNT);
   const {
     register,
     handleSubmit,
     watch,
+    getValues,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -50,40 +54,45 @@ const Home = () => {
   const onSubmit = (data) => console.log(data);
 
   watch((values) => {
-    console.log(values);
-    if (values.amountType === "total") {
-      // Slary fund
-      if (values.employeeUnemploymentInsurance) {
-        setGrossSalary(values.amount / 1.338);
-      } else {
-        setGrossSalary(values.amount / 1.33);
+    if (!(values.amount > 0)) {
+      setGrossSalary(0);
+    } else {
+      if (values.amountType === "total") {
+        // Slary fund
+        if (values.employeeUnemploymentInsurance) {
+          setGrossSalary(values.amount / 1.338);
+        } else {
+          setGrossSalary(values.amount / 1.33);
+        }
+      } else if (values.amountType === "gross") {
+        // Gross
+        setGrossSalary(values.amount);
+      } else if (values.amountType === "net") {
+        // Net
+        const fp = values.fundedPension ? `x * 0.02` : 0; // Funded pension
+        const eu = values.employeeUnemploymentInsurance ? `x * 0.016` : 0; // Employee unemployment insurance
+
+        const f = parse(
+          `x - ${fp} - ${eu} - ((x - 654 - ${fp} - ${eu}) * 0.2)`
+        );
+        const simplified = simplify(f);
+        console.log(simplified.toString());
+
+        // solve the equation
+        const solution = bisectionMethod(
+          simplified.toString(),
+          values.amount,
+          values.amount,
+          values.amount * 2
+        );
+
+        setGrossSalary(solution);
       }
-    } else if (values.amountType === "gross") {
-      // Gross
-      setGrossSalary(values.amount);
-    } else if (values.amountType === "net") {
-      // Net
-      const fp = values.fundedPension ? `x * 0.02` : 0; // Funded pension
-      const eu = values.employeeUnemploymentInsurance ? `x * 0.016` : 0; // Employee unemployment insurance
-
-      const f = parse(`x - ${fp} - ${eu} - ((x - 654 - ${fp} - ${eu}) * 0.2)`);
-      const simplified = simplify(f);
-      console.log(simplified.toString());
-
-      // solve the equation
-      const solution = bisectionMethod(
-        simplified.toString(),
-        values.amount,
-        values.amount,
-        values.amount * 2
-      );
-
-      console.log(solution);
-      setGrossSalary(round(solution, 2));
     }
   });
 
   const taxFreeIncome = () => {
+    if (!(grossSalary > 0)) return 0;
     // TODO: implement input values
     if (grossSalary < 1200) {
       return 654;
@@ -93,22 +102,47 @@ const Home = () => {
       return 0;
     }
   };
-  const incomeTax = () =>
-    (grossSalary -
-      taxFreeIncome() -
-      fundedPension() -
-      employeeUnemploymentInsuranceTax()) *
-    0.2;
-  const socialTax = () => grossSalary * 0.33;
-  const employerUnemploymentInsuranceTax = () => grossSalary * 0.008;
-  const employeeUnemploymentInsuranceTax = () => grossSalary * 0.016;
-  const fundedPension = () => grossSalary * 0.02;
+  const incomeTax = () => {
+    if (!(grossSalary > 0) || grossSalary < taxFreeIncome()) return 0;
+    return (
+      (grossSalary -
+        taxFreeIncome() -
+        fundedPension() -
+        employeeUnemploymentInsuranceTax()) *
+      0.2
+    );
+  };
+  const socialTax = () => {
+    if (!(grossSalary > 0)) return 0;
+    return grossSalary * 0.33;
+  };
+
+  // Employer unemployment insurance
+  console.log(getValues("employerUnemploymentInsurance"));
+  const employerUnemploymentInsuranceTax = useMemo(() => {
+    console.log("employerUnemploymentInsurance", "= = =");
+    if (!(grossSalary > 0) || !getValues("employerUnemploymentInsurance"))
+      return 0;
+    return grossSalary * 0.008;
+  }, [getValues("employerUnemploymentInsurance")]);
+
+  // Employee unemployment insurance
+  const employeeUnemploymentInsuranceTax = () => {
+    if (!(grossSalary > 0)) return 0;
+    return grossSalary * 0.016;
+  };
+  const fundedPension = () => {
+    if (!(grossSalary > 0)) return 0;
+    return grossSalary * 0.02;
+  };
 
   const salaryFund = useMemo(() => {
-    return grossSalary + socialTax() + employerUnemploymentInsuranceTax();
+    if (!(grossSalary > 0)) return 0;
+    return grossSalary + socialTax() + employerUnemploymentInsuranceTax;
   }, [grossSalary]);
 
   const netSalary = useMemo(() => {
+    if (!(grossSalary > 0)) return 0;
     return (
       grossSalary -
       incomeTax() -
@@ -123,6 +157,7 @@ const Home = () => {
     { id: "net", title: "Netopalk" },
   ];
 
+  console.log("render");
   return (
     <>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -255,17 +290,19 @@ const Home = () => {
                       <h4>Tööandja kulu</h4>
                     </td>
                     <td className="font-general text-2xl text-right">
-                      {round(salaryFund, 2)} €
+                      {formatCurreny(salaryFund, "€")}
                     </td>
                   </tr>
                   <tr>
                     <td>Sotsiaalmaks</td>
-                    <td className="text-right">{round(socialTax(), 2)} €</td>
+                    <td className="text-right">
+                      {formatCurreny(socialTax(), "€")}
+                    </td>
                   </tr>
                   <tr>
                     <td>Tööandja töötuskindlustusmakse</td>
                     <td className="text-right">
-                      {round(employerUnemploymentInsuranceTax(), 2)} €
+                      {formatCurreny(employerUnemploymentInsuranceTax, "€")}
                     </td>
                   </tr>
                 </tbody>
@@ -277,24 +314,26 @@ const Home = () => {
                       <h4>Brutopalk</h4>
                     </td>
                     <td className="font-general text-2xl text-right">
-                      {round(grossSalary, 2)} €
+                      {formatCurreny(grossSalary, "€")}
                     </td>
                   </tr>
                   <tr>
                     <td>Kogumispension</td>
                     <td className="text-right">
-                      {round(fundedPension(), 2)} €
+                      {formatCurreny(fundedPension(), "€")}
                     </td>
                   </tr>
                   <tr>
                     <td>Töötaja töötuskindlustusmakse</td>
                     <td className="text-right">
-                      {round(employeeUnemploymentInsuranceTax(), 2)} €
+                      {formatCurreny(employeeUnemploymentInsuranceTax(), "€")}
                     </td>
                   </tr>
                   <tr>
                     <td>Tulumaks</td>
-                    <td className="text-right">{round(incomeTax(), 2)} €</td>
+                    <td className="text-right">
+                      {formatCurreny(incomeTax(), "€")}
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -305,7 +344,7 @@ const Home = () => {
                       <h4>Netopalk</h4>
                     </td>
                     <td className="font-general text-2xl text-right">
-                      {round(netSalary, 2)} €
+                      {formatCurreny(netSalary, "€")}
                     </td>
                   </tr>
                 </tbody>
