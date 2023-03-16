@@ -34,12 +34,10 @@ const formatCurreny = (amount, symbol) =>
   `${format(amount, { notation: "fixed", precision: 2 })} ${symbol}`;
 
 const Home = () => {
-  const [grossSalary, setGrossSalary] = useState(DEFAULT_GROSS_AMOUNT);
   const {
     register,
     handleSubmit,
     watch,
-    getValues,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -53,20 +51,22 @@ const Home = () => {
   });
   const onSubmit = (data) => console.log(data);
 
-  watch((values) => {
+  const values = watch();
+
+  const grossSalary = useMemo(() => {
     if (!(values.amount > 0)) {
-      setGrossSalary(0);
+      return 0;
     } else {
       if (values.amountType === "total") {
         // Slary fund
         if (values.employeeUnemploymentInsurance) {
-          setGrossSalary(values.amount / 1.338);
+          return values.amount / 1.338;
         } else {
-          setGrossSalary(values.amount / 1.33);
+          return values.amount / 1.33;
         }
       } else if (values.amountType === "gross") {
         // Gross
-        setGrossSalary(values.amount);
+        return values.amount;
       } else if (values.amountType === "net") {
         // Net
         const fp = values.fundedPension ? `x * 0.02` : 0; // Funded pension
@@ -86,12 +86,36 @@ const Home = () => {
           values.amount * 2
         );
 
-        setGrossSalary(solution);
+        return solution;
       }
     }
-  });
+  }, [
+    values.amountType,
+    values.amount,
+    values.employeeUnemploymentInsurance,
+    values.fundedPension,
+  ]);
 
-  const taxFreeIncome = () => {
+  // Employer unemployment insurance
+  const employerUnemploymentInsuranceTax = useMemo(() => {
+    if (!(grossSalary > 0) || !values.employerUnemploymentInsurance) return 0;
+    return grossSalary * 0.008;
+  }, [values.employerUnemploymentInsurance, grossSalary]);
+
+  // Employee unemployment insurance
+  const employeeUnemploymentInsuranceTax = useMemo(() => {
+    if (!(grossSalary > 0) || !values.employeeUnemploymentInsurance) return 0;
+    return grossSalary * 0.016;
+  }, [values.employeeUnemploymentInsurance, grossSalary]);
+
+  // Funded pension
+  const fundedPension = useMemo(() => {
+    if (!(grossSalary > 0) || !values.fundedPension) return 0;
+    return grossSalary * 0.02;
+  }, [values.fundedPension, grossSalary]);
+
+  // Tax free income
+  const taxFreeIncome = useMemo(() => {
     if (!(grossSalary > 0)) return 0;
     // TODO: implement input values
     if (grossSalary < 1200) {
@@ -101,53 +125,34 @@ const Home = () => {
     } else if (grossSalary > 2100) {
       return 0;
     }
-  };
-  const incomeTax = () => {
-    if (!(grossSalary > 0) || grossSalary < taxFreeIncome()) return 0;
+  }, [grossSalary]);
+
+  // Income tax
+  const incomeTax = useMemo(() => {
+    if (!(grossSalary > 0) || grossSalary < taxFreeIncome) return 0;
     return (
       (grossSalary -
-        taxFreeIncome() -
-        fundedPension() -
-        employeeUnemploymentInsuranceTax()) *
+        taxFreeIncome -
+        fundedPension -
+        employeeUnemploymentInsuranceTax) *
       0.2
     );
-  };
-  const socialTax = () => {
+  }, [grossSalary, taxFreeIncome, fundedPension]);
+
+  const socialTax = useMemo(() => {
     if (!(grossSalary > 0)) return 0;
     return grossSalary * 0.33;
-  };
-
-  // Employer unemployment insurance
-  console.log(getValues("employerUnemploymentInsurance"));
-  const employerUnemploymentInsuranceTax = useMemo(() => {
-    console.log("employerUnemploymentInsurance", "= = =");
-    if (!(grossSalary > 0) || !getValues("employerUnemploymentInsurance"))
-      return 0;
-    return grossSalary * 0.008;
-  }, [getValues("employerUnemploymentInsurance")]);
-
-  // Employee unemployment insurance
-  const employeeUnemploymentInsuranceTax = () => {
-    if (!(grossSalary > 0)) return 0;
-    return grossSalary * 0.016;
-  };
-  const fundedPension = () => {
-    if (!(grossSalary > 0)) return 0;
-    return grossSalary * 0.02;
-  };
+  }, [grossSalary]);
 
   const salaryFund = useMemo(() => {
     if (!(grossSalary > 0)) return 0;
-    return grossSalary + socialTax() + employerUnemploymentInsuranceTax;
-  }, [grossSalary]);
+    return grossSalary + socialTax + employerUnemploymentInsuranceTax;
+  }, [grossSalary, values.employerUnemploymentInsurance]);
 
   const netSalary = useMemo(() => {
     if (!(grossSalary > 0)) return 0;
     return (
-      grossSalary -
-      incomeTax() -
-      employeeUnemploymentInsuranceTax() -
-      fundedPension()
+      grossSalary - incomeTax - employeeUnemploymentInsuranceTax - fundedPension
     );
   }, [grossSalary]);
 
@@ -296,7 +301,7 @@ const Home = () => {
                   <tr>
                     <td>Sotsiaalmaks</td>
                     <td className="text-right">
-                      {formatCurreny(socialTax(), "€")}
+                      {formatCurreny(socialTax, "€")}
                     </td>
                   </tr>
                   <tr>
@@ -320,19 +325,19 @@ const Home = () => {
                   <tr>
                     <td>Kogumispension</td>
                     <td className="text-right">
-                      {formatCurreny(fundedPension(), "€")}
+                      {formatCurreny(fundedPension, "€")}
                     </td>
                   </tr>
                   <tr>
                     <td>Töötaja töötuskindlustusmakse</td>
                     <td className="text-right">
-                      {formatCurreny(employeeUnemploymentInsuranceTax(), "€")}
+                      {formatCurreny(employeeUnemploymentInsuranceTax, "€")}
                     </td>
                   </tr>
                   <tr>
                     <td>Tulumaks</td>
                     <td className="text-right">
-                      {formatCurreny(incomeTax(), "€")}
+                      {formatCurreny(incomeTax, "€")}
                     </td>
                   </tr>
                 </tbody>
