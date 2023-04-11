@@ -151,10 +151,11 @@ const Home = () => {
 
   const netSalary = useMemo(() => {
     if (!(grossSalary > 0)) return 0;
+    console.log("netSalary");
     return (
       grossSalary - incomeTax - employeeUnemploymentInsuranceTax - fundedPension
     );
-  }, [grossSalary]);
+  }, [grossSalary, incomeTax, employeeUnemploymentInsuranceTax, fundedPension]);
 
   const amountTypes = [
     { id: "total", title: "Tööandja kulu" },
