@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { Trans } from "@lingui/macro";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { format, min, parse, simplify } from "mathjs";
+import { format, parse, simplify, round } from "mathjs";
 
 import Payslip from "../components/payslip";
 import TaxInfo from "../components/tax-info";
@@ -37,6 +37,7 @@ const Home = () => {
   const {
     register,
     handleSubmit,
+    setValue,
     watch,
     formState: { errors },
   } = useForm({
@@ -54,19 +55,19 @@ const Home = () => {
   const values = watch();
 
   const grossSalary = useMemo(() => {
-    if (!(values.amount > 0)) {
-      return 0;
-    } else {
+    let grossSalaryValue = null;
+
+    if (values.amount > 0) {
       if (values.amountType === "total") {
-        // Slary fund
+        // Salary fund
         if (values.employeeUnemploymentInsurance) {
-          return values.amount / 1.338;
+          grossSalaryValue = values.amount / 1.338;
         } else {
-          return values.amount / 1.33;
+          grossSalaryValue = values.amount / 1.33;
         }
       } else if (values.amountType === "gross") {
         // Gross
-        return values.amount;
+        grossSalaryValue = values.amount;
       } else if (values.amountType === "net") {
         // Net
         const fp = values.fundedPension ? `x * 0.02` : 0; // Funded pension
@@ -75,20 +76,20 @@ const Home = () => {
         const f = parse(
           `x - ${fp} - ${eu} - ((x - 654 - ${fp} - ${eu}) * 0.2)`
         );
-        const simplified = simplify(f);
-        console.log(simplified.toString());
+        const simplified = simplify(f); // console.log(simplified.toString());
 
         // solve the equation
-        const solution = bisectionMethod(
+        grossSalaryValue = bisectionMethod(
           simplified.toString(),
           values.amount,
           values.amount,
           values.amount * 2
         );
-
-        return solution;
       }
     }
+
+    // Always return a value rounded to two decimal places
+    return round(grossSalaryValue, 2);
   }, [
     values.amountType,
     values.amount,
@@ -99,61 +100,71 @@ const Home = () => {
   // Employer unemployment insurance
   const employerUnemploymentInsuranceTax = useMemo(() => {
     if (!(grossSalary > 0) || !values.employerUnemploymentInsurance) return 0;
-    return grossSalary * 0.008;
+    return round(grossSalary * 0.008, 2);
   }, [values.employerUnemploymentInsurance, grossSalary]);
 
   // Employee unemployment insurance
   const employeeUnemploymentInsuranceTax = useMemo(() => {
     if (!(grossSalary > 0) || !values.employeeUnemploymentInsurance) return 0;
-    return grossSalary * 0.016;
+    return round(grossSalary * 0.016, 2);
   }, [values.employeeUnemploymentInsurance, grossSalary]);
 
   // Funded pension
   const fundedPension = useMemo(() => {
     if (!(grossSalary > 0) || !values.fundedPension) return 0;
-    return grossSalary * 0.02;
+    return round(grossSalary * 0.02, 2);
   }, [values.fundedPension, grossSalary]);
 
   // Tax free income
   const taxFreeIncome = useMemo(() => {
     if (!(grossSalary > 0)) return 0;
+
+    const amount = values.taxFreeIncomeAmount;
+
     // TODO: implement input values
     if (grossSalary < 1200) {
       return 654;
     } else if (grossSalary > 1200 && grossSalary < 2100) {
-      return (7848 - (7848 / 10800) * (grossSalary * 12 - 14400)) / 12;
+      return round(
+        (7848 - (7848 / 10800) * (grossSalary * 12 - 14400)) / 12,
+        2
+      );
     } else if (grossSalary > 2100) {
       return 0;
     }
-  }, [grossSalary]);
+  }, [grossSalary, values.taxFreeIncomeAmount]);
 
   // Income tax
   const incomeTax = useMemo(() => {
     if (!(grossSalary > 0) || grossSalary < taxFreeIncome) return 0;
-    return (
+    return round(
       (grossSalary -
         taxFreeIncome -
         fundedPension -
         employeeUnemploymentInsuranceTax) *
-      0.2
+        0.2,
+      2
     );
   }, [grossSalary, taxFreeIncome, fundedPension]);
 
   const socialTax = useMemo(() => {
     if (!(grossSalary > 0)) return 0;
-    return grossSalary * 0.33;
+    return round(grossSalary * 0.33, 2);
   }, [grossSalary]);
 
   const salaryFund = useMemo(() => {
     if (!(grossSalary > 0)) return 0;
-    return grossSalary + socialTax + employerUnemploymentInsuranceTax;
+    return round(grossSalary + socialTax + employerUnemploymentInsuranceTax, 2);
   }, [grossSalary, values.employerUnemploymentInsurance]);
 
   const netSalary = useMemo(() => {
     if (!(grossSalary > 0)) return 0;
-    console.log("netSalary");
-    return (
-      grossSalary - incomeTax - employeeUnemploymentInsuranceTax - fundedPension
+    return round(
+      grossSalary -
+        incomeTax -
+        employeeUnemploymentInsuranceTax -
+        fundedPension,
+      2
     );
   }, [grossSalary, incomeTax, employeeUnemploymentInsuranceTax, fundedPension]);
 
@@ -163,7 +174,15 @@ const Home = () => {
     { id: "net", title: "Netopalk" },
   ];
 
-  console.log("render");
+  console.log("render", incomeTax);
+  console.log(
+    grossSalary -
+      employeeUnemploymentInsuranceTax -
+      fundedPension -
+      incomeTax ===
+      netSalary
+  );
+
   return (
     <>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -240,9 +259,39 @@ const Home = () => {
                     className="text-sm font-semibold ml-2"
                   >
                     Maksuvaba tulu{" "}
-                    <span className="font-general text-lg leading-[1.3] px-2 py-1 border-b border-dark-blue">
-                      654 €
-                    </span>
+                    {values.taxFreeIncome ? (
+                      <>
+                        <span
+                          contentEditable
+                          suppressContentEditableWarning
+                          className="font-general text-lg leading-[1.3] px-2 py-1 border-b border-dark-blue focus:outline-none"
+                          {...register("taxFreeIncomeAmount", {
+                            required:
+                              "Maksuvaba tulu väärtus peab olema määratud",
+                          })}
+                          onInput={(e) => {
+                            if (e.currentTarget.textContent) {
+                              setValue(
+                                "taxFreeIncomeAmount",
+                                e.currentTarget.textContent,
+                                {
+                                  shouldDirty: true,
+                                }
+                              );
+                            }
+                          }}
+                        >
+                          654
+                        </span>
+                        <span className="font-general text-lg leading-[1.3] pl-1 pr-2 py-1 border-b border-dark-blue">
+                          €
+                        </span>
+                      </>
+                    ) : (
+                      <span className="font-general text-lg leading-[1.3] pl-1 pr-2 py-1 border-b border-dark-blue">
+                        0 €
+                      </span>
+                    )}
                   </label>
                 </div>
                 <div className="flex items-center">
