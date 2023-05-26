@@ -1,10 +1,11 @@
 import React, { useMemo, useState } from "react";
 import { Trans } from "@lingui/macro";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { format, parse, simplify, round } from "mathjs";
+import { parse, simplify, round } from "mathjs";
 
-import Payslip from "../components/payslip";
-import TaxInfo from "../components/tax-info";
+import Payslip from "/components/payslip";
+import TaxInfo from "/components/tax-info";
+import formatCurreny from "/utils/currency";
 
 const DEFAULT_GROSS_AMOUNT = 1000;
 
@@ -29,9 +30,6 @@ const bisectionMethod = (leftSideStr, rightSide, lowerBound, upperBound) => {
   const x = (a + b) / 2; // Calculate the final value of x
   return x;
 };
-
-const formatCurreny = (amount, symbol) =>
-  `${format(amount, { notation: "fixed", precision: 2 })} ${symbol}`;
 
 const Home = () => {
   const {
@@ -60,7 +58,7 @@ const Home = () => {
     if (values.amount > 0) {
       if (values.amountType === "total") {
         // Salary fund
-        if (values.employeeUnemploymentInsurance) {
+        if (values.employerUnemploymentInsurance) {
           grossSalaryValue = values.amount / 1.338;
         } else {
           grossSalaryValue = values.amount / 1.33;
@@ -86,13 +84,14 @@ const Home = () => {
           values.amount * 2
         );
       }
+      // Always return a value rounded to two decimal places
+      return round(grossSalaryValue, 2);
     }
-
-    // Always return a value rounded to two decimal places
-    return round(grossSalaryValue, 2);
+    return 0;
   }, [
     values.amountType,
     values.amount,
+    values.employerUnemploymentInsurance,
     values.employeeUnemploymentInsurance,
     values.fundedPension,
   ]);
@@ -154,8 +153,14 @@ const Home = () => {
 
   const salaryFund = useMemo(() => {
     if (!(grossSalary > 0)) return 0;
+    console.log(
+      "salaryFund",
+      grossSalary,
+      socialTax,
+      employerUnemploymentInsuranceTax
+    );
     return round(grossSalary + socialTax + employerUnemploymentInsuranceTax, 2);
-  }, [grossSalary, values.employerUnemploymentInsurance]);
+  }, [grossSalary, socialTax, employerUnemploymentInsuranceTax]);
 
   const netSalary = useMemo(() => {
     if (!(grossSalary > 0)) return 0;
@@ -176,11 +181,13 @@ const Home = () => {
 
   console.log("render", incomeTax);
   console.log(
-    grossSalary -
-      employeeUnemploymentInsuranceTax -
-      fundedPension -
-      incomeTax ===
-      netSalary
+    round(
+      grossSalary -
+        employeeUnemploymentInsuranceTax -
+        fundedPension -
+        incomeTax,
+      2
+    ) === netSalary
   );
 
   return (

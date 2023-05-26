@@ -4,6 +4,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "cypress": "cypress open",
     "extract": "lingui extract",
     "compile": "lingui compile",
     "add-locale": "lingui add-locale"
@@ -35,6 +36,7 @@
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
     "autoprefixer": "^10.4.13",
+    "cypress": "^12.13.0",
     "postcss": "^8.4.21",
     "tailwindcss": "^3.2.7",
     "typescript": "4.9.5"
