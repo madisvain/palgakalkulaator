@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { Trans } from "@lingui/macro";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { parse, simplify, round } from "mathjs";
+import { max, min, parse, simplify, round } from "mathjs";
 
 import Payslip from "/components/payslip";
 import TaxInfo from "/components/tax-info";
@@ -10,7 +10,7 @@ import formatCurreny from "/utils/currency";
 const DEFAULT_GROSS_AMOUNT = 1000;
 
 const bisectionMethod = (leftSideStr, rightSide, lowerBound, upperBound) => {
-  const tolerance = 0.0001; // Set the tolerance level
+  const tolerance = 0.01; // Set the tolerance level
   let a = lowerBound; // Set the lower bound
   let b = upperBound; // Set the upper bound
 
@@ -71,6 +71,7 @@ const Home = () => {
         const fp = values.fundedPension ? `x * 0.02` : 0; // Funded pension
         const eu = values.employeeUnemploymentInsurance ? `x * 0.016` : 0; // Employee unemployment insurance
 
+        // TODO: implement input values
         const f = parse(
           `x - ${fp} - ${eu} - ((x - 654 - ${fp} - ${eu}) * 0.2)`
         );
@@ -121,14 +122,14 @@ const Home = () => {
     const amount = values.taxFreeIncomeAmount;
 
     // TODO: implement input values
-    if (grossSalary < 1200) {
-      return 654;
+    if (grossSalary <= 1200) {
+      return min(654, values.amount);
     } else if (grossSalary > 1200 && grossSalary < 2100) {
       return round(
         (7848 - (7848 / 10800) * (grossSalary * 12 - 14400)) / 12,
         2
       );
-    } else if (grossSalary > 2100) {
+    } else if (grossSalary >= 2100) {
       return 0;
     }
   }, [grossSalary, values.taxFreeIncomeAmount]);
@@ -136,13 +137,16 @@ const Home = () => {
   // Income tax
   const incomeTax = useMemo(() => {
     if (!(grossSalary > 0) || grossSalary < taxFreeIncome) return 0;
-    return round(
-      (grossSalary -
-        taxFreeIncome -
-        fundedPension -
-        employeeUnemploymentInsuranceTax) *
-        0.2,
-      2
+    return max(
+      round(
+        (grossSalary -
+          taxFreeIncome -
+          fundedPension -
+          employeeUnemploymentInsuranceTax) *
+          0.2,
+        2
+      ),
+      0
     );
   }, [grossSalary, taxFreeIncome, fundedPension]);
 
@@ -153,12 +157,6 @@ const Home = () => {
 
   const salaryFund = useMemo(() => {
     if (!(grossSalary > 0)) return 0;
-    console.log(
-      "salaryFund",
-      grossSalary,
-      socialTax,
-      employerUnemploymentInsuranceTax
-    );
     return round(grossSalary + socialTax + employerUnemploymentInsuranceTax, 2);
   }, [grossSalary, socialTax, employerUnemploymentInsuranceTax]);
 
@@ -178,17 +176,6 @@ const Home = () => {
     { id: "gross", title: "Brutopalk" },
     { id: "net", title: "Netopalk" },
   ];
-
-  console.log("render", incomeTax);
-  console.log(
-    round(
-      grossSalary -
-        employeeUnemploymentInsuranceTax -
-        fundedPension -
-        incomeTax,
-      2
-    ) === netSalary
-  );
 
   return (
     <>
