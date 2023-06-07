@@ -93,12 +93,6 @@ const Home = () => {
           return result;
         };
 
-        /*
-        `x - ${fp} - ${eu} - ((x - (Math.min(x, 654) - ${fp} - ${eu}) * 0.2)`,
-        `x - ${fp} - ${eu} - ((x - ((7848 - (7848 / 10800) * (x * 12 - 14400)) / 12) - ${fp} - ${eu}) * 0.2)`,
-        `x - ${fp} - ${eu} - ((x - 0 - ${fp} - ${eu}) * 0.2)`,
-        */
-
         // solve the equation
         grossSalaryValue = bisectionMethodAdvanced(
           func,
