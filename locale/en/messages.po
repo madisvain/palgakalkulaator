@@ -17,7 +17,7 @@ msgstr ""
 
 #: pages/components/navigation.js:64
 msgid "Kontakt"
-msgstr ""
+msgstr "Contact"
 
 #: pages/index.js:44
 msgid "Palgakalkulaator"

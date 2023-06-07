@@ -10,19 +10,19 @@
     "add-locale": "lingui add-locale"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.12",
-    "@heroicons/react": "^2.0.16",
+    "@headlessui/react": "^1.7.15",
+    "@heroicons/react": "^2.0.18",
     "@lingui/react": "^3.17.2",
     "algebra.js": "^0.2.6",
     "hamburger-react": "^2.5.0",
     "lodash": "^4.17.21",
     "mathjs": "^11.6.0",
-    "next": "13.2.1",
+    "next": "13.4.3",
     "nookies": "^2.5.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-driftjs": "^1.2.2",
-    "react-hook-form": "^7.43.2"
+    "react-hook-form": "^7.44.3"
   },
   "devDependencies": {
     "@babel/core": "^7.21.0",
@@ -30,15 +30,15 @@
     "@lingui/cli": "^3.17.2",
     "@lingui/loader": "^3.17.2",
     "@lingui/macro": "^3.17.2",
-    "@lingui/swc-plugin": "^0.2.3",
+    "@lingui/swc-plugin": "^4.0.2",
     "@tailwindcss/forms": "^0.5.3",
     "@types/node": "18.14.1",
-    "@types/react": "18.0.28",
-    "@types/react-dom": "18.0.11",
-    "autoprefixer": "^10.4.13",
+    "@types/react": "18.2.8",
+    "@types/react-dom": "18.2.4",
+    "autoprefixer": "^10.4.14",
     "cypress": "^12.13.0",
-    "postcss": "^8.4.21",
-    "tailwindcss": "^3.2.7",
+    "postcss": "^8.4.24",
+    "tailwindcss": "^3.3.2",
     "typescript": "4.9.5"
   }
 }

@@ -9,25 +9,28 @@ import formatCurreny from "/utils/currency";
 
 const DEFAULT_GROSS_AMOUNT = 1000;
 
-const bisectionMethod = (leftSideStr, rightSide, lowerBound, upperBound) => {
-  const tolerance = 0.01; // Set the tolerance level
-  let a = lowerBound; // Set the lower bound
-  let b = upperBound; // Set the upper bound
+const bisectionMethodAdvanced = (func, rightSide, lowerBound, upperBound) => {
+  const tolerance = 0.0001;
+  let a = lowerBound;
+  let b = upperBound;
 
-  // Create a new Function object that takes x as an argument and evaluates the left side of the equation
-  const leftSide = new Function("x", `return ${leftSideStr};`);
+  const leftSide = func;
+
+  if ((leftSide(a) - rightSide) * (leftSide(b) - rightSide) > 0) {
+    return undefined;
+  }
 
   while ((b - a) / 2 > tolerance) {
-    const c = (a + b) / 2; // Calculate the midpoint
-    const result = leftSide(c); // Calculate the result of the left side of the equation
+    const c = (a + b) / 2;
+    const result = leftSide(c);
     if (result < rightSide) {
-      a = c; // Update the lower bound
+      a = c;
     } else {
-      b = c; // Update the upper bound
+      b = c;
     }
   }
 
-  const x = (a + b) / 2; // Calculate the final value of x
+  const x = (a + b) / 2;
   return x;
 };
 
@@ -43,6 +46,7 @@ const Home = () => {
       amount: DEFAULT_GROSS_AMOUNT,
       amountType: "gross",
       taxFreeIncome: true,
+      taxFreeIncomeAmount: 654,
       employeeUnemploymentInsurance: true,
       employerUnemploymentInsurance: true,
       fundedPension: true,
@@ -71,22 +75,41 @@ const Home = () => {
         const fp = values.fundedPension ? `x * 0.02` : 0; // Funded pension
         const eu = values.employeeUnemploymentInsurance ? `x * 0.016` : 0; // Employee unemployment insurance
 
-        // TODO: implement input values
-        const f = parse(
-          `x - ${fp} - ${eu} - ((x - 654 - ${fp} - ${eu}) * 0.2)`
-        );
-        const simplified = simplify(f); // console.log(simplified.toString());
+        // Function to solve
+        const func = (x) => {
+          let tf = 0; // Tax free income
+
+          if (x <= 1200) {
+            tf = Math.min(values.amount, 654);
+          } else if (x > 1200 && x < 2100) {
+            tf = `(7848 - (7848 / 10800) * (x * 12 - 14400)) / 12`;
+          }
+
+          const eq = parse(
+            `x - ${fp} - ${eu} - ((x - ${tf} - ${fp} - ${eu}) * 0.2)`
+          );
+          const code = eq.compile();
+          const result = code.evaluate({ x });
+          return result;
+        };
+
+        /*
+        `x - ${fp} - ${eu} - ((x - (Math.min(x, 654) - ${fp} - ${eu}) * 0.2)`,
+        `x - ${fp} - ${eu} - ((x - ((7848 - (7848 / 10800) * (x * 12 - 14400)) / 12) - ${fp} - ${eu}) * 0.2)`,
+        `x - ${fp} - ${eu} - ((x - 0 - ${fp} - ${eu}) * 0.2)`,
+        */
 
         // solve the equation
-        grossSalaryValue = bisectionMethod(
-          simplified.toString(),
+        grossSalaryValue = bisectionMethodAdvanced(
+          func,
           values.amount,
           values.amount,
           values.amount * 2
         );
       }
+
       // Always return a value rounded to two decimal places
-      return round(grossSalaryValue, 2);
+      return grossSalaryValue ? round(grossSalaryValue, 2) : null;
     }
     return 0;
   }, [
@@ -121,9 +144,8 @@ const Home = () => {
 
     const amount = values.taxFreeIncomeAmount;
 
-    // TODO: implement input values
     if (grossSalary <= 1200) {
-      return min(654, values.amount);
+      return min(654, values.amount, amount);
     } else if (grossSalary > 1200 && grossSalary < 2100) {
       return round(
         (7848 - (7848 / 10800) * (grossSalary * 12 - 14400)) / 12,
