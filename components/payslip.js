@@ -2,7 +2,9 @@ import { Trans } from "@lingui/macro";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 import dayjs from "dayjs";
-import Link from "next/link";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+
+import PDF from "components/pdf";
 
 import "dayjs/locale/et";
 
@@ -204,6 +206,11 @@ const Payslip = () => {
               <button className="bg-green py-5 px-8 font-semibold h-[66px]">
                 <Trans>Salvesta PDF</Trans>
               </button>
+              <PDFDownloadLink document={<PDF />} fileName="somename.pdf">
+                {({ blob, url, loading, error }) =>
+                  loading ? "Loading document..." : "Download now!"
+                }
+              </PDFDownloadLink>
               <div className="text-right">
                 <h6 className="font-semibold mb-1">
                   <Trans>Tasumisele kuuluv NETO töötasu</Trans>

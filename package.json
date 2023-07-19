@@ -13,6 +13,7 @@
     "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.0.18",
     "@lingui/react": "^3.17.2",
+    "@react-pdf/renderer": "^3.1.12",
     "algebra.js": "^0.2.6",
     "dayjs": "^1.11.9",
     "hamburger-react": "^2.5.0",
