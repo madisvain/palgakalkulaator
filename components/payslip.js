@@ -44,6 +44,7 @@ const Payslip = ({
         personalCode={getValues("personalCode")}
         periodStart={getValues("periodStart")}
         periodEnd={getValues("periodEnd")}
+        notes={getValues("notes")}
         grossSalary={grossSalary}
         netSalary={netSalary}
         salaryFund={salaryFund}
