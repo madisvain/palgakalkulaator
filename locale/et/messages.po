@@ -6,27 +6,113 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
 "Language: et\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
 
 #: pages/index.js:50
-msgid "Arvuta palgakalkulaatoriga maksud ja saada palgalehed."
-msgstr "Arvuta palgakalkulaatoriga maksud ja saada palgalehed."
+#~ msgid "Arvuta palgakalkulaatoriga maksud ja saada palgalehed."
+#~ msgstr "Arvuta palgakalkulaatoriga maksud ja saada palgalehed."
 
 #: pages/index.js:47
-msgid "Avame varsti"
-msgstr "Avame varsti"
+#~ msgid "Avame varsti"
+#~ msgstr "Avame varsti"
+
+#: components/payslip.js:153
+msgid "Brutotöötasu"
+msgstr "Brutotöötasu"
+
+#: components/payslip.js:102
+msgid "Isikukood"
+msgstr "Isikukood"
+
+#: components/payslip.js:159
+msgid "Kinnipidamised"
+msgstr "Kinnipidamised"
+
+#: components/payslip.js:172
+msgid "Kogumispension"
+msgstr "Kogumispension"
 
 #: pages/components/navigation.js:64
-msgid "Kontakt"
-msgstr "Kontakt"
+#~ msgid "Kontakt"
+#~ msgstr "Kontakt"
 
-#: pages/index.js:44
+#: pages/index.js:426
+msgid "Koosta palgateatis"
+msgstr "Koosta palgateatis"
+
+#: pages/index.js:247
+msgid "Mahaarvamised:"
+msgstr "Mahaarvamised:"
+
+#: components/payslip.js:139
+msgid "Märkus"
+msgstr "Märkus"
+
+#: components/payslip.js:197
+msgid "Neto töötasu"
+msgstr "Neto töötasu"
+
+#: components/navigation.js:24
 msgid "Palgakalkulaator"
 msgstr "Palgakalkulaator"
 
+#: components/payslip.js:114
+msgid "Periood"
+msgstr "Periood"
+
+#: components/payslip.js:308
+msgid "Salvesta PDF"
+msgstr "Salvesta PDF"
+
 #: pages/components/navigation.js:55
-msgid "Seadusemuudatused"
-msgstr "Seadusemuudatused"
+#~ msgid "Seadusemuudatused"
+#~ msgstr "Seadusemuudatused"
+
+#: components/payslip.js:214
+msgid "Sotsiaalmaks"
+msgstr "Sotsiaalmaks"
+
+#: pages/index.js:222
+msgid "Summa tüüp"
+msgstr "Summa tüüp"
+
+#: components/payslip.js:312
+msgid "Tasumisele kuuluv neto töötasu"
+msgstr "Tasumisele kuuluv neto töötasu"
 
 #: pages/components/navigation.js:45
-msgid "Teenused"
-msgstr "Teenused"
+#~ msgid "Teenused"
+#~ msgstr "Teenused"
+
+#: components/payslip.js:188
+msgid "Tulumaks"
+msgstr "Tulumaks"
+
+#: components/payslip.js:78
+msgid "Tööandja"
+msgstr "Tööandja"
+
+#: components/payslip.js:230
+msgid "Tööandja kulu"
+msgstr "Tööandja kulu"
+
+#: components/payslip.js:203
+msgid "Tööandja maksud"
+msgstr "Tööandja maksud"
+
+#: components/payslip.js:222
+msgid "Tööandja töötuskindlustusmakse"
+msgstr "Tööandja töötuskindlustusmakse"
+
+#: components/payslip.js:90
+msgid "Töötaja"
+msgstr "Töötaja"
+
+#: components/payslip.js:180
+msgid "Töötaja töötuskindlustusmakse"
+msgstr "Töötaja töötuskindlustusmakse"
