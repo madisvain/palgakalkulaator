@@ -3,9 +3,9 @@ import { Trans } from "@lingui/macro";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { max, min, parse, simplify, round } from "mathjs";
 
-import Payslip from "/components/payslip";
-import TaxInfo from "/components/tax-info";
-import formatCurreny from "/utils/currency";
+import Payslip from "components/payslip";
+import TaxInfo from "components/tax-info";
+import formatCurreny from "utils/currency";
 
 const DEFAULT_GROSS_AMOUNT = 1000;
 
@@ -446,7 +446,16 @@ const Home = () => {
 
       {showPayslip && (
         <div className="bg-rainbow">
-          <Payslip />
+          <Payslip
+            grossSalary={grossSalary}
+            netSalary={netSalary}
+            salaryFund={salaryFund}
+            fundedPension={fundedPension}
+            incomeTax={incomeTax}
+            socialTax={socialTax}
+            employeeUnemploymentInsuranceTax={employeeUnemploymentInsuranceTax}
+            employerUnemploymentInsuranceTax={employerUnemploymentInsuranceTax}
+          />
         </div>
       )}
 
