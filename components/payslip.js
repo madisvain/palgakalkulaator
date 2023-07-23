@@ -267,7 +267,7 @@ const Payslip = ({
             </div>
             */}
 
-            <div className="flex justify-between mt-40">
+            <div className="flex justify-between items-end mt-40">
               <a
                 href={instance.url}
                 download="test.pdf"
