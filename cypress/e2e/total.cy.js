@@ -1,4 +1,4 @@
-import formatCurreny from "/utils/currency";
+import formatCurrency from "/utils/currency";
 
 const totalScenarios = [
   {
@@ -114,45 +114,45 @@ describe("Salary calculator", () => {
       cy.contains("h4", "Tööandja kulu")
         .parent()
         .next("td")
-        .should("contain", `${formatCurreny(scenario["total"], "€")}`);
+        .should("contain", `${formatCurrency(scenario["total"], "€")}`);
 
       cy.contains("td", "Sotsiaalmaks")
         .next("td")
-        .should("contain", `${formatCurreny(scenario["socialTax"], "€")}`);
+        .should("contain", `${formatCurrency(scenario["socialTax"], "€")}`);
 
       cy.contains("td", "Tööandja töötuskindlustusmakse")
         .next("td")
         .should(
           "contain",
-          `${formatCurreny(scenario["employerUnemploymentInsurance"], "€")}`
+          `${formatCurrency(scenario["employerUnemploymentInsurance"], "€")}`
         );
 
       // Bruto
       cy.contains("h4", "Brutopalk")
         .parent()
         .next("td")
-        .should("contain", `${formatCurreny(scenario["gross"], "€")}`);
+        .should("contain", `${formatCurrency(scenario["gross"], "€")}`);
 
       cy.contains("td", "Kogumispension")
         .next("td")
-        .should("contain", `${formatCurreny(scenario["fundedPension"], "€")}`);
+        .should("contain", `${formatCurrency(scenario["fundedPension"], "€")}`);
 
       cy.contains("td", "Töötaja töötuskindlustusmakse")
         .next("td")
         .should(
           "contain",
-          `${formatCurreny(scenario["employeeUnemploymentInsurance"], "€")}`
+          `${formatCurrency(scenario["employeeUnemploymentInsurance"], "€")}`
         );
 
       cy.contains("td", "Tulumaks")
         .next("td")
-        .should("contain", `${formatCurreny(scenario["incomeTax"], "€")}`);
+        .should("contain", `${formatCurrency(scenario["incomeTax"], "€")}`);
 
       // Neto
       cy.contains("h4", "Netopalk")
         .parent()
         .next("td")
-        .should("contain", `${formatCurreny(scenario["net"], "€")}`);
+        .should("contain", `${formatCurrency(scenario["net"], "€")}`);
     });
   });
 });

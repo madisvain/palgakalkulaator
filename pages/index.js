@@ -1,11 +1,13 @@
 import React, { useMemo, useState } from "react";
 import { Trans } from "@lingui/macro";
+import { PDFViewer } from "@react-pdf/renderer";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { max, min, parse, simplify, round } from "mathjs";
 
 import Payslip from "components/payslip";
 import TaxInfo from "components/tax-info";
-import formatCurreny from "utils/currency";
+import PDF from "components/pdf";
+import formatCurrency from "utils/currency";
 
 const DEFAULT_GROSS_AMOUNT = 1000;
 
@@ -357,19 +359,19 @@ const Home = () => {
                       <h4>Tööandja kulu</h4>
                     </td>
                     <td className="font-general text-2xl text-right">
-                      {formatCurreny(salaryFund, "€")}
+                      {formatCurrency(salaryFund, "€")}
                     </td>
                   </tr>
                   <tr>
                     <td>Sotsiaalmaks</td>
                     <td className="text-right">
-                      {formatCurreny(socialTax, "€")}
+                      {formatCurrency(socialTax, "€")}
                     </td>
                   </tr>
                   <tr>
                     <td>Tööandja töötuskindlustusmakse</td>
                     <td className="text-right">
-                      {formatCurreny(employerUnemploymentInsuranceTax, "€")}
+                      {formatCurrency(employerUnemploymentInsuranceTax, "€")}
                     </td>
                   </tr>
                 </tbody>
@@ -381,25 +383,25 @@ const Home = () => {
                       <h4>Brutopalk</h4>
                     </td>
                     <td className="font-general text-2xl text-right">
-                      {formatCurreny(grossSalary, "€")}
+                      {formatCurrency(grossSalary, "€")}
                     </td>
                   </tr>
                   <tr>
                     <td>Kogumispension</td>
                     <td className="text-right">
-                      {formatCurreny(fundedPension, "€")}
+                      {formatCurrency(fundedPension, "€")}
                     </td>
                   </tr>
                   <tr>
                     <td>Töötaja töötuskindlustusmakse</td>
                     <td className="text-right">
-                      {formatCurreny(employeeUnemploymentInsuranceTax, "€")}
+                      {formatCurrency(employeeUnemploymentInsuranceTax, "€")}
                     </td>
                   </tr>
                   <tr>
                     <td>Tulumaks</td>
                     <td className="text-right">
-                      {formatCurreny(incomeTax, "€")}
+                      {formatCurrency(incomeTax, "€")}
                     </td>
                   </tr>
                 </tbody>
@@ -411,7 +413,7 @@ const Home = () => {
                       <h4>Netopalk</h4>
                     </td>
                     <td className="font-general text-2xl text-right">
-                      {formatCurreny(netSalary, "€")}
+                      {formatCurrency(netSalary, "€")}
                     </td>
                   </tr>
                 </tbody>
@@ -442,6 +444,27 @@ const Home = () => {
             )}
           </div>
         </div>
+      </div>
+
+      <div>
+        <PDFViewer width={800} height={1200}>
+          <PDF
+            title="Palgateatis juuli 2021"
+            employer="Arveldaja OÜ"
+            employee="Mari Maasikas"
+            personalCode="12345678910"
+            periodStart="01.07.2021"
+            periodEnd="31.07.2021"
+            grossSalary={grossSalary}
+            netSalary={netSalary}
+            salaryFund={salaryFund}
+            fundedPension={fundedPension}
+            incomeTax={incomeTax}
+            socialTax={socialTax}
+            employeeUnemploymentInsuranceTax={employeeUnemploymentInsuranceTax}
+            employerUnemploymentInsuranceTax={employerUnemploymentInsuranceTax}
+          />
+        </PDFViewer>
       </div>
 
       {showPayslip && (

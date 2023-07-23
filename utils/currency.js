@@ -1,6 +1,6 @@
 import { format } from "mathjs";
 
-const formatCurreny = (amount, symbol) =>
+const formatCurrency = (amount, symbol) =>
   `${format(amount, { notation: "fixed", precision: 2 })} ${symbol}`;
 
-export default formatCurreny;
+export default formatCurrency;
