@@ -13,6 +13,7 @@ const Payslip = () => {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -88,13 +89,19 @@ const Payslip = () => {
                   <div className="basis-2/3">
                     <div className="flex flex-row gap-4">
                       <div className="basis-1/2">
-                        <DatePicker />
+                        <DatePicker
+                          name="periodStart"
+                          register={register}
+                          setValue={setValue}
+                          value={watch("periodStart")}
+                        />
                       </div>
                       <div className="basis-1/2">
-                        <input
-                          {...register("periodEnd")}
-                          type="text"
-                          className="border-transparent bg-beige w-full h-9"
+                        <DatePicker
+                          name="periodEnd"
+                          register={register}
+                          setValue={setValue}
+                          value={watch("periodEnd")}
                         />
                       </div>
                     </div>

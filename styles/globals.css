@@ -15,6 +15,19 @@ body {
   background: #F4F2EF;
 }
 
+/* Datepicker */
+.rdp {
+  --rdp-accent-color: #83F2BD;
+  --rdp-background-color: #F2FFCD;
+}
+.rdp-day_selected,
+.rdp-day_selected:focus-visible,
+.rdp-day_selected:hover {
+  color: white;
+  opacity: 1;
+  background-color: var(--rdp-accent-color) !important;
+}
+
 /* Input number appearance */
 @layer base {
   input[type='number']::-webkit-outer-spin-button,

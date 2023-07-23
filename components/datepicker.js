@@ -1,28 +1,33 @@
-import { useRef, useState } from "react";
 import { DayPicker } from "react-day-picker";
 import { Popover } from "@headlessui/react";
+import { format, parse } from "date-fns";
 
 import { et } from "date-fns/locale";
 
-const DatePicker = () => {
-  const [selectedDate, setSelectedDate] = useState();
-  const inputRef = useRef(null);
+const DatePicker = ({ name, register, setValue, value }) => {
+  const onDateSelect = (date, close) => {
+    setValue(name, format(date, "dd.MM.yyyy"));
+    close();
+  };
 
   return (
     <Popover>
-      {({ open }) => (
+      {({ open, close }) => (
         <>
           <Popover.Button>
             <input
+              {...register(name)}
               type="text"
               className="border-transparent bg-beige w-full h-9"
+              value={value}
             />
           </Popover.Button>
           <Popover.Panel className="absolute z-10 mt-2 bg-white border shadow-lg">
             <DayPicker
               mode="single"
-              selected={selectedDate}
-              onSelect={setSelectedDate}
+              selected={parse(value, "dd.MM.yyyy", new Date())}
+              onSelect={(date) => onDateSelect(date, close)}
+              defaultMonth={parse(value, "dd.MM.yyyy", new Date())}
               locale={et}
               showOutsideDays
             />
