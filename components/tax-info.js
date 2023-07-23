@@ -14,63 +14,69 @@ const TaxInfo = () => {
               <li>
                 Tulumaksu kinnipidamise määr on{" "}
                 <strong className="font-bold">20%</strong>{" "}
-                <Link
-                  href="#"
+                <a
+                  href="https://www.riigiteataja.ee/akt/128122017077?leiaKehtiv#para4lg1"
                   className="font-semibold text-xs underline underline-offset-4"
+                  target="_blank"
                 >
                   TMS § 4 lg 1
-                </Link>
+                </a>
               </li>
               <li>
                 Maksuvaba tulu varieeruv 0...7848 / 12 ={" "}
                 <strong>0...654 EUR/kuus</strong>{" "}
-                <Link
-                  href="#"
+                <a
+                  href="https://www.riigiteataja.ee/akt/128122017077?leiaKehtiv#para23"
                   className="font-semibold text-xs underline underline-offset-4"
+                  target="_blank"
                 >
                   TMS § 23 lg 1 ja lg 2
-                </Link>
+                </a>
               </li>
               <li>
                 Sotsiaalmaksu määr on 33%{" "}
-                <Link
-                  href="#"
+                <a
+                  href="https://www.riigiteataja.ee/akt/128122017076?leiaKehtiv#para7lg1"
                   className="font-semibold text-xs underline underline-offset-4"
+                  target="_blank"
                 >
                   SMS § 7 lg 1
-                </Link>
+                </a>
               </li>
               <li>
                 Sotsiaalmaksu kuumäär on <strong>654 EUR</strong>, st
                 sotsiaalmaksu minimaalne kohustus on 654 x 0.33 ={" "}
                 <strong>215,82 EUR/kuus</strong>{" "}
-                <Link
-                  href="#"
+                <a
+                  href="https://www.riigiteataja.ee/akt/128122017076?leiaKehtiv#para2lg2"
                   className="font-semibold text-xs underline underline-offset-4"
+                  target="_blank"
                 >
                   2023 RES § 2 lg 7, SMS § 2 lg 2, SMS § 21
-                </Link>
+                </a>
               </li>
               <li>
                 Töötuskindlustusmakse määrad on:
                 <ul className="list-outside list-disc ml-8">
                   <li>
                     töötajale <strong>1.6%</strong>{" "}
-                    <Link
-                      href="#"
+                    <a
+                      href="https://www.riigiteataja.ee/akt/117092022003?leiaKehtiv#para2"
                       className="font-semibold text-xs underline underline-offset-4"
+                      target="_blank"
                     >
                       VV määrus 15.09.2022 nr 88
-                    </Link>
+                    </a>
                   </li>
                   <li>
                     tööandjale <strong>0.8%</strong>{" "}
-                    <Link
-                      href="#"
+                    <a
+                      href="https://www.riigiteataja.ee/akt/117092022003?leiaKehtiv#para2"
                       className="font-semibold text-xs underline underline-offset-4"
+                      target="_blank"
                     >
                       VV määrus 15.09.2022 nr 88
-                    </Link>
+                    </a>
                   </li>
                 </ul>
               </li>
@@ -78,36 +84,43 @@ const TaxInfo = () => {
                 Kogumispensioni makse määr on <strong>liitunutele 2%</strong> ja{" "}
                 <strong>mitteliitunutele 0%</strong>. Kogumispensioniga
                 liitumist saab kontrollida{" "}
-                <Link href="#" className="underline underline-offset-4">
+                <a
+                  href="https://www.pensionikeskus.ee/raamatupidajale/ii-sammas/liitumiskontroll/"
+                  className="underline underline-offset-4"
+                  target="_blank"
+                >
                   <strong>siit</strong>
-                </Link>{" "}
-                <Link
-                  href="#"
+                </a>{" "}
+                <a
+                  href="https://www.riigiteataja.ee/akt/107122018011?leiaKehtiv#para9"
                   className="font-semibold text-xs underline underline-offset-4"
+                  target="_blank"
                 >
                   KPS § 9
-                </Link>
+                </a>
               </li>
               <li>
                 Töötasu alammäär (miinimumpalk) on:
                 <ul className="list-outside list-disc ml-8">
                   <li>
                     kuus <strong>725 EUR</strong>{" "}
-                    <Link
-                      href="#"
+                    <a
+                      href="https://www.riigiteataja.ee/akt/113122022033"
                       className="font-semibold text-xs underline underline-offset-4"
+                      target="_blank"
                     >
                       VV määrus 09.12.2022 nr 124
-                    </Link>
+                    </a>
                   </li>
                   <li>
                     tunnis <strong>4.3 EUR</strong>{" "}
-                    <Link
-                      href="#"
+                    <a
+                      href="https://www.riigiteataja.ee/akt/113122022033"
                       className="font-semibold text-xs underline underline-offset-4"
+                      target="_blank"
                     >
                       VV määrus 09.12.2022 nr 124
-                    </Link>
+                    </a>
                   </li>
                 </ul>
               </li>

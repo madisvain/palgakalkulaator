@@ -1,14 +1,12 @@
 import { Trans } from "@lingui/macro";
+import { Popover } from "@headlessui/react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
-import dayjs from "dayjs";
-import { PDFDownloadLink } from "@react-pdf/renderer";
+import { format, subMonths, startOfMonth, endOfMonth } from "date-fns";
+import { et } from "date-fns/locale";
+import { usePDF } from "@react-pdf/renderer";
 
 import PDF from "components/pdf";
-
-import "dayjs/locale/et";
-
-dayjs.locale("et");
 
 const Payslip = () => {
   const {
@@ -18,9 +16,15 @@ const Payslip = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      title: `Palgaleht ${dayjs().subtract(1, "month").format("MMMM YYYY")}`,
+      title: `Palgaleht ${format(subMonths(new Date(), 1), "MMMM yyyy", {
+        locale: et,
+      })}`,
+      periodStart: format(startOfMonth(subMonths(new Date(), 1)), "dd.MM.yyyy"),
+      periodEnd: format(endOfMonth(subMonths(new Date(), 1)), "dd.MM.yyyy"),
     },
   });
+
+  const [instance, updateInstance] = usePDF({ document: <PDF /> });
 
   const onSubmit = (data) => console.log(data);
 
@@ -42,10 +46,10 @@ const Payslip = () => {
             <div className="flex flex-row gap-8">
               <div className="basis-1/2">
                 <div className="flex flex-row gap-4 items-center mb-3">
-                  <div className="basis-1/2 text-right text-dark-blue opacity-40 font-general font-semibold">
+                  <div className="basis-1/3 text-right text-dark-blue opacity-40 font-general font-semibold">
                     <Trans>Tööandja</Trans>
                   </div>
-                  <div className="basis-1/2">
+                  <div className="basis-2/3">
                     <input
                       {...register("employer")}
                       type="text"
@@ -54,10 +58,10 @@ const Payslip = () => {
                   </div>
                 </div>
                 <div className="flex flex-row gap-4 items-center mb-3">
-                  <div className="basis-1/2 text-right text-dark-blue opacity-40 font-general font-semibold">
+                  <div className="basis-1/3 text-right text-dark-blue opacity-40 font-general font-semibold">
                     <Trans>Töötaja</Trans>
                   </div>
-                  <div className="basis-1/2">
+                  <div className="basis-2/3">
                     <input
                       {...register("employee")}
                       type="text"
@@ -66,10 +70,10 @@ const Payslip = () => {
                   </div>
                 </div>
                 <div className="flex flex-row gap-4 items-center mb-3">
-                  <div className="basis-1/2 text-right text-dark-blue opacity-40 font-general font-semibold">
+                  <div className="basis-1/3 text-right text-dark-blue opacity-40 font-general font-semibold">
                     <Trans>Isikukood</Trans>
                   </div>
-                  <div className="basis-1/2">
+                  <div className="basis-2/3">
                     <input
                       {...register("personalCode")}
                       type="text"
@@ -78,15 +82,26 @@ const Payslip = () => {
                   </div>
                 </div>
                 <div className="flex flex-row gap-4 items-center">
-                  <div className="basis-1/2 text-right text-dark-blue opacity-40 font-general font-semibold">
-                    <Trans>Kuupäev</Trans>
+                  <div className="basis-1/3 text-right text-dark-blue opacity-40 font-general font-semibold">
+                    <Trans>Periood</Trans>
                   </div>
-                  <div className="basis-1/2">
-                    <input
-                      {...register("date")}
-                      type="text"
-                      className="border-transparent bg-beige w-full h-9"
-                    />
+                  <div className="basis-2/3">
+                    <div className="flex flex-row gap-4">
+                      <div className="basis-1/2">
+                        <input
+                          {...register("periodStart")}
+                          type="text"
+                          className="border-transparent bg-beige w-full h-9"
+                        />
+                      </div>
+                      <div className="basis-1/2">
+                        <input
+                          {...register("periodEnd")}
+                          type="text"
+                          className="border-transparent bg-beige w-full h-9"
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -203,14 +218,13 @@ const Payslip = () => {
             */}
 
             <div className="flex justify-between mt-40">
-              <button className="bg-green py-5 px-8 font-semibold h-[66px]">
+              <a
+                href={instance.url}
+                download="test.pdf"
+                className="bg-green py-5 px-8 font-semibold h-[66px]"
+              >
                 <Trans>Salvesta PDF</Trans>
-              </button>
-              <PDFDownloadLink document={<PDF />} fileName="somename.pdf">
-                {({ blob, url, loading, error }) =>
-                  loading ? "Loading document..." : "Download now!"
-                }
-              </PDFDownloadLink>
+              </a>
               <div className="text-right">
                 <h6 className="font-semibold mb-1">
                   <Trans>Tasumisele kuuluv NETO töötasu</Trans>
