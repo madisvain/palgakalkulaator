@@ -1,4 +1,5 @@
-import "../styles/globals.css";
+import "react-day-picker/dist/style.css";
+import "styles/globals.css";
 
 import { useEffect } from "react";
 import { parseCookies } from "nookies";

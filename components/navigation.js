@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { useRouter } from "next/router";
 import { Trans } from "@lingui/macro";
-import { startsWith } from "lodash";
 
 import Link from "next/link";
 import Hamburger from "hamburger-react";
@@ -10,8 +8,6 @@ import LanguageDropdown from "./language";
 
 const Navigation = ({ scrollToContact }) => {
   const [menuOpen, setMenuOpen] = useState(false);
-
-  const { asPath } = useRouter();
 
   return (
     <nav>
@@ -25,7 +21,7 @@ const Navigation = ({ scrollToContact }) => {
                 alt="Palgakalkulaator.ee logo"
               />
               <h1 className="general text-xl font-medium color-dark-blue">
-                Palgakalkulaator
+                <Trans>Palgakalkulaator</Trans>
               </h1>
             </Link>
           </div>

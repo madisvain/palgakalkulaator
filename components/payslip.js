@@ -1,11 +1,11 @@
 import { Trans } from "@lingui/macro";
-import { Popover } from "@headlessui/react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 import { format, subMonths, startOfMonth, endOfMonth } from "date-fns";
 import { et } from "date-fns/locale";
 import { usePDF } from "@react-pdf/renderer";
 
+import DatePicker from "components/datepicker";
 import PDF from "components/pdf";
 
 const Payslip = () => {
@@ -88,11 +88,7 @@ const Payslip = () => {
                   <div className="basis-2/3">
                     <div className="flex flex-row gap-4">
                       <div className="basis-1/2">
-                        <input
-                          {...register("periodStart")}
-                          type="text"
-                          className="border-transparent bg-beige w-full h-9"
-                        />
+                        <DatePicker />
                       </div>
                       <div className="basis-1/2">
                         <input

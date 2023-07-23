@@ -7,8 +7,6 @@ import Navigation from "./navigation";
 import Footer from "./footer";
 import { GTM_ID, pageview } from "../utils/gtm";
 
-const env = process.env.NODE_ENV;
-
 const Layout = ({ children }) => {
   const router = useRouter();
 
