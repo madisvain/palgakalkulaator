@@ -13,9 +13,9 @@ import formatCurrency from "utils/currency";
 Font.register({
   family: "General",
   fonts: [
-    { src: "http://localhost:3000/fonts/general/GeneralSans-Medium.ttf" },
+    { src: "/fonts/general/GeneralSans-Medium.ttf" },
     {
-      src: "http://localhost:3000/fonts/general/GeneralSans-Bold.ttf",
+      src: "/fonts/general/GeneralSans-Bold.ttf",
       fontWeight: "bold",
     },
   ],
@@ -108,30 +108,36 @@ const PayslipPDF = ({
               </Text>
             </View>
           </View>
-          <View style={styles.row}>
-            <View style={[styles.section, { width: 100 }]}>
-              <Text style={styles.text}>Tööandja</Text>
+          {employer && (
+            <View style={styles.row}>
+              <View style={[styles.section, { width: 100 }]}>
+                <Text style={styles.text}>Tööandja</Text>
+              </View>
+              <View style={styles.section}>
+                <Text style={styles.text}>{employer}</Text>
+              </View>
             </View>
-            <View style={styles.section}>
-              <Text style={styles.text}>{employer}</Text>
+          )}
+          {employee && (
+            <View style={styles.row}>
+              <View style={[styles.section, { width: 100 }]}>
+                <Text style={styles.text}>Töötaja</Text>
+              </View>
+              <View style={styles.section}>
+                <Text style={styles.text}>{employee}</Text>
+              </View>
             </View>
-          </View>
-          <View style={styles.row}>
-            <View style={[styles.section, { width: 100 }]}>
-              <Text style={styles.text}>Töötaja</Text>
+          )}
+          {personalCode && (
+            <View style={styles.row}>
+              <View style={[styles.section, { width: 100 }]}>
+                <Text style={styles.text}>Isikukood</Text>
+              </View>
+              <View style={styles.section}>
+                <Text style={styles.text}>{personalCode}</Text>
+              </View>
             </View>
-            <View style={styles.section}>
-              <Text style={styles.text}>{employee}</Text>
-            </View>
-          </View>
-          <View style={styles.row}>
-            <View style={[styles.section, { width: 100 }]}>
-              <Text style={styles.text}>Isikukood</Text>
-            </View>
-            <View style={styles.section}>
-              <Text style={styles.text}>{personalCode}</Text>
-            </View>
-          </View>
+          )}
         </View>
 
         {/* Salary */}
