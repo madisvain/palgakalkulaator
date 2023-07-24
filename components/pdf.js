@@ -83,6 +83,7 @@ const PayslipPDF = ({
   employer,
   employee,
   personalCode,
+  notes,
   grossSalary,
   netSalary,
   salaryFund,
@@ -135,6 +136,16 @@ const PayslipPDF = ({
               </View>
               <View style={styles.section}>
                 <Text style={styles.text}>{personalCode}</Text>
+              </View>
+            </View>
+          )}
+          {notes && (
+            <View style={styles.row}>
+              <View style={[styles.section, { width: 100 }]}>
+                <Text style={styles.text}>Märkus</Text>
+              </View>
+              <View style={styles.section}>
+                <Text style={styles.text}>{notes}</Text>
               </View>
             </View>
           )}
