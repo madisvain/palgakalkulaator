@@ -11,6 +11,14 @@ const totalScenarios = [
     employeeUnemploymentInsurance: 5.98,
     incomeTax: 0,
     net: 360.24,
+    deductions: {
+      socialTaxMinimum: false,
+      taxFreeIncome: true,
+      taxFreeIncomeAmount: 654,
+      employerUnemploymentInsurance: true,
+      employeeUnemploymentInsurance: true,
+      fundedPension: true,
+    },
   },
   {
     input: 654,
@@ -22,6 +30,14 @@ const totalScenarios = [
     employeeUnemploymentInsurance: 7.82,
     incomeTax: 0,
     net: 471.19,
+    deductions: {
+      socialTaxMinimum: false,
+      taxFreeIncome: true,
+      taxFreeIncomeAmount: 654,
+      employerUnemploymentInsurance: true,
+      employeeUnemploymentInsurance: true,
+      fundedPension: true,
+    },
   },
   {
     input: 1000.0,
@@ -33,6 +49,14 @@ const totalScenarios = [
     employeeUnemploymentInsurance: 11.96,
     incomeTax: 13.29,
     net: 707.18,
+    deductions: {
+      socialTaxMinimum: false,
+      taxFreeIncome: true,
+      taxFreeIncomeAmount: 654,
+      employerUnemploymentInsurance: true,
+      employeeUnemploymentInsurance: true,
+      fundedPension: true,
+    },
   },
   {
     input: 1200.0,
@@ -44,6 +68,14 @@ const totalScenarios = [
     employeeUnemploymentInsurance: 14.35,
     incomeTax: 42.11,
     net: 822.46,
+    deductions: {
+      socialTaxMinimum: false,
+      taxFreeIncome: true,
+      taxFreeIncomeAmount: 654,
+      employerUnemploymentInsurance: true,
+      employeeUnemploymentInsurance: true,
+      fundedPension: true,
+    },
   },
   {
     input: 1500.0,
@@ -55,6 +87,14 @@ const totalScenarios = [
     employeeUnemploymentInsurance: 17.94,
     incomeTax: 85.34,
     net: 995.38,
+    deductions: {
+      socialTaxMinimum: false,
+      taxFreeIncome: true,
+      taxFreeIncomeAmount: 654,
+      employerUnemploymentInsurance: true,
+      employeeUnemploymentInsurance: true,
+      fundedPension: true,
+    },
   },
   {
     input: 2100.0,
@@ -66,6 +106,14 @@ const totalScenarios = [
     employeeUnemploymentInsurance: 25.11,
     incomeTax: 225.5,
     net: 1287.51,
+    deductions: {
+      socialTaxMinimum: false,
+      taxFreeIncome: true,
+      taxFreeIncomeAmount: 654,
+      employerUnemploymentInsurance: true,
+      employeeUnemploymentInsurance: true,
+      fundedPension: true,
+    },
   },
   {
     input: 3000.0,
@@ -77,6 +125,14 @@ const totalScenarios = [
     employeeUnemploymentInsurance: 35.87,
     incomeTax: 432.29,
     net: 1729.15,
+    deductions: {
+      socialTaxMinimum: false,
+      taxFreeIncome: true,
+      taxFreeIncomeAmount: 654,
+      employerUnemploymentInsurance: true,
+      employeeUnemploymentInsurance: true,
+      fundedPension: true,
+    },
   },
   {
     input: 4000.0,
@@ -88,6 +144,14 @@ const totalScenarios = [
     employeeUnemploymentInsurance: 47.83,
     incomeTax: 576.38,
     net: 2305.54,
+    deductions: {
+      socialTaxMinimum: false,
+      taxFreeIncome: true,
+      taxFreeIncomeAmount: 654,
+      employerUnemploymentInsurance: true,
+      employeeUnemploymentInsurance: true,
+      fundedPension: true,
+    },
   },
 ];
 
@@ -106,9 +170,43 @@ describe("Salary calculator", () => {
       // Select the "Netopalk" option
       cy.get('input[name="amountType"][value="total"]').check();
 
-      // Enable checkboxes for desired deductions
-      // cy.get('input[name="fundedPension"]').check();
-      // cy.get('input[name="employeeUnemploymentInsurance"]').check();
+      // Social tax minimum
+      if (scenario["deductions"]["socialTaxMinimum"]) {
+        cy.get('input[name="socialTaxMinimum"]').check();
+      } else {
+        cy.get('input[name="socialTaxMinimum"]').uncheck();
+      }
+
+      // Tax free income
+      cy.get('span[name="taxFreeIncomeAmount"]')
+        .clear()
+        .type(scenario["deductions"]["taxFreeIncomeAmount"]);
+      if (scenario["deductions"]["taxFreeIncome"]) {
+        cy.get('input[name="taxFreeIncome"]').check();
+      } else {
+        cy.get('input[name="taxFreeIncome"]').uncheck();
+      }
+
+      // Employer unemployment insurance
+      if (scenario["deductions"]["employerUnemploymentInsurance"]) {
+        cy.get('input[name="employerUnemploymentInsurance"]').check();
+      } else {
+        cy.get('input[name="employerUnemploymentInsurance"]').uncheck();
+      }
+
+      // Employee unemployment insurance
+      if (scenario["deductions"]["employeeUnemploymentInsurance"]) {
+        cy.get('input[name="employeeUnemploymentInsurance"]').check();
+      } else {
+        cy.get('input[name="employeeUnemploymentInsurance"]').uncheck();
+      }
+
+      // Funded pension
+      if (scenario["deductions"]["fundedPension"]) {
+        cy.get('input[name="fundedPension"]').check();
+      } else {
+        cy.get('input[name="fundedPension"]').uncheck();
+      }
 
       // Tööandja kulu
       cy.contains("h4", "Tööandja kulu")

@@ -135,7 +135,7 @@ const Home = () => {
 
   // Tax free income
   const taxFreeIncome = useMemo(() => {
-    if (!(grossSalary > 0)) return 0;
+    if (!values.taxFreeIncome || !(grossSalary > 0)) return 0;
 
     const amount = values.taxFreeIncomeAmount;
 
@@ -149,7 +149,7 @@ const Home = () => {
     } else if (grossSalary >= 2100) {
       return 0;
     }
-  }, [grossSalary, values.taxFreeIncomeAmount]);
+  }, [grossSalary, values.taxFreeIncome, values.taxFreeIncomeAmount]);
 
   // Income tax
   const incomeTax = useMemo(() => {
@@ -165,7 +165,13 @@ const Home = () => {
       ),
       0
     );
-  }, [grossSalary, taxFreeIncome, fundedPension]);
+  }, [
+    grossSalary,
+    taxFreeIncome,
+    fundedPension,
+    values.employeeUnemploymentInsurance,
+    values.fundedPension,
+  ]);
 
   const socialTax = useMemo(() => {
     if (!(grossSalary > 0)) return 0;
@@ -175,7 +181,12 @@ const Home = () => {
   const salaryFund = useMemo(() => {
     if (!(grossSalary > 0)) return 0;
     return round(grossSalary + socialTax + employerUnemploymentInsuranceTax, 2);
-  }, [grossSalary, socialTax, employerUnemploymentInsuranceTax]);
+  }, [
+    grossSalary,
+    socialTax,
+    employerUnemploymentInsuranceTax,
+    values.employerUnemploymentInsurance,
+  ]);
 
   const netSalary = useMemo(() => {
     if (!(grossSalary > 0)) return 0;
