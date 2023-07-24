@@ -151,7 +151,7 @@ const Payslip = ({
               <div className="basis-1/2">
                 <div className="flex flex-row mb-6">
                   <h4 className="grow">
-                    <Trans>Brutotöötasu</Trans>
+                    <Trans>Brutopalk</Trans>
                   </h4>
                   <h4>{formatCurrency(grossSalary, "€")}</h4>
                 </div>
@@ -195,7 +195,7 @@ const Payslip = ({
 
                 <div className="flex flex-row mb-6">
                   <h4 className="grow">
-                    <Trans>Neto töötasu</Trans>
+                    <Trans>Netopalk</Trans>
                   </h4>
                   <h4>{formatCurrency(netSalary, "€")}</h4>
                 </div>
