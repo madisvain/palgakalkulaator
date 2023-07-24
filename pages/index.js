@@ -189,9 +189,9 @@ const Home = () => {
   }, [grossSalary, incomeTax, employeeUnemploymentInsuranceTax, fundedPension]);
 
   const amountTypes = [
-    { id: "total", title: "Tööandja kulu" },
-    { id: "gross", title: "Brutopalk" },
-    { id: "net", title: "Netopalk" },
+    { id: "total", title: <Trans>Tööandja kulu</Trans> },
+    { id: "gross", title: <Trans>Brutopalk</Trans> },
+    { id: "net", title: <Trans>Netopalk</Trans> },
   ];
 
   const [showPayslip, setShowPayslip] = useState(false);
@@ -258,7 +258,7 @@ const Home = () => {
                     htmlFor="socialTaxMinimum"
                     className="text-sm font-semibold ml-2"
                   >
-                    Sotsiaalmaksu min. kuumäär
+                    <Trans>Sotsiaalmaksu min. kuumäär</Trans>
                   </label>
                 </div>
                 <div className="flex items-center">
@@ -271,7 +271,7 @@ const Home = () => {
                     htmlFor="taxFreeIncome"
                     className="text-sm font-semibold ml-2"
                   >
-                    Maksuvaba tulu{" "}
+                    <Trans>Maksuvaba tulu</Trans>{" "}
                     {values.taxFreeIncome ? (
                       <>
                         <span
@@ -317,7 +317,7 @@ const Home = () => {
                     htmlFor="employerUnemploymentInsurance"
                     className="text-sm font-semibold ml-2"
                   >
-                    Tööandja töötuskindlustusmakse (0.8%)
+                    <Trans>Tööandja töötuskindlustusmakse (0.8%)</Trans>
                   </label>
                 </div>
                 <div className="flex items-center">
@@ -330,7 +330,7 @@ const Home = () => {
                     htmlFor="employeeUnemploymentInsurance"
                     className="text-sm font-semibold ml-2"
                   >
-                    Töötaja töötuskindlustusmakse (1.6%)
+                    <Trans>Töötaja töötuskindlustusmakse (1.6%)</Trans>
                   </label>
                 </div>
                 <div className="flex items-center">
@@ -343,7 +343,7 @@ const Home = () => {
                     htmlFor="fundedPension"
                     className="text-sm font-semibold ml-2"
                   >
-                    Kogumispensioniga liitunud (2%)
+                    <Trans>Kogumispensioniga liitunud (2%)</Trans>
                   </label>
                 </div>
               </fieldset>
@@ -355,20 +355,26 @@ const Home = () => {
                 <tbody>
                   <tr>
                     <td>
-                      <h4>Tööandja kulu</h4>
+                      <h4>
+                        <Trans>Tööandja kulu</Trans>
+                      </h4>
                     </td>
                     <td className="font-general text-2xl text-right">
                       {formatCurrency(salaryFund, "€")}
                     </td>
                   </tr>
                   <tr>
-                    <td>Sotsiaalmaks</td>
+                    <td>
+                      <Trans>Sotsiaalmaks</Trans>
+                    </td>
                     <td className="text-right">
                       {formatCurrency(socialTax, "€")}
                     </td>
                   </tr>
                   <tr>
-                    <td>Tööandja töötuskindlustusmakse</td>
+                    <td>
+                      <Trans>Tööandja töötuskindlustusmakse</Trans>
+                    </td>
                     <td className="text-right">
                       {formatCurrency(employerUnemploymentInsuranceTax, "€")}
                     </td>
@@ -379,26 +385,34 @@ const Home = () => {
                 <tbody>
                   <tr>
                     <td>
-                      <h4>Brutopalk</h4>
+                      <h4>
+                        <Trans>Brutopalk</Trans>
+                      </h4>
                     </td>
                     <td className="font-general text-2xl text-right">
                       {formatCurrency(grossSalary, "€")}
                     </td>
                   </tr>
                   <tr>
-                    <td>Kogumispension</td>
+                    <td>
+                      <Trans>Kogumispension</Trans>
+                    </td>
                     <td className="text-right">
                       {formatCurrency(fundedPension, "€")}
                     </td>
                   </tr>
                   <tr>
-                    <td>Töötaja töötuskindlustusmakse</td>
+                    <td>
+                      <Trans>Töötaja töötuskindlustusmakse</Trans>
+                    </td>
                     <td className="text-right">
                       {formatCurrency(employeeUnemploymentInsuranceTax, "€")}
                     </td>
                   </tr>
                   <tr>
-                    <td>Tulumaks</td>
+                    <td>
+                      <Trans>Tulumaks</Trans>
+                    </td>
                     <td className="text-right">
                       {formatCurrency(incomeTax, "€")}
                     </td>
@@ -409,7 +423,9 @@ const Home = () => {
                 <tbody>
                   <tr>
                     <td>
-                      <h4>Netopalk</h4>
+                      <h4>
+                        <Trans>Netopalk</Trans>
+                      </h4>
                     </td>
                     <td className="font-general text-2xl text-right">
                       {formatCurrency(netSalary, "€")}

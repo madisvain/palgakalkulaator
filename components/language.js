@@ -1,25 +1,14 @@
-import { useEffect, useState } from "react";
-import { get } from "lodash";
+import { useState } from "react";
+import { useRouter } from "next/router";
 import { Menu, Transition } from "@headlessui/react";
-
-import nookies, { parseCookies } from "nookies";
+import { useLingui } from "@lingui/react";
 
 const LanguageDropdown = () => {
-  const [language, setLanguage] = useState(false);
+  const router = useRouter();
+  const { i18n } = useLingui();
 
-  useEffect(() => {
-    const cookies = parseCookies();
-    const language = get(cookies, "language", "et");
-    setLanguage(language);
-  });
-
-  const switchLanguage = (language) => {
-    nookies.set(null, "language", language, {
-      maxAge: 30 * 24 * 60 * 60,
-      path: "/",
-    });
-    setLanguage(language);
-    location.reload();
+  const switchLocale = (locale) => {
+    router.push(router.pathname, router.pathname, { locale });
   };
 
   return (
@@ -29,7 +18,7 @@ const LanguageDropdown = () => {
         href="#"
         className="px-1 text-base font-semibold text-dark-blue hover:text-gray-700"
       >
-        {language == "en" ? "ENG" : "EST"}
+        {i18n.locale == "en" ? "ENG" : "EST"}
         <div className="ml-2 inline-flex">
           <svg
             width="12"
@@ -54,7 +43,7 @@ const LanguageDropdown = () => {
         leaveTo="transform scale-95 opacity-0"
       >
         <Menu.Items className="absolute right-0 top-[20px] pb-3 w-28 origin-top bg-white border border-dark-blue focus:outline-none">
-          <Menu.Item onClick={() => switchLanguage("et")}>
+          <Menu.Item onClick={() => switchLocale("et")}>
             {({ active }) => (
               <div
                 className={
@@ -79,7 +68,7 @@ const LanguageDropdown = () => {
               </div>
             )}
           </Menu.Item>
-          <Menu.Item onClick={() => switchLanguage("en")}>
+          <Menu.Item onClick={() => switchLocale("en")}>
             {({ active }) => (
               <div
                 className={

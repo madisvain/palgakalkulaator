@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Trans } from "@lingui/macro";
 
 import Link from "next/link";
 import Hamburger from "hamburger-react";
@@ -21,7 +20,7 @@ const Navigation = ({ scrollToContact }) => {
                 alt="Palgakalkulaator.ee logo"
               />
               <h1 className="general text-xl font-medium color-dark-blue">
-                <Trans>Palgakalkulaator</Trans>
+                Palgakalkulaator
               </h1>
             </Link>
           </div>
