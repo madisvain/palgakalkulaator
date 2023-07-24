@@ -2,10 +2,9 @@ const nextConfig = require("./next.config");
 
 module.exports = {
   locales: nextConfig.i18n.locales,
-  pseudoLocale: "pseudo",
   sourceLocale: nextConfig.i18n.defaultLocale,
-  fallbackLocales: {
-    default: "et",
+  extractBabelOptions: {
+    presets: ["@babel/preset-react"],
   },
   catalogs: [
     {
