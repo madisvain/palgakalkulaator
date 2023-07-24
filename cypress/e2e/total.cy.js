@@ -153,6 +153,67 @@ const totalScenarios = [
       fundedPension: true,
     },
   },
+
+  // Employee unemployment insurance not paid
+  {
+    input: 2100.0,
+    total: 2100.01,
+    socialTax: 517.94,
+    employerUnemploymentInsurance: 12.56,
+    gross: 1569.51,
+    fundedPension: 31.39,
+    employeeUnemploymentInsurance: 0,
+    incomeTax: 230.53,
+    net: 1307.59,
+    deductions: {
+      socialTaxMinimum: false,
+      taxFreeIncome: true,
+      taxFreeIncomeAmount: 654,
+      employerUnemploymentInsurance: true,
+      employeeUnemploymentInsurance: false,
+      fundedPension: true,
+    },
+  },
+  // Employer unemployment insurance not paid
+  {
+    input: 2100.0,
+    total: 2100.0,
+    socialTax: 521.05,
+    employerUnemploymentInsurance: 0,
+    gross: 1578.95,
+    fundedPension: 31.58,
+    employeeUnemploymentInsurance: 25.26,
+    incomeTax: 228.7,
+    net: 1293.41,
+    deductions: {
+      socialTaxMinimum: false,
+      taxFreeIncome: true,
+      taxFreeIncomeAmount: 654,
+      employerUnemploymentInsurance: false,
+      employeeUnemploymentInsurance: true,
+      fundedPension: true,
+    },
+  },
+  // Employee unemployment insurance not paid & no funded pension
+  {
+    input: 2100.0,
+    total: 2100.01,
+    socialTax: 517.94,
+    employerUnemploymentInsurance: 12.56,
+    gross: 1569.51,
+    fundedPension: 0,
+    employeeUnemploymentInsurance: 0,
+    incomeTax: 236.8,
+    net: 1332.71,
+    deductions: {
+      socialTaxMinimum: false,
+      taxFreeIncome: true,
+      taxFreeIncomeAmount: 654,
+      employerUnemploymentInsurance: true,
+      employeeUnemploymentInsurance: false,
+      fundedPension: false,
+    },
+  },
 ];
 
 describe("Salary calculator", () => {

@@ -154,6 +154,7 @@ const Home = () => {
   // Income tax
   const incomeTax = useMemo(() => {
     if (!(grossSalary > 0) || grossSalary < taxFreeIncome) return 0;
+
     return max(
       round(
         (grossSalary -
@@ -175,8 +176,9 @@ const Home = () => {
 
   const socialTax = useMemo(() => {
     if (!(grossSalary > 0)) return 0;
+    if (values.socialTaxMinimum && grossSalary <= 654) return 215.82;
     return round(grossSalary * 0.33, 2);
-  }, [grossSalary]);
+  }, [grossSalary, values.socialTaxMinimum]);
 
   const salaryFund = useMemo(() => {
     if (!(grossSalary > 0)) return 0;
