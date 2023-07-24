@@ -1,16 +1,13 @@
 import "react-day-picker/dist/style.css";
 import "styles/globals.css";
 
-import { useEffect } from "react";
-import { parseCookies } from "nookies";
 import { i18n } from "@lingui/core";
 import { I18nProvider } from "@lingui/react";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 
-import get from "lodash/get";
-
-import Layout from "../components/layout";
+import Layout from "components/layout";
+import { useLinguiInit } from "utils/lingui";
 
 // Fonts
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -41,22 +38,7 @@ const general = localFont({
 });
 
 function App({ Component, pageProps }) {
-  const cookies = parseCookies();
-  const language = get(cookies, "language", "et");
-
-  // i18n
-  useEffect(() => {
-    async function load(language) {
-      const { messages } = await import(
-        `@lingui/loader!../locale/${language}/messages.po`
-      );
-
-      i18n.load(language, messages);
-      i18n.activate(language);
-    }
-
-    load(language);
-  }, [language]);
+  useLinguiInit(pageProps.translation);
 
   // Layout
   const getLayout = Component.getLayout || ((page) => <Layout>{page}</Layout>);
