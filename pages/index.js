@@ -6,6 +6,7 @@ import { max, min, parse, round } from "mathjs";
 import Payslip from "components/payslip";
 import TaxInfo from "components/tax-info";
 import formatCurrency from "utils/currency";
+import { loadCatalog } from "utils/lingui";
 
 const DEFAULT_GROSS_AMOUNT = 1000;
 
@@ -462,6 +463,15 @@ const Home = () => {
       <TaxInfo />
     </>
   );
+};
+
+export const getStaticProps = async (ctx) => {
+  const translation = await loadCatalog(ctx.locale);
+  return {
+    props: {
+      translation,
+    },
+  };
 };
 
 export default Home;

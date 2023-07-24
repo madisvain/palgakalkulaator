@@ -14,8 +14,6 @@ export function useLinguiInit(messages) {
   const locale = router.locale || router.defaultLocale;
   const isClient = typeof window !== "undefined";
 
-  console.log(locale);
-
   if (!isClient && locale !== i18n.locale) {
     // there is single instance of i18n on the server
     // note: on the server, we could have an instance of i18n per supported locale
