@@ -12,7 +12,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.0.18",
-    "@lingui/react": "^3.17.2",
+    "@lingui/react": "^4.1.2",
     "@react-pdf/renderer": "^3.1.12",
     "algebra.js": "^0.2.6",
     "date-fns": "^2.30.0",
@@ -30,9 +30,9 @@
   "devDependencies": {
     "@babel/core": "^7.21.0",
     "@babel/preset-react": "^7.18.6",
-    "@lingui/cli": "^3.17.2",
-    "@lingui/loader": "^3.17.2",
-    "@lingui/macro": "^3.17.2",
+    "@lingui/cli": "^4.1.2",
+    "@lingui/loader": "^4.1.2",
+    "@lingui/macro": "^4.1.2",
     "@lingui/swc-plugin": "^4.0.2",
     "@tailwindcss/forms": "^0.5.3",
     "@types/node": "18.14.1",

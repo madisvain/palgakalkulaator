@@ -21,19 +21,19 @@ msgstr ""
 #~ msgid "Avame varsti"
 #~ msgstr "Avame varsti"
 
-#: components/payslip.js:153
+#: components/payslip.js:154
 msgid "Brutotöötasu"
 msgstr "Brutotöötasu"
 
-#: components/payslip.js:102
+#: components/payslip.js:103
 msgid "Isikukood"
 msgstr "Isikukood"
 
-#: components/payslip.js:159
+#: components/payslip.js:160
 msgid "Kinnipidamised"
 msgstr "Kinnipidamised"
 
-#: components/payslip.js:172
+#: components/payslip.js:173
 msgid "Kogumispension"
 msgstr "Kogumispension"
 
@@ -49,11 +49,11 @@ msgstr "Koosta palgateatis"
 msgid "Mahaarvamised:"
 msgstr "Mahaarvamised:"
 
-#: components/payslip.js:139
+#: components/payslip.js:140
 msgid "Märkus"
 msgstr "Märkus"
 
-#: components/payslip.js:197
+#: components/payslip.js:198
 msgid "Neto töötasu"
 msgstr "Neto töötasu"
 
@@ -61,11 +61,11 @@ msgstr "Neto töötasu"
 msgid "Palgakalkulaator"
 msgstr "Palgakalkulaator"
 
-#: components/payslip.js:114
+#: components/payslip.js:115
 msgid "Periood"
 msgstr "Periood"
 
-#: components/payslip.js:308
+#: components/payslip.js:309
 msgid "Salvesta PDF"
 msgstr "Salvesta PDF"
 
@@ -73,7 +73,7 @@ msgstr "Salvesta PDF"
 #~ msgid "Seadusemuudatused"
 #~ msgstr "Seadusemuudatused"
 
-#: components/payslip.js:214
+#: components/payslip.js:215
 msgid "Sotsiaalmaks"
 msgstr "Sotsiaalmaks"
 
@@ -81,7 +81,7 @@ msgstr "Sotsiaalmaks"
 msgid "Summa tüüp"
 msgstr "Summa tüüp"
 
-#: components/payslip.js:312
+#: components/payslip.js:313
 msgid "Tasumisele kuuluv neto töötasu"
 msgstr "Tasumisele kuuluv neto töötasu"
 
@@ -89,30 +89,30 @@ msgstr "Tasumisele kuuluv neto töötasu"
 #~ msgid "Teenused"
 #~ msgstr "Teenused"
 
-#: components/payslip.js:188
-msgid "Tulumaks"
-msgstr "Tulumaks"
-
-#: components/payslip.js:78
+#: components/payslip.js:79
 msgid "Tööandja"
 msgstr "Tööandja"
 
-#: components/payslip.js:230
+#: components/payslip.js:231
 msgid "Tööandja kulu"
 msgstr "Tööandja kulu"
 
-#: components/payslip.js:203
+#: components/payslip.js:204
 msgid "Tööandja maksud"
 msgstr "Tööandja maksud"
 
-#: components/payslip.js:222
+#: components/payslip.js:223
 msgid "Tööandja töötuskindlustusmakse"
 msgstr "Tööandja töötuskindlustusmakse"
 
-#: components/payslip.js:90
+#: components/payslip.js:91
 msgid "Töötaja"
 msgstr "Töötaja"
 
-#: components/payslip.js:180
+#: components/payslip.js:181
 msgid "Töötaja töötuskindlustusmakse"
 msgstr "Töötaja töötuskindlustusmakse"
+
+#: components/payslip.js:189
+msgid "Tulumaks"
+msgstr "Tulumaks"
