@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
-import { useRouter } from "next/router";
 import Head from "next/head";
 import Script from "next/script";
+import { useRouter } from "next/router";
+import { Trans } from "@lingui/macro";
 
 import Navigation from "./navigation";
 import Footer from "./footer";
