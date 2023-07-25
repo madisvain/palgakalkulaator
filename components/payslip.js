@@ -3,11 +3,39 @@ import { useForm } from "react-hook-form";
 
 import { format, subMonths, startOfMonth, endOfMonth } from "date-fns";
 import { et } from "date-fns/locale";
-import { usePDF } from "@react-pdf/renderer";
+import { pdf } from "@react-pdf/renderer";
 
 import DatePicker from "components/datepicker";
 import PDF from "components/pdf";
 import formatCurrency from "utils/currency";
+
+const downloadBlob = (blob, name = "palgaleht.pdf") => {
+  // Convert your blob into a Blob URL (a special url that points to an object in the browser's memory)
+  const blobUrl = URL.createObjectURL(blob);
+
+  // Create a link element
+  const link = document.createElement("a");
+
+  // Set link's href to point to the Blob URL
+  link.href = blobUrl;
+  link.download = name;
+
+  // Append link to the body
+  document.body.appendChild(link);
+
+  // Dispatch click event on the link
+  // This is necessary as link.click() does not work on the latest firefox
+  link.dispatchEvent(
+    new MouseEvent("click", {
+      bubbles: true,
+      cancelable: true,
+      view: window,
+    })
+  );
+
+  // Remove link from body
+  document.body.removeChild(link);
+};
 
 const Payslip = ({
   grossSalary,
@@ -22,8 +50,8 @@ const Payslip = ({
   const {
     register,
     watch,
-    getValues,
     setValue,
+    handleSubmit,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -35,16 +63,10 @@ const Payslip = ({
     },
   });
 
-  const [instance, updateInstance] = usePDF({
-    document: (
+  const onSubmit = (data) => {
+    pdf(
       <PDF
-        title={getValues("title")}
-        employer={getValues("employer")}
-        employee={getValues("employee")}
-        personalCode={getValues("personalCode")}
-        periodStart={getValues("periodStart")}
-        periodEnd={getValues("periodEnd")}
-        notes={getValues("notes")}
+        {...data}
         grossSalary={grossSalary}
         netSalary={netSalary}
         salaryFund={salaryFund}
@@ -54,12 +76,16 @@ const Payslip = ({
         employeeUnemploymentInsuranceTax={employeeUnemploymentInsuranceTax}
         employerUnemploymentInsuranceTax={employerUnemploymentInsuranceTax}
       />
-    ),
-  });
+    )
+      .toBlob()
+      .then((blob) => {
+        downloadBlob(blob);
+      });
+  };
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-row pt-24 pb-28 px-16">
           <div className="bg-white w-full py-28 px-20">
             <div className="flex flex-row gap-8 items-center mb-12">
@@ -236,13 +262,12 @@ const Payslip = ({
             </div>
 
             <div className="flex justify-between items-end mt-40">
-              <a
-                href={instance.url}
-                download="test.pdf"
+              <button
+                type="submit"
                 className="bg-green py-5 px-8 font-semibold h-[66px]"
               >
                 <Trans>Salvesta PDF</Trans>
-              </a>
+              </button>
               <div className="text-right">
                 <h6 className="font-semibold mb-1">
                   <Trans>Tasumisele kuuluv neto töötasu</Trans>

@@ -109,7 +109,7 @@ const PayslipPDF = ({
               </Text>
             </View>
           </View>
-          {employer && (
+          {employer ? (
             <View style={styles.row}>
               <View style={[styles.section, { width: 100 }]}>
                 <Text style={styles.text}>Tööandja</Text>
@@ -118,8 +118,8 @@ const PayslipPDF = ({
                 <Text style={styles.text}>{employer}</Text>
               </View>
             </View>
-          )}
-          {employee && (
+          ) : null}
+          {employee ? (
             <View style={styles.row}>
               <View style={[styles.section, { width: 100 }]}>
                 <Text style={styles.text}>Töötaja</Text>
@@ -128,8 +128,8 @@ const PayslipPDF = ({
                 <Text style={styles.text}>{employee}</Text>
               </View>
             </View>
-          )}
-          {personalCode && (
+          ) : null}
+          {personalCode ? (
             <View style={styles.row}>
               <View style={[styles.section, { width: 100 }]}>
                 <Text style={styles.text}>Isikukood</Text>
@@ -138,8 +138,8 @@ const PayslipPDF = ({
                 <Text style={styles.text}>{personalCode}</Text>
               </View>
             </View>
-          )}
-          {notes && (
+          ) : null}
+          {notes ? (
             <View style={styles.row}>
               <View style={[styles.section, { width: 100 }]}>
                 <Text style={styles.text}>Märkus</Text>
@@ -148,7 +148,7 @@ const PayslipPDF = ({
                 <Text style={styles.text}>{notes}</Text>
               </View>
             </View>
-          )}
+          ) : null}
         </View>
 
         {/* Salary */}

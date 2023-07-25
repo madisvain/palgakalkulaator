@@ -464,47 +464,46 @@ const Home = () => {
                 </tbody>
               </table>
             </div>
-            {!showPayslip && (
-              <button
-                type="button"
-                className="flex justify-center items-center w-full h-[66px] bg-green font-semibold"
-                onClick={() => setShowPayslip(true)}
-              >
-                <Trans>Koosta palgateatis</Trans>
-                <div className="inline ml-2">
-                  <svg
-                    width="12"
-                    height="8"
-                    viewBox="0 0 12 8"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M10.293 0.292969L5.99997 4.58597L1.70697 0.292969L0.292969 1.70697L5.99997 7.41397L11.707 1.70697L10.293 0.292969Z"
-                      fill="#181A33"
-                    />
-                  </svg>
-                </div>
-              </button>
-            )}
+            <button
+              type="button"
+              className="flex justify-center items-center w-full h-[66px] bg-green font-semibold"
+              onClick={() => {
+                setShowPayslip(true);
+                document.getElementById("payslip").scrollIntoView();
+              }}
+            >
+              <Trans>Koosta palgateatis</Trans>
+              <div className="inline ml-2">
+                <svg
+                  width="12"
+                  height="8"
+                  viewBox="0 0 12 8"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M10.293 0.292969L5.99997 4.58597L1.70697 0.292969L0.292969 1.70697L5.99997 7.41397L11.707 1.70697L10.293 0.292969Z"
+                    fill="#181A33"
+                  />
+                </svg>
+              </div>
+            </button>
           </div>
         </div>
       </div>
 
-      {showPayslip && (
-        <div className="bg-rainbow">
-          <Payslip
-            grossSalary={grossSalary}
-            netSalary={netSalary}
-            salaryFund={salaryFund}
-            fundedPension={fundedPension}
-            incomeTax={incomeTax}
-            socialTax={socialTax}
-            employeeUnemploymentInsuranceTax={employeeUnemploymentInsuranceTax}
-            employerUnemploymentInsuranceTax={employerUnemploymentInsuranceTax}
-          />
-        </div>
-      )}
+      <div id="payslip" className="bg-rainbow">
+        <Payslip
+          grossSalary={grossSalary}
+          netSalary={netSalary}
+          salaryFund={salaryFund}
+          fundedPension={fundedPension}
+          incomeTax={incomeTax}
+          socialTax={socialTax}
+          employeeUnemploymentInsuranceTax={employeeUnemploymentInsuranceTax}
+          employerUnemploymentInsuranceTax={employerUnemploymentInsuranceTax}
+        />
+      </div>
 
       <TaxInfo />
     </>
