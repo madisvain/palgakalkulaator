@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Font,
+  Image,
   Page,
   Text,
   View,
@@ -72,6 +73,13 @@ const styles = StyleSheet.create({
   },
   space: {
     marginTop: 12,
+  },
+  qr: {
+    position: "absolute",
+    bottom: 35,
+    right: 35,
+    width: 60,
+    height: 60,
   },
 });
 
@@ -287,6 +295,7 @@ const PayslipPDF = ({
           {formatCurrency(netSalary, "€")}
         </Text>
       </View>
+      <Image style={styles.qr} src="/qr.png" />
     </Page>
   </Document>
 );

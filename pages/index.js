@@ -493,16 +493,18 @@ const Home = () => {
       </div>
 
       <div id="payslip" className="bg-rainbow">
-        <Payslip
-          grossSalary={grossSalary}
-          netSalary={netSalary}
-          salaryFund={salaryFund}
-          fundedPension={fundedPension}
-          incomeTax={incomeTax}
-          socialTax={socialTax}
-          employeeUnemploymentInsuranceTax={employeeUnemploymentInsuranceTax}
-          employerUnemploymentInsuranceTax={employerUnemploymentInsuranceTax}
-        />
+        <div className={`${showPayslip ? "" : "hidden"}`}>
+          <Payslip
+            grossSalary={grossSalary}
+            netSalary={netSalary}
+            salaryFund={salaryFund}
+            fundedPension={fundedPension}
+            incomeTax={incomeTax}
+            socialTax={socialTax}
+            employeeUnemploymentInsuranceTax={employeeUnemploymentInsuranceTax}
+            employerUnemploymentInsuranceTax={employerUnemploymentInsuranceTax}
+          />
+        </div>
       </div>
 
       <TaxInfo />
