@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { Trans } from "@lingui/macro";
 import { useForm } from "react-hook-form";
-import { max, min, parse, round } from "mathjs";
+import { max, min, parse, round, simplify } from "mathjs";
 
 import Payslip from "components/payslip";
 import TaxInfo from "components/tax-info";
@@ -53,7 +53,6 @@ const Home = () => {
       fundedPension: true,
     },
   });
-  const onSubmit = (data) => console.log(data);
 
   const values = watch();
 
@@ -61,12 +60,29 @@ const Home = () => {
     let grossSalaryValue = null;
 
     if (values.amount > 0) {
+      // Salary fund
       if (values.amountType === "total") {
-        // Salary fund
-        if (values.employerUnemploymentInsurance) {
-          grossSalaryValue = values.amount / 1.338;
+        // Social tax minimum ensurement
+        if (values.socialTaxMinimum && values.amount <= 654) {
+          const func = (x) => {
+            const minimum = 215.82; // 654 * 0.33
+            const eq = simplify(`${minimum} + (x * 0.008) + x`);
+            const code = eq.compile();
+            const result = code.evaluate({ x });
+            return result;
+          };
+          grossSalaryValue = bisectionMethodAdvanced(
+            func,
+            values.amount,
+            0,
+            values.amount
+          );
         } else {
-          grossSalaryValue = values.amount / 1.33;
+          if (values.employerUnemploymentInsurance) {
+            grossSalaryValue = values.amount / 1.338;
+          } else {
+            grossSalaryValue = values.amount / 1.33;
+          }
         }
       } else if (values.amountType === "gross") {
         // Gross
@@ -110,6 +126,7 @@ const Home = () => {
   }, [
     values.amountType,
     values.amount,
+    values.socialTaxMinimum,
     values.employerUnemploymentInsurance,
     values.employeeUnemploymentInsurance,
     values.fundedPension,
@@ -214,7 +231,7 @@ const Home = () => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-row mt-24 mb-28">
           <div className="basis-2/5">
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form>
               <div className="flex items-center relative w-[350px] h-[88px] bg-white rounded-[50px] shadow-sm pl-12 pr-20">
                 <input
                   {...register("amount", {
@@ -403,7 +420,7 @@ const Home = () => {
                       </h4>
                     </td>
                     <td className="font-general text-2xl text-right">
-                      {formatCurrency(grossSalary, "€")}
+                      {grossSalary ? formatCurrency(grossSalary, "€") : "-"}
                     </td>
                   </tr>
                   <tr>
