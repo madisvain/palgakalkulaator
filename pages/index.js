@@ -229,7 +229,7 @@ const Home = () => {
   return (
     <>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-row mt-24 mb-28">
+        <div className="flex flex-col mt-12 mb-14 space-y-12 md:flex-row md:mt-24 md:mb-28 md:space-x-4 md:space-y-0">
           <div className="basis-2/5">
             <form>
               <div className="flex items-center relative w-[350px] h-[88px] bg-white rounded-[50px] shadow-sm pl-12 pr-20">
@@ -252,27 +252,32 @@ const Home = () => {
                 <legend className="sr-only">
                   <Trans>Summa tüüp</Trans>
                 </legend>
-                <div className="space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
+                <div className="flex flex-row items-center sm:space-x-2 xl:space-x-4">
                   {amountTypes.map((amountType) => (
-                    <div key={amountType.id} className="flex items-center">
-                      <input
-                        value={amountType.id}
-                        type="radio"
-                        {...register("amountType")}
-                        className="h-4 w-4 border-gray-300 text-dark-blue focus:ring-transparent"
-                      />
-                      <label
-                        htmlFor={amountType.id}
-                        className="ml-2 block text-sm font-semibold"
+                    <div className="basis-1/3">
+                      <div
+                        key={amountType.id}
+                        className="flex items-center justify-center"
                       >
-                        {amountType.title}
-                      </label>
+                        <input
+                          value={amountType.id}
+                          type="radio"
+                          {...register("amountType")}
+                          className="h-4 w-4 border-gray-300 text-dark-blue focus:ring-transparent"
+                        />
+                        <label
+                          htmlFor={amountType.id}
+                          className="ml-2 block text-sm font-semibold"
+                        >
+                          {amountType.title}
+                        </label>
+                      </div>
                     </div>
                   ))}
                 </div>
               </fieldset>
 
-              <fieldset className="mt-[72px] space-y-3">
+              <fieldset className="mt-8 md:mt-[72px] space-y-3">
                 <legend>
                   <h6>
                     <Trans>Mahaarvamised:</Trans>
@@ -380,7 +385,7 @@ const Home = () => {
             </form>
           </div>
           <div className="basis-3/5">
-            <div className="pt-16 pb-12 px-16 bg-white">
+            <div className="pt-4 pb-3 px-4 md:pt-8 md:pb-6 md:px-8 lg:pt-16 lg:pb-12 lg:px-16 bg-white">
               <table className="w-full border-separate border-spacing-y-3 mb-10">
                 <tbody>
                   <tr>

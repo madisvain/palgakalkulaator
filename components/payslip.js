@@ -86,9 +86,9 @@ const Payslip = ({
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex flex-row pt-24 pb-28 px-16">
-          <div className="bg-white w-full py-28 px-20">
-            <div className="flex flex-row gap-8 items-center mb-12">
+        <div className="flex flex-row pt-12 pb-14 px-2 lg:pt-24 lg:pb-28 lg:px-16">
+          <div className="bg-white w-full py-8 px-4  lg:py-28 lg:px-20">
+            <div className="flex flex-col lg:flex-row gap-8 items-center mb-12">
               <div className="basis-1/2">
                 <input
                   {...register("title")}
@@ -96,9 +96,8 @@ const Payslip = ({
                   className="border-transparent bg-beige w-full h-12 font-semibold text-3xl"
                 />
               </div>
-              <div className="basis-1/2"></div>
             </div>
-            <div className="flex flex-row gap-8">
+            <div className="flex flex-col lg:flex-row gap-8">
               <div className="basis-1/2">
                 <div className="flex flex-row gap-4 items-center mb-3">
                   <div className="basis-1/3 text-right text-dark-blue opacity-40 font-general font-semibold">
