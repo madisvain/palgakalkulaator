@@ -14,7 +14,7 @@ const DatePicker = ({ name, register, setValue, value }) => {
     <Popover>
       {({ open, close }) => (
         <>
-          <Popover.Button>
+          <Popover.Button className="w-full">
             <input
               {...register(name)}
               type="text"

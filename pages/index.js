@@ -35,7 +35,7 @@ const bisectionMethodAdvanced = (func, rightSide, lowerBound, upperBound) => {
   return x;
 };
 
-const Home = () => {
+const Index = () => {
   const {
     register,
     handleSubmit,
@@ -229,7 +229,7 @@ const Home = () => {
   return (
     <>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-row mt-24 mb-28">
+        <div className="flex flex-col mt-12 mb-14 space-y-12 md:flex-row lg:mt-24 lg:mb-28 md:space-x-4 md:space-y-0">
           <div className="basis-2/5">
             <form>
               <div className="flex items-center relative w-[350px] h-[88px] bg-white rounded-[50px] shadow-sm pl-12 pr-20">
@@ -252,27 +252,29 @@ const Home = () => {
                 <legend className="sr-only">
                   <Trans>Summa tüüp</Trans>
                 </legend>
-                <div className="space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
+                <div className="flex flex-row items-center sm:space-x-2 xl:space-x-4">
                   {amountTypes.map((amountType) => (
-                    <div key={amountType.id} className="flex items-center">
-                      <input
-                        value={amountType.id}
-                        type="radio"
-                        {...register("amountType")}
-                        className="h-4 w-4 border-gray-300 text-dark-blue focus:ring-transparent"
-                      />
-                      <label
-                        htmlFor={amountType.id}
-                        className="ml-2 block text-sm font-semibold"
-                      >
-                        {amountType.title}
-                      </label>
+                    <div className="basis-1/3" key={amountType.id}>
+                      <div className="flex items-center justify-center">
+                        <input
+                          value={amountType.id}
+                          type="radio"
+                          {...register("amountType")}
+                          className="h-4 w-4 border-gray-300 text-dark-blue focus:ring-transparent"
+                        />
+                        <label
+                          htmlFor={amountType.id}
+                          className="ml-2 block text-sm font-semibold"
+                        >
+                          {amountType.title}
+                        </label>
+                      </div>
                     </div>
                   ))}
                 </div>
               </fieldset>
 
-              <fieldset className="mt-[72px] space-y-3">
+              <fieldset className="mt-8 md:mt-[72px] space-y-3">
                 <legend>
                   <h6>
                     <Trans>Mahaarvamised:</Trans>
@@ -380,7 +382,7 @@ const Home = () => {
             </form>
           </div>
           <div className="basis-3/5">
-            <div className="pt-16 pb-12 px-16 bg-white">
+            <div className="pt-4 pb-3 px-4 md:pt-8 md:pb-6 md:px-8 lg:pt-16 lg:pb-12 lg:px-16 bg-white">
               <table className="w-full border-separate border-spacing-y-3 mb-10">
                 <tbody>
                   <tr>
@@ -389,7 +391,7 @@ const Home = () => {
                         <Trans>Tööandja kulu</Trans>
                       </h4>
                     </td>
-                    <td className="font-general text-2xl text-right">
+                    <td className="font-general text-xl lg:text-2xl text-right whitespace-nowrap">
                       {formatCurrency(salaryFund, "€")}
                     </td>
                   </tr>
@@ -397,7 +399,7 @@ const Home = () => {
                     <td>
                       <Trans>Sotsiaalmaks</Trans>
                     </td>
-                    <td className="text-right">
+                    <td className="text-right whitespace-nowrap">
                       {formatCurrency(socialTax, "€")}
                     </td>
                   </tr>
@@ -405,7 +407,7 @@ const Home = () => {
                     <td>
                       <Trans>Tööandja töötuskindlustusmakse</Trans>
                     </td>
-                    <td className="text-right">
+                    <td className="text-right whitespace-nowrap">
                       {formatCurrency(employerUnemploymentInsuranceTax, "€")}
                     </td>
                   </tr>
@@ -419,7 +421,7 @@ const Home = () => {
                         <Trans>Brutopalk</Trans>
                       </h4>
                     </td>
-                    <td className="font-general text-2xl text-right">
+                    <td className="font-general text-xl lg:text-2xl text-right whitespace-nowrap">
                       {grossSalary ? formatCurrency(grossSalary, "€") : "-"}
                     </td>
                   </tr>
@@ -435,7 +437,7 @@ const Home = () => {
                     <td>
                       <Trans>Töötaja töötuskindlustusmakse</Trans>
                     </td>
-                    <td className="text-right">
+                    <td className="text-right whitespace-nowrap">
                       {formatCurrency(employeeUnemploymentInsuranceTax, "€")}
                     </td>
                   </tr>
@@ -443,7 +445,7 @@ const Home = () => {
                     <td>
                       <Trans>Tulumaks</Trans>
                     </td>
-                    <td className="text-right">
+                    <td className="text-right whitespace-nowrap">
                       {formatCurrency(incomeTax, "€")}
                     </td>
                   </tr>
@@ -457,7 +459,7 @@ const Home = () => {
                         <Trans>Netopalk</Trans>
                       </h4>
                     </td>
-                    <td className="font-general text-2xl text-right">
+                    <td className="font-general text-xl lg:text-2xl text-right whitespace-nowrap">
                       {formatCurrency(netSalary, "€")}
                     </td>
                   </tr>
@@ -521,4 +523,4 @@ export const getStaticProps = async (ctx) => {
   };
 };
 
-export default Home;
+export default Index;

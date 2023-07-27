@@ -28,6 +28,8 @@ module.exports = {
   },
   plugins: [
     plugin(function ({ addBase, theme }) {
+      const lg = theme("screens.lg", {});
+
       addBase({
         h1: {
           fontFamily: theme("fontFamily.general"),
@@ -48,6 +50,9 @@ module.exports = {
           fontFamily: theme("fontFamily.general"),
           fontSize: "32px",
           lineHeight: 1.3,
+          [`@media (max-width: ${lg})`]: {
+            fontSize: "24px",
+          },
         },
         h5: {
           fontFamily: theme("fontFamily.general"),
