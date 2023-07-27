@@ -86,21 +86,21 @@ const Payslip = ({
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex flex-row pt-12 pb-14 px-2 lg:pt-24 lg:pb-28 lg:px-16">
-          <div className="bg-white w-full py-8 px-4  lg:py-28 lg:px-20">
-            <div className="flex flex-col lg:flex-row gap-8 items-center mb-12">
-              <div className="basis-1/2">
-                <input
-                  {...register("title")}
-                  type="text"
-                  className="border-transparent bg-beige w-full h-12 font-semibold text-3xl"
-                />
-              </div>
-            </div>
+        <div className="flex flex-row pt-12 pb-14 px-2 xl:pt-24 xl:pb-28 xl:px-16">
+          <div className="bg-white w-full py-8 px-8 xl:py-28 xl:px-20">
             <div className="flex flex-col lg:flex-row gap-8">
               <div className="basis-1/2">
-                <div className="flex flex-row gap-4 items-center mb-3">
-                  <div className="basis-1/3 text-right text-dark-blue opacity-40 font-general font-semibold">
+                <div className="flex flex-row gap-4 items-center mb-14">
+                  <div className="basis-full">
+                    <input
+                      {...register("title")}
+                      type="text"
+                      className="border-transparent bg-beige w-full h-12 font-semibold text-3xl"
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-col lg:flex-row lg:gap-4 lg:items-center mb-3">
+                  <div className="basis-1/3 lg:text-right text-dark-blue opacity-40 font-general font-semibold">
                     <Trans>Tööandja</Trans>
                   </div>
                   <div className="basis-2/3">
@@ -111,8 +111,8 @@ const Payslip = ({
                     />
                   </div>
                 </div>
-                <div className="flex flex-row gap-4 items-center mb-3">
-                  <div className="basis-1/3 text-right text-dark-blue opacity-40 font-general font-semibold">
+                <div className="flex flex-col lg:flex-row lg:gap-4 lg:items-center mb-3">
+                  <div className="basis-1/3 lg:text-right text-dark-blue opacity-40 font-general font-semibold">
                     <Trans>Töötaja</Trans>
                   </div>
                   <div className="basis-2/3">
@@ -123,8 +123,8 @@ const Payslip = ({
                     />
                   </div>
                 </div>
-                <div className="flex flex-row gap-4 items-center mb-3">
-                  <div className="basis-1/3 text-right text-dark-blue opacity-40 font-general font-semibold">
+                <div className="flex flex-col lg:flex-row lg:gap-4 lg:items-center mb-3">
+                  <div className="basis-1/3 lg:text-right text-dark-blue opacity-40 font-general font-semibold">
                     <Trans>Isikukood</Trans>
                   </div>
                   <div className="basis-2/3">
@@ -135,8 +135,8 @@ const Payslip = ({
                     />
                   </div>
                 </div>
-                <div className="flex flex-row gap-4 items-center mb-3">
-                  <div className="basis-1/3 text-right text-dark-blue opacity-40 font-general font-semibold">
+                <div className="flex flex-col lg:flex-row lg:gap-4 lg:items-center mb-3">
+                  <div className="basis-1/3 lg:text-right text-dark-blue opacity-40 font-general font-semibold">
                     <Trans>Periood</Trans>
                   </div>
                   <div className="basis-2/3">
@@ -160,8 +160,8 @@ const Payslip = ({
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-row gap-4 items-center">
-                  <div className="basis-1/3 text-right text-dark-blue opacity-40 font-general font-semibold">
+                <div className="flex flex-col lg:flex-row lg:gap-4 lg:items-center">
+                  <div className="basis-1/3 lg:text-right text-dark-blue opacity-40 font-general font-semibold">
                     <Trans>Märkus</Trans>
                   </div>
                   <div className="basis-2/3">
@@ -260,7 +260,7 @@ const Payslip = ({
               </div>
             </div>
 
-            <div className="flex justify-between items-end mt-40">
+            <div className="flex justify-between items-end mt-20 lg:mt-40">
               <button
                 type="submit"
                 className="bg-green py-5 px-8 font-semibold h-[66px]"
