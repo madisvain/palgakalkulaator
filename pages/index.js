@@ -35,7 +35,7 @@ const bisectionMethodAdvanced = (func, rightSide, lowerBound, upperBound) => {
   return x;
 };
 
-const Home = () => {
+const Index = () => {
   const {
     register,
     handleSubmit,
@@ -254,11 +254,8 @@ const Home = () => {
                 </legend>
                 <div className="flex flex-row items-center sm:space-x-2 xl:space-x-4">
                   {amountTypes.map((amountType) => (
-                    <div className="basis-1/3">
-                      <div
-                        key={amountType.id}
-                        className="flex items-center justify-center"
-                      >
+                    <div className="basis-1/3" key={amountType.id}>
+                      <div className="flex items-center justify-center">
                         <input
                           value={amountType.id}
                           type="radio"
@@ -394,7 +391,7 @@ const Home = () => {
                         <Trans>Tööandja kulu</Trans>
                       </h4>
                     </td>
-                    <td className="font-general text-2xl text-right">
+                    <td className="font-general text-xl lg:text-2xl text-right whitespace-nowrap">
                       {formatCurrency(salaryFund, "€")}
                     </td>
                   </tr>
@@ -402,7 +399,7 @@ const Home = () => {
                     <td>
                       <Trans>Sotsiaalmaks</Trans>
                     </td>
-                    <td className="text-right">
+                    <td className="text-right whitespace-nowrap">
                       {formatCurrency(socialTax, "€")}
                     </td>
                   </tr>
@@ -410,7 +407,7 @@ const Home = () => {
                     <td>
                       <Trans>Tööandja töötuskindlustusmakse</Trans>
                     </td>
-                    <td className="text-right">
+                    <td className="text-right whitespace-nowrap">
                       {formatCurrency(employerUnemploymentInsuranceTax, "€")}
                     </td>
                   </tr>
@@ -424,7 +421,7 @@ const Home = () => {
                         <Trans>Brutopalk</Trans>
                       </h4>
                     </td>
-                    <td className="font-general text-2xl text-right">
+                    <td className="font-general text-xl lg:text-2xl text-right whitespace-nowrap">
                       {grossSalary ? formatCurrency(grossSalary, "€") : "-"}
                     </td>
                   </tr>
@@ -440,7 +437,7 @@ const Home = () => {
                     <td>
                       <Trans>Töötaja töötuskindlustusmakse</Trans>
                     </td>
-                    <td className="text-right">
+                    <td className="text-right whitespace-nowrap">
                       {formatCurrency(employeeUnemploymentInsuranceTax, "€")}
                     </td>
                   </tr>
@@ -448,7 +445,7 @@ const Home = () => {
                     <td>
                       <Trans>Tulumaks</Trans>
                     </td>
-                    <td className="text-right">
+                    <td className="text-right whitespace-nowrap">
                       {formatCurrency(incomeTax, "€")}
                     </td>
                   </tr>
@@ -462,7 +459,7 @@ const Home = () => {
                         <Trans>Netopalk</Trans>
                       </h4>
                     </td>
-                    <td className="font-general text-2xl text-right">
+                    <td className="font-general text-xl lg:text-2xl text-right whitespace-nowrap">
                       {formatCurrency(netSalary, "€")}
                     </td>
                   </tr>
@@ -526,4 +523,4 @@ export const getStaticProps = async (ctx) => {
   };
 };
 
-export default Home;
+export default Index;

@@ -8,6 +8,9 @@ import {
   Document,
   StyleSheet,
 } from "@react-pdf/renderer";
+import { i18n } from "@lingui/core";
+import { I18nProvider } from "@lingui/react";
+import { Trans } from "@lingui/macro";
 
 import formatCurrency from "utils/currency";
 
@@ -101,203 +104,223 @@ const PayslipPDF = ({
   employeeUnemploymentInsuranceTax,
   employerUnemploymentInsuranceTax,
 }) => (
-  <Document>
-    <Page size="A4" style={styles.page}>
-      <Text style={styles.title}>{title}</Text>
-      <View style={styles.row}>
-        {/* Additional info */}
-        <View style={styles.section}>
-          <View style={styles.row}>
-            <View style={[styles.section, { width: 100 }]}>
-              <Text style={styles.text}>Periood</Text>
+  <I18nProvider i18n={i18n}>
+    <Document>
+      <Page size="A4" style={styles.page}>
+        <Text style={styles.title}>{title}</Text>
+        <View style={styles.row}>
+          {/* Additional info */}
+          <View style={styles.section}>
+            <View style={styles.row}>
+              <View style={[styles.section, { width: 100 }]}>
+                <Text style={styles.text}>
+                  <Trans>Periood</Trans>
+                </Text>
+              </View>
+              <View style={styles.section}>
+                <Text style={styles.text}>
+                  {periodStart} - {periodEnd}
+                </Text>
+              </View>
             </View>
-            <View style={styles.section}>
-              <Text style={styles.text}>
-                {periodStart} - {periodEnd}
-              </Text>
+            {employer ? (
+              <View style={styles.row}>
+                <View style={[styles.section, { width: 100 }]}>
+                  <Text style={styles.text}>
+                    <Trans>Tööandja</Trans>
+                  </Text>
+                </View>
+                <View style={styles.section}>
+                  <Text style={styles.text}>{employer}</Text>
+                </View>
+              </View>
+            ) : null}
+            {employee ? (
+              <View style={styles.row}>
+                <View style={[styles.section, { width: 100 }]}>
+                  <Text style={styles.text}>
+                    <Trans>Töötaja</Trans>
+                  </Text>
+                </View>
+                <View style={styles.section}>
+                  <Text style={styles.text}>{employee}</Text>
+                </View>
+              </View>
+            ) : null}
+            {personalCode ? (
+              <View style={styles.row}>
+                <View style={[styles.section, { width: 100 }]}>
+                  <Text style={styles.text}>
+                    <Trans>Isikukood</Trans>
+                  </Text>
+                </View>
+                <View style={styles.section}>
+                  <Text style={styles.text}>{personalCode}</Text>
+                </View>
+              </View>
+            ) : null}
+            {notes ? (
+              <View style={styles.row}>
+                <View style={[styles.section, { width: 100 }]}>
+                  <Text style={styles.text}>
+                    <Trans>Märkus</Trans>
+                  </Text>
+                </View>
+                <View style={styles.section}>
+                  <Text style={styles.text}>{notes}</Text>
+                </View>
+              </View>
+            ) : null}
+          </View>
+
+          {/* Salary */}
+          <View style={styles.section}>
+            <View style={styles.row}>
+              <View style={styles.section}>
+                <Text style={[styles.text, styles.strong]}>
+                  <Trans>Brutotöötasu</Trans>
+                </Text>
+              </View>
+              <View style={styles.section}>
+                <Text style={[styles.text, styles.strong, styles.right]}>
+                  {formatCurrency(grossSalary, "€")}
+                </Text>
+              </View>
+            </View>
+            <View style={styles.row}>
+              <View style={styles.section}>
+                <Text style={[styles.text, styles.padded4, styles.medium]}>
+                  <Trans>Kinnipidamised</Trans>
+                </Text>
+              </View>
+              <View style={styles.section}>
+                <Text style={[styles.text, styles.right]}>
+                  {formatCurrency(
+                    fundedPension +
+                      employeeUnemploymentInsuranceTax +
+                      incomeTax,
+                    "€"
+                  )}
+                </Text>
+              </View>
+            </View>
+            <View style={styles.row}>
+              <View style={styles.section}>
+                <Text style={[styles.text, styles.small, styles.padded8]}>
+                  <Trans>Kogumispension</Trans>
+                </Text>
+              </View>
+              <View style={styles.section}>
+                <Text style={[styles.text, styles.small, styles.right]}>
+                  {formatCurrency(fundedPension, "€")}
+                </Text>
+              </View>
+            </View>
+            <View style={styles.row}>
+              <View style={styles.section}>
+                <Text style={[styles.text, styles.small, styles.padded8]}>
+                  <Trans>Töötaja töötuskindlustusmakse</Trans>
+                </Text>
+              </View>
+              <View style={styles.section}>
+                <Text style={[styles.text, styles.small, styles.right]}>
+                  {formatCurrency(employeeUnemploymentInsuranceTax, "€")}
+                </Text>
+              </View>
+            </View>
+            <View style={styles.row}>
+              <View style={styles.section}>
+                <Text style={[styles.text, styles.small, styles.padded8]}>
+                  <Trans>Tulumaks</Trans>
+                </Text>
+              </View>
+              <View style={styles.section}>
+                <Text style={[styles.text, styles.small, styles.right]}>
+                  {formatCurrency(incomeTax, "€")}
+                </Text>
+              </View>
+            </View>
+
+            {/* Net salary */}
+            <View style={[styles.row, styles.space]}>
+              <View style={styles.section}>
+                <Text style={styles.text}>
+                  <Trans>Neto töötasu</Trans>
+                </Text>
+              </View>
+              <View style={styles.section}>
+                <Text style={[styles.text, styles.right]}>
+                  {formatCurrency(netSalary, "€")}
+                </Text>
+              </View>
+            </View>
+            <View style={styles.row}>
+              <View style={styles.section}>
+                <Text style={[styles.text, styles.medium, styles.padded4]}>
+                  <Trans>Tööandja maksud</Trans>
+                </Text>
+              </View>
+              <View style={styles.section}>
+                <Text style={[styles.text, styles.medium, styles.right]}>
+                  {formatCurrency(
+                    socialTax + employerUnemploymentInsuranceTax,
+                    "€"
+                  )}
+                </Text>
+              </View>
+            </View>
+            <View style={styles.row}>
+              <View style={styles.section}>
+                <Text style={[styles.text, styles.small, styles.padded8]}>
+                  <Trans>Sotsiaalmaks</Trans>
+                </Text>
+              </View>
+              <View style={styles.section}>
+                <Text style={[styles.text, styles.small, styles.right]}>
+                  {formatCurrency(socialTax, "€")}
+                </Text>
+              </View>
+            </View>
+            <View style={styles.row}>
+              <View style={styles.section}>
+                <Text style={[styles.text, styles.small, styles.padded8]}>
+                  <Trans>Tööandja töötuskindlustusmakse</Trans>
+                </Text>
+              </View>
+              <View style={styles.section}>
+                <Text style={[styles.text, styles.small, styles.right]}>
+                  {formatCurrency(employerUnemploymentInsuranceTax, "€")}
+                </Text>
+              </View>
+            </View>
+
+            <View style={[styles.row, styles.space]}>
+              <View style={styles.section}>
+                <Text style={styles.text}>
+                  <Trans>Tööandja kulu</Trans>
+                </Text>
+              </View>
+              <View style={styles.section}>
+                <Text style={[styles.text, styles.right]}>
+                  {formatCurrency(salaryFund, "€")}
+                </Text>
+              </View>
             </View>
           </View>
-          {employer ? (
-            <View style={styles.row}>
-              <View style={[styles.section, { width: 100 }]}>
-                <Text style={styles.text}>Tööandja</Text>
-              </View>
-              <View style={styles.section}>
-                <Text style={styles.text}>{employer}</Text>
-              </View>
-            </View>
-          ) : null}
-          {employee ? (
-            <View style={styles.row}>
-              <View style={[styles.section, { width: 100 }]}>
-                <Text style={styles.text}>Töötaja</Text>
-              </View>
-              <View style={styles.section}>
-                <Text style={styles.text}>{employee}</Text>
-              </View>
-            </View>
-          ) : null}
-          {personalCode ? (
-            <View style={styles.row}>
-              <View style={[styles.section, { width: 100 }]}>
-                <Text style={styles.text}>Isikukood</Text>
-              </View>
-              <View style={styles.section}>
-                <Text style={styles.text}>{personalCode}</Text>
-              </View>
-            </View>
-          ) : null}
-          {notes ? (
-            <View style={styles.row}>
-              <View style={[styles.section, { width: 100 }]}>
-                <Text style={styles.text}>Märkus</Text>
-              </View>
-              <View style={styles.section}>
-                <Text style={styles.text}>{notes}</Text>
-              </View>
-            </View>
-          ) : null}
         </View>
-
-        {/* Salary */}
-        <View style={styles.section}>
-          <View style={styles.row}>
-            <View style={styles.section}>
-              <Text style={[styles.text, styles.strong]}>Brutotöötasu</Text>
-            </View>
-            <View style={styles.section}>
-              <Text style={[styles.text, styles.strong, styles.right]}>
-                {formatCurrency(grossSalary, "€")}
-              </Text>
-            </View>
-          </View>
-          <View style={styles.row}>
-            <View style={styles.section}>
-              <Text style={[styles.text, styles.padded4, styles.medium]}>
-                Kinnipidamised
-              </Text>
-            </View>
-            <View style={styles.section}>
-              <Text style={[styles.text, styles.right]}>
-                {formatCurrency(
-                  fundedPension + employeeUnemploymentInsuranceTax + incomeTax,
-                  "€"
-                )}
-              </Text>
-            </View>
-          </View>
-          <View style={styles.row}>
-            <View style={styles.section}>
-              <Text style={[styles.text, styles.small, styles.padded8]}>
-                Kogumispension
-              </Text>
-            </View>
-            <View style={styles.section}>
-              <Text style={[styles.text, styles.small, styles.right]}>
-                {formatCurrency(fundedPension, "€")}
-              </Text>
-            </View>
-          </View>
-          <View style={styles.row}>
-            <View style={styles.section}>
-              <Text style={[styles.text, styles.small, styles.padded8]}>
-                Töötaja töötuskindlustusmakse
-              </Text>
-            </View>
-            <View style={styles.section}>
-              <Text style={[styles.text, styles.small, styles.right]}>
-                {formatCurrency(employeeUnemploymentInsuranceTax, "€")}
-              </Text>
-            </View>
-          </View>
-          <View style={styles.row}>
-            <View style={styles.section}>
-              <Text style={[styles.text, styles.small, styles.padded8]}>
-                Tulumaks
-              </Text>
-            </View>
-            <View style={styles.section}>
-              <Text style={[styles.text, styles.small, styles.right]}>
-                {formatCurrency(incomeTax, "€")}
-              </Text>
-            </View>
-          </View>
-
-          {/* Net salary */}
-          <View style={[styles.row, styles.space]}>
-            <View style={styles.section}>
-              <Text style={styles.text}>Neto töötasu</Text>
-            </View>
-            <View style={styles.section}>
-              <Text style={[styles.text, styles.right]}>
-                {formatCurrency(netSalary, "€")}
-              </Text>
-            </View>
-          </View>
-          <View style={styles.row}>
-            <View style={styles.section}>
-              <Text style={[styles.text, styles.medium, styles.padded4]}>
-                Tööandja maksud
-              </Text>
-            </View>
-            <View style={styles.section}>
-              <Text style={[styles.text, styles.medium, styles.right]}>
-                {formatCurrency(
-                  socialTax + employerUnemploymentInsuranceTax,
-                  "€"
-                )}
-              </Text>
-            </View>
-          </View>
-          <View style={styles.row}>
-            <View style={styles.section}>
-              <Text style={[styles.text, styles.small, styles.padded8]}>
-                Sotsiaalmaks
-              </Text>
-            </View>
-            <View style={styles.section}>
-              <Text style={[styles.text, styles.small, styles.right]}>
-                {formatCurrency(socialTax, "€")}
-              </Text>
-            </View>
-          </View>
-          <View style={styles.row}>
-            <View style={styles.section}>
-              <Text style={[styles.text, styles.small, styles.padded8]}>
-                Tööandja töötuskindlustusmakse
-              </Text>
-            </View>
-            <View style={styles.section}>
-              <Text style={[styles.text, styles.small, styles.right]}>
-                {formatCurrency(employerUnemploymentInsuranceTax, "€")}
-              </Text>
-            </View>
-          </View>
-
-          <View style={[styles.row, styles.space]}>
-            <View style={styles.section}>
-              <Text style={styles.text}>Tööandja kulu</Text>
-            </View>
-            <View style={styles.section}>
-              <Text style={[styles.text, styles.right]}>
-                {formatCurrency(salaryFund, "€")}
-              </Text>
-            </View>
-          </View>
+        {/* Total */}
+        <View style={[styles.borderTop]}>
+          <Text style={[styles.text, styles.medium, styles.right]}>
+            <Trans>Tasumisele kuuluv neto töötasu</Trans>
+          </Text>
+          <Text style={[styles.text, styles.strong, styles.right]}>
+            {formatCurrency(netSalary, "€")}
+          </Text>
         </View>
-      </View>
-      {/* Total */}
-      <View style={[styles.borderTop]}>
-        <Text style={[styles.text, styles.medium, styles.right]}>
-          Tasumisele kuuluv neto töötasu
-        </Text>
-        <Text style={[styles.text, styles.strong, styles.right]}>
-          {formatCurrency(netSalary, "€")}
-        </Text>
-      </View>
-      <Image style={styles.qr} src="/qr.png" />
-    </Page>
-  </Document>
+        <Image style={styles.qr} src="/qr.png" />
+      </Page>
+    </Document>
+  </I18nProvider>
 );
 
 export default PayslipPDF;

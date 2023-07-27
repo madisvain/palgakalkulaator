@@ -1,13 +1,15 @@
-import { Trans } from "@lingui/macro";
+import { t, Trans } from "@lingui/macro";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/router";
 
 import { format, subMonths, startOfMonth, endOfMonth } from "date-fns";
-import { et } from "date-fns/locale";
+import { en, et } from "date-fns/locale";
 import { pdf } from "@react-pdf/renderer";
 
 import DatePicker from "components/datepicker";
 import PDF from "components/pdf";
 import formatCurrency from "utils/currency";
+import { im } from "mathjs";
 
 const downloadBlob = (blob, name = "palgaleht.pdf") => {
   // Convert your blob into a Blob URL (a special url that points to an object in the browser's memory)
@@ -47,6 +49,8 @@ const Payslip = ({
   employeeUnemploymentInsuranceTax,
   employerUnemploymentInsuranceTax,
 }) => {
+  const router = useRouter();
+
   const {
     register,
     watch,
@@ -55,8 +59,8 @@ const Payslip = ({
     formState: { errors },
   } = useForm({
     defaultValues: {
-      title: `Palgaleht ${format(subMonths(new Date(), 1), "MMMM yyyy", {
-        locale: et,
+      title: `${t`Palgaleht`} ${format(subMonths(new Date(), 1), "MMMM yyyy", {
+        locale: router.locale === "et" ? et : en,
       })}`,
       periodStart: format(startOfMonth(subMonths(new Date(), 1)), "dd.MM.yyyy"),
       periodEnd: format(endOfMonth(subMonths(new Date(), 1)), "dd.MM.yyyy"),
@@ -84,10 +88,10 @@ const Payslip = ({
   };
 
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-7xl md:px-4 sm:px-6 lg:px-8">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-row pt-12 pb-14 px-2 xl:pt-24 xl:pb-28 xl:px-16">
-          <div className="bg-white w-full py-8 px-8 xl:py-28 xl:px-20">
+          <div className="bg-white w-full py-4 px-4 md:py-8 md:px-8 xl:py-28 xl:px-20">
             <div className="flex flex-col lg:flex-row gap-8">
               <div className="basis-1/2">
                 <div className="flex flex-row gap-4 items-center mb-14">
@@ -178,13 +182,15 @@ const Payslip = ({
                   <h4 className="grow">
                     <Trans>Brutopalk</Trans>
                   </h4>
-                  <h4>{formatCurrency(grossSalary, "€")}</h4>
+                  <h4 className="whitespace-nowrap">
+                    {formatCurrency(grossSalary, "€")}
+                  </h4>
                 </div>
                 <div className="flex flex-row mb-3">
                   <h5 className="grow pl-2">
                     <Trans>Kinnipidamised</Trans>
                   </h5>
-                  <h5>
+                  <h5 className="whitespace-nowrap">
                     {formatCurrency(
                       fundedPension +
                         employeeUnemploymentInsuranceTax +
@@ -197,7 +203,7 @@ const Payslip = ({
                   <div className="grow leading-relaxed text-base pl-6">
                     <Trans>Kogumispension</Trans>
                   </div>
-                  <div className="leading-relaxed text-base">
+                  <div className="leading-relaxed text-base whitespace-nowrap">
                     {formatCurrency(fundedPension, "€")}
                   </div>
                 </div>
@@ -205,7 +211,7 @@ const Payslip = ({
                   <div className="grow leading-relaxed text-base pl-6">
                     <Trans>Töötaja töötuskindlustusmakse</Trans>
                   </div>
-                  <div className="leading-relaxed text-base">
+                  <div className="leading-relaxed text-base whitespace-nowrap">
                     {formatCurrency(employeeUnemploymentInsuranceTax, "€")}
                   </div>
                 </div>
@@ -213,7 +219,7 @@ const Payslip = ({
                   <div className="grow leading-relaxed text-base pl-6">
                     <Trans>Tulumaks</Trans>
                   </div>
-                  <div className="leading-relaxed text-base">
+                  <div className="leading-relaxed text-base whitespace-nowrap">
                     {formatCurrency(incomeTax, "€")}
                   </div>
                 </div>
@@ -222,13 +228,15 @@ const Payslip = ({
                   <h4 className="grow">
                     <Trans>Netopalk</Trans>
                   </h4>
-                  <h4>{formatCurrency(netSalary, "€")}</h4>
+                  <h4 className="whitespace-nowrap">
+                    {formatCurrency(netSalary, "€")}
+                  </h4>
                 </div>
                 <div className="flex flex-row mb-3">
                   <h5 className="grow pl-2">
                     <Trans>Tööandja maksud</Trans>
                   </h5>
-                  <h5>
+                  <h5 className="whitespace-nowrap">
                     {formatCurrency(
                       socialTax + employerUnemploymentInsuranceTax,
                       "€"
@@ -239,7 +247,7 @@ const Payslip = ({
                   <div className="grow leading-relaxed text-base pl-6">
                     <Trans>Sotsiaalmaks</Trans>
                   </div>
-                  <div className="leading-relaxed text-base">
+                  <div className="leading-relaxed text-base whitespace-nowrap">
                     {formatCurrency(socialTax, "€")}
                   </div>
                 </div>
@@ -247,7 +255,7 @@ const Payslip = ({
                   <div className="grow leading-relaxed text-base pl-6">
                     <Trans>Tööandja töötuskindlustusmakse</Trans>
                   </div>
-                  <div className="leading-relaxed text-base">
+                  <div className="leading-relaxed text-base whitespace-nowrap">
                     {formatCurrency(employerUnemploymentInsuranceTax, "€")}
                   </div>
                 </div>
@@ -255,19 +263,21 @@ const Payslip = ({
                   <h4 className="grow">
                     <Trans>Tööandja kulu</Trans>
                   </h4>
-                  <h4>{formatCurrency(salaryFund, "€")}</h4>
+                  <h4 className="whitespace-nowrap">
+                    {formatCurrency(salaryFund, "€")}
+                  </h4>
                 </div>
               </div>
             </div>
 
-            <div className="flex justify-between items-end mt-20 lg:mt-40">
+            <div className="flex flex-col md:flex-row justify-between items-end mt-10 mb-10 md:mb-0 md:mt-20 lg:mt-40">
               <button
                 type="submit"
-                className="bg-green py-5 px-8 font-semibold h-[66px]"
+                className="bg-green py-5 px-8 font-semibold h-[66px] w-full md:w-auto"
               >
                 <Trans>Salvesta PDF</Trans>
               </button>
-              <div className="text-right">
+              <div className="hidden w-full mb-4 order-first md:block md:order-last md:w-auto md:text-right">
                 <h6 className="font-semibold mb-1">
                   <Trans>Tasumisele kuuluv neto töötasu</Trans>
                 </h6>
