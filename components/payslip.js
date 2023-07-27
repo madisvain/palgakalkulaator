@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 
 import { format, subMonths, startOfMonth, endOfMonth } from "date-fns";
-import { en, et } from "date-fns/locale";
+import { enGB, et } from "date-fns/locale";
 import { pdf } from "@react-pdf/renderer";
 
 import DatePicker from "components/datepicker";
@@ -60,7 +60,7 @@ const Payslip = ({
   } = useForm({
     defaultValues: {
       title: `${t`Palgaleht`} ${format(subMonths(new Date(), 1), "MMMM yyyy", {
-        locale: router.locale === "et" ? et : en,
+        locale: router.locale === "et" ? et : enGB,
       })}`,
       periodStart: format(startOfMonth(subMonths(new Date(), 1)), "dd.MM.yyyy"),
       periodEnd: format(endOfMonth(subMonths(new Date(), 1)), "dd.MM.yyyy"),
