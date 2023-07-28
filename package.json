@@ -8,6 +8,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.3",
     "@heroicons/react": "^2.0.12",
+    "@vercel/analytics": "^1.0.1",
     "next": "latest",
     "react": "18.1.0",
     "react-dom": "18.1.0",

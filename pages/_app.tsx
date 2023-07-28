@@ -3,6 +3,7 @@ import "../styles/globals.css";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import type { AppProps } from "next/app";
+import { Analytics } from "@vercel/analytics/react";
 
 import Head from "next/head";
 import Script from "next/script";
@@ -52,6 +53,9 @@ function App({ Component, pageProps }: AppProps) {
       />
 
       <Component {...pageProps} />
+
+      {/* Analytics */}
+      <Analytics />
     </>
   );
 }
