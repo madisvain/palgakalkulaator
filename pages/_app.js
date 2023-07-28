@@ -5,6 +5,7 @@ import { i18n } from "@lingui/core";
 import { I18nProvider } from "@lingui/react";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
+import { Analytics } from "@vercel/analytics/react";
 
 import Layout from "components/layout";
 import { useLinguiInit } from "utils/lingui";
@@ -58,6 +59,9 @@ function App({ Component, pageProps }) {
             <span></span>
           </div>
           {getLayout(<Component {...pageProps} />)}
+
+          {/* Analytics */}
+          <Analytics />
         </div>
       </I18nProvider>
     </>
