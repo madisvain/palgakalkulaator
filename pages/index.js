@@ -232,7 +232,7 @@ const Index = () => {
         <div className="flex flex-col mt-12 mb-14 space-y-12 md:flex-row lg:mt-24 lg:mb-28 md:space-x-4 md:space-y-0">
           <div className="basis-2/5">
             <form>
-              <div className="flex items-center relative w-[350px] h-[88px] bg-white rounded-[50px] shadow-sm pl-12 pr-20">
+              <div className="flex items-center relative w-[350px] h-[88px] bg-white rounded-[50px] shadow-sm pl-12 pr-20 -z-10">
                 <input
                   {...register("amount", {
                     required: true,

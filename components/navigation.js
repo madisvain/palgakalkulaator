@@ -25,8 +25,8 @@ const Navigation = ({ scrollToContact }) => {
             </Link>
           </div>
 
-          <ul className="hidden md:flex md:space-x-8">
-            <li className="inline-flex items-center ">
+          <ul className="flex space-x-8">
+            <li className="hidden md:inline-flex items-center ">
               <Link
                 href="https://www.arveldaja.com/"
                 target="_blank"
@@ -55,60 +55,6 @@ const Navigation = ({ scrollToContact }) => {
             {/*  Language dropdown */}
             <LanguageDropdown />
           </ul>
-
-          <div className="-mr-2 flex items-center md:hidden">
-            <Hamburger
-              size={24}
-              color="#181A33"
-              label="Näita menüüd"
-              onToggle={(toggled) => {
-                if (toggled) {
-                  setMenuOpen(true);
-                } else {
-                  setMenuOpen(false);
-                }
-              }}
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile menu, show/hide based on menu state. */}
-      <div className={`${menuOpen ? "block" : "hidden"} h-full`}>
-        <div className="space-y-1 pt-2 pb-3">
-          <Link
-            href="/teenused"
-            className="block py-2 pl-3 pr-4 text-base font-semibold text-dark-blue"
-          >
-            Arveldaja.com
-          </Link>
-        </div>
-        <div className="pt-4 pb-3">
-          <div className="flex flex-row justify-end">
-            <a
-              href="#"
-              className="px-4 py-2 text-base font-medium flex flex-row items-center"
-            >
-              EST
-              <div className="ml-2">
-                <svg
-                  width="14"
-                  height="12"
-                  viewBox="0 0 14 12"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M12.5859 0.939514L5.29294 8.23251L1.99994 4.93951L0.585938 6.35351L5.29294 11.0605L13.9999 2.35351L12.5859 0.939514Z"
-                    fill="#181A33"
-                  />
-                </svg>
-              </div>
-            </a>
-            <a href="#" className="block px-4 py-2 text-base font-medium">
-              ENG
-            </a>
-          </div>
         </div>
       </div>
     </nav>
