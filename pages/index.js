@@ -3,7 +3,10 @@ import Head from "next/head";
 import { t, Trans } from "@lingui/macro";
 import { useLingui } from "@lingui/react";
 import { useForm } from "react-hook-form";
-import { max, min, parse, round } from "mathjs/number";
+import { parse } from "mathjs/number";
+import max from "lodash/max";
+import min from "lodash/min";
+import round from "lodash/round";
 
 import Payslip from "components/payslip";
 import TaxInfo from "components/tax-info";
@@ -100,7 +103,7 @@ const Index = () => {
           let tf = 0; // Tax free income
 
           if (x <= 1200) {
-            tf = Math.min(values.amount, 654);
+            tf = min([values.amount, 654]);
           } else if (x > 1200 && x < 2100) {
             tf = `(7848 - (7848 / 10800) * (x * 12 - 14400)) / 12`;
           }
@@ -160,7 +163,7 @@ const Index = () => {
     const amount = values.taxFreeIncomeAmount;
 
     if (grossSalary <= 1200) {
-      return min(654, values.amount, amount);
+      return min([654, values.amount, amount]);
     } else if (grossSalary > 1200 && grossSalary < 2100) {
       return round(
         (7848 - (7848 / 10800) * (grossSalary * 12 - 14400)) / 12,
@@ -175,7 +178,7 @@ const Index = () => {
   const incomeTax = useMemo(() => {
     if (!(grossSalary > 0) || grossSalary < taxFreeIncome) return 0;
 
-    return max(
+    return max([
       round(
         (grossSalary -
           taxFreeIncome -
@@ -184,8 +187,8 @@ const Index = () => {
           0.2,
         2
       ),
-      0
-    );
+      0,
+    ]);
   }, [
     grossSalary,
     taxFreeIncome,
