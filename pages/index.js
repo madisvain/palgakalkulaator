@@ -1,5 +1,7 @@
 import React, { useMemo, useState } from "react";
-import { Trans } from "@lingui/macro";
+import Head from "next/head";
+import { t, Trans } from "@lingui/macro";
+import { useLingui } from "@lingui/react";
 import { useForm } from "react-hook-form";
 import { max, min, parse, round, simplify } from "mathjs";
 
@@ -36,6 +38,8 @@ const bisectionMethodAdvanced = (func, rightSide, lowerBound, upperBound) => {
 };
 
 const Index = () => {
+  useLingui();
+
   const {
     register,
     setValue,
@@ -227,6 +231,15 @@ const Index = () => {
 
   return (
     <>
+      <Head>
+        <title>Palgakalkulaator</title>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta
+          description={t`Palgakalkulaator aitab arvestada netopalga, brutopalga, tööandja kulu, maksud ja luua töötajale palgalehe.`}
+        />
+      </Head>
+
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col mt-12 mb-14 space-y-12 md:flex-row lg:mt-24 lg:mb-28 md:space-x-4 md:space-y-0">
           <div className="basis-2/5">

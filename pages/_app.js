@@ -7,7 +7,8 @@ import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/react";
 
-import Layout from "components/layout";
+import Footer from "components/footer";
+import Navigation from "components/navigation";
 import { useLinguiInit } from "utils/lingui";
 
 // Fonts
@@ -41,9 +42,6 @@ const general = localFont({
 function App({ Component, pageProps }) {
   useLinguiInit(pageProps.translation);
 
-  // Layout
-  const getLayout = Component.getLayout || ((page) => <Layout>{page}</Layout>);
-
   return (
     <>
       <I18nProvider i18n={i18n}>
@@ -58,7 +56,10 @@ function App({ Component, pageProps }) {
             <span></span>
             <span></span>
           </div>
-          {getLayout(<Component {...pageProps} />)}
+
+          <Navigation />
+          <Component {...pageProps} />
+          <Footer />
 
           {/* Analytics */}
           <Analytics />
