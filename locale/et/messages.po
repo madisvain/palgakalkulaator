@@ -94,11 +94,7 @@ msgstr "Neto töötasu"
 msgid "Netopalk"
 msgstr "Netopalk"
 
-#: components/navigation.js:24
-#~ msgid "Palgakalkulaator"
-#~ msgstr "Palgakalkulaator"
-
-#: components/layout.js:30
+#: components/layout.js:16
 msgid "Palgakalkulaator aitab arvestada netopalga, brutopalga, tööandja kulu, maksud ja luua töötajale palgalehe."
 msgstr "Palgakalkulaator aitab arvestada netopalga, brutopalga, tööandja kulu, maksud ja luua töötajale palgalehe."
 
@@ -125,10 +121,6 @@ msgstr "siit"
 msgid "Sotsiaalmaks"
 msgstr "Sotsiaalmaks"
 
-#: components/tax-info.js:51
-msgid "Sotsiaalmaksu kuumäär on <0>654 EUR</0>, st sotsiaalmaksu minimaalne kohustus on 654 x 0.33 ="
-msgstr "Sotsiaalmaksu kuumäär on <0>654 EUR</0>, st sotsiaalmaksu minimaalne kohustus on 654 x 0.33 ="
-
 #: components/tax-info.js:41
 msgid "Sotsiaalmaksu määr on 33%"
 msgstr "Sotsiaalmaksu määr on 33%"
@@ -136,6 +128,10 @@ msgstr "Sotsiaalmaksu määr on 33%"
 #: pages/index.js:293
 msgid "Sotsiaalmaksu min. kuumäär"
 msgstr "Sotsiaalmaksu min. kuumäär"
+
+#: components/tax-info.js:51
+msgid "Sotsiaalmaksu minimaalne kohustus Töölepingu puhul on <0>654 EUR</0> x 0,33% ="
+msgstr "Sotsiaalmaksu minimaalne kohustus Töölepingu puhul on <0>654 EUR</0> x 0,33% ="
 
 #: pages/index.js:253
 msgid "Summa tüüp"

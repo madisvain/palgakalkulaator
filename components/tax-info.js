@@ -49,8 +49,8 @@ const TaxInfo = () => {
               </li>
               <li>
                 <Trans>
-                  Sotsiaalmaksu kuumäär on <strong>654 EUR</strong>, st
-                  sotsiaalmaksu minimaalne kohustus on 654 x 0.33 =
+                  Sotsiaalmaksu minimaalne kohustus Töölepingu puhul on{" "}
+                  <strong>654 EUR</strong> x 0,33% =
                 </Trans>{" "}
                 <strong>
                   <Trans>215,82 EUR/kuus</Trans>
