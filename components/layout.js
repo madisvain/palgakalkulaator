@@ -1,11 +1,14 @@
 import Head from "next/head";
 import { t } from "@lingui/macro";
+import { useLingui } from "@lingui/react";
 import { loadCatalog } from "utils/lingui";
 
 import Navigation from "./navigation";
 import Footer from "./footer";
 
 const Layout = ({ children }) => {
+  useLingui();
+
   return (
     <>
       <Head>
