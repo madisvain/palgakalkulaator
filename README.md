@@ -1,27 +1,31 @@
-# Next.js + Tailwind CSS Example
+# 🧮 Palgakalkulaator
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.0)](https://tailwindcss.com/blog/tailwindcss-v3) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+[palgakalkulaator.ee](https://www.palgakalkulaator.ee)
 
-## Deploy your own
+Palgakalkulaator aitab arvestada netopalga, brutopalga, tööandja kulu, maksud ja luua töötajale palgalehe.
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+![Palgakalkulaator](https://www.palgakalkulaator.ee/taxes.svg)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+## Võimalused
 
-## How to use
+- Arvutuse aluseks oleva summa liigi valik (tööandja kulu, brotopalk, netopalk)
+- Sotsiaalmaksu minimaalse kuumäära arvestamine
+- Maksuvaba tulu arvestamine (muudetav)
+- Tööandja töötuskindlustusmakse
+- Töötaja töötuskindlustusmakse
+- Kogumispensioniga liitumise arvestus
+- Palgateatise koostamine (pdf formaadis)
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+## Tarkvararaamistikud
+- Vercel paigaldus
+- Next.js (React.js) raamistik
+- Tailwind CSS raamistik
+- Lingui.js tõlgeteks
+- Math.js
+- Sentry vigade monitoorimiseks
+- Cypress automaattestid
+- React PDF palgalehe genereerimiseks
 
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-```
+## Litsents
 
-```bash
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-```bash
-pnpm create next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+[GNU Affero General Public License v3 (AGPL-3.0)](https://www.tldrlegal.com/license/gnu-affero-general-public-license-v3-agpl-3-0)
