@@ -38,7 +38,6 @@ const bisectionMethodAdvanced = (func, rightSide, lowerBound, upperBound) => {
 const Index = () => {
   const {
     register,
-    handleSubmit,
     setValue,
     watch,
     formState: { errors },

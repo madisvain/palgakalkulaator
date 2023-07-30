@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { t } from "@lingui/macro";
+import { loadCatalog } from "utils/lingui";
 
 import Navigation from "./navigation";
 import Footer from "./footer";
@@ -25,6 +26,15 @@ const Layout = ({ children }) => {
       <Footer />
     </>
   );
+};
+
+export const getStaticProps = async (ctx) => {
+  const translation = await loadCatalog(ctx.locale);
+  return {
+    props: {
+      translation,
+    },
+  };
 };
 
 export default Layout;
