@@ -40,6 +40,7 @@ const LanguageDropdown = () => {
         leave="transition duration-75 ease-out"
         leaveFrom="transform scale-100 opacity-100"
         leaveTo="transform scale-95 opacity-0"
+        style={{ zIndex: 100 }}
       >
         <Menu.Items className="absolute right-0 top-[20px] pb-3 w-28 origin-top bg-white border border-dark-blue focus:outline-none">
           <Menu.Item onClick={() => switchLocale("et")}>

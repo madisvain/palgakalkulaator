@@ -3,7 +3,7 @@ import Head from "next/head";
 import { t, Trans } from "@lingui/macro";
 import { useLingui } from "@lingui/react";
 import { useForm } from "react-hook-form";
-import { max, min, parse, round, simplify } from "mathjs";
+import { max, min, parse, round } from "mathjs/number";
 
 import Payslip from "components/payslip";
 import TaxInfo from "components/tax-info";
@@ -69,7 +69,7 @@ const Index = () => {
         if (values.socialTaxMinimum && values.amount <= 654) {
           const func = (x) => {
             const minimum = 215.82; // 654 * 0.33
-            const eq = simplify(`${minimum} + (x * 0.008) + x`);
+            const eq = parse(`${minimum} + (x * 0.008) + x`);
             const code = eq.compile();
             const result = code.evaluate({ x });
             return result;
@@ -244,7 +244,7 @@ const Index = () => {
         <div className="flex flex-col mt-12 mb-14 space-y-12 md:flex-row lg:mt-24 lg:mb-28 md:space-x-4 md:space-y-0">
           <div className="basis-2/5">
             <form>
-              <div className="flex items-center relative w-[350px] h-[88px] bg-white rounded-[50px] shadow-sm pl-12 pr-20 -z-10">
+              <div className="flex items-center relative w-full h-[88px] bg-white rounded-[50px] shadow-sm pl-12 pr-20">
                 <input
                   {...register("amount", {
                     required: true,
@@ -267,7 +267,7 @@ const Index = () => {
                 <div className="flex flex-row items-center sm:space-x-2 xl:space-x-4">
                   {amountTypes.map((amountType) => (
                     <div className="basis-1/3" key={amountType.id}>
-                      <div className="flex items-center justify-center">
+                      <div className="flex items-center">
                         <input
                           value={amountType.id}
                           type="radio"
