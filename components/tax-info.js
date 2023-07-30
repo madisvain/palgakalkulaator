@@ -6,7 +6,7 @@ const TaxInfo = () => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row gap-4 pt-12 pb-16 lg:pt-24 lg:pb-32 items-center">
           <div className="basis-2/5">
-            <img src="./taxes.svg" alt="Taxes" />
+            <img src="./taxes.svg" alt="Taxes" height={389} width={389} />
           </div>
           <div className="basis-3/5">
             <h4 className="mb-6">

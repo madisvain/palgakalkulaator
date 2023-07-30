@@ -18,6 +18,8 @@ const Navigation = ({ scrollToContact }) => {
                 className="block h-8 w-auto mr-[10px]"
                 src="./logo.svg"
                 alt="Palgakalkulaator.ee logo"
+                height={32}
+                width={32}
               />
               <h1 className="general text-xl font-medium color-dark-blue">
                 Palgakalkulaator

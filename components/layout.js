@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Trans } from "@lingui/macro";
+import { t } from "@lingui/macro";
 
 import Navigation from "./navigation";
 import Footer from "./footer";
@@ -12,12 +12,9 @@ const Layout = ({ children }) => {
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta
-          description={
-            <Trans>
+          description={t`
               Palgakalkulaator aitab arvestada netopalga, brutopalga, tööandja
-              kulu, maksud ja luua töötajale palgalehe.
-            </Trans>
-          }
+              kulu, maksud ja luua töötajale palgalehe.`}
         />
       </Head>
 

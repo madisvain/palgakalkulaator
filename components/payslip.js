@@ -9,7 +9,6 @@ import { pdf } from "@react-pdf/renderer";
 import DatePicker from "components/datepicker";
 import PDF from "components/pdf";
 import formatCurrency from "utils/currency";
-import { im } from "mathjs";
 
 const downloadBlob = (blob, name = "palgaleht.pdf") => {
   // Convert your blob into a Blob URL (a special url that points to an object in the browser's memory)
