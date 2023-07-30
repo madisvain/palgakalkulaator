@@ -244,7 +244,7 @@ const Index = () => {
         <div className="flex flex-col mt-12 mb-14 space-y-12 md:flex-row lg:mt-24 lg:mb-28 md:space-x-4 md:space-y-0">
           <div className="basis-2/5">
             <form>
-              <div className="flex items-center relative w-full h-[88px] bg-white rounded-[50px] shadow-sm pl-12 pr-20">
+              <div className="flex items-center relative w-full lg:max-w-[350px] h-[88px] bg-white rounded-[50px] shadow-sm pl-12 pr-20">
                 <input
                   {...register("amount", {
                     required: true,
@@ -264,9 +264,9 @@ const Index = () => {
                 <legend className="sr-only">
                   <Trans>Summa tüüp</Trans>
                 </legend>
-                <div className="flex flex-row items-center sm:space-x-2 xl:space-x-4">
+                <div className="flex flex-row items-center space-x-2 md:space-x-4 lg:space-x-8">
                   {amountTypes.map((amountType) => (
-                    <div className="basis-1/3" key={amountType.id}>
+                    <div key={amountType.id}>
                       <div className="flex items-center">
                         <input
                           value={amountType.id}
