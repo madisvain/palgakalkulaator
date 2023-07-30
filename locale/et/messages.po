@@ -21,9 +21,9 @@ msgstr "0...654 EUR/kuus"
 msgid "215,82 EUR/kuus"
 msgstr "215,82 EUR/kuus"
 
-#: components/payslip.js:183
-#: pages/index.js:223
-#: pages/index.js:421
+#: components/payslip.js:182
+#: pages/index.js:222
+#: pages/index.js:420
 msgid "Brutopalk"
 msgstr "Brutopalk"
 
@@ -31,19 +31,19 @@ msgstr "Brutopalk"
 msgid "Brutotöötasu"
 msgstr "Brutotöötasu"
 
-#: components/payslip.js:132
+#: components/payslip.js:131
 #: components/pdf.js:154
 msgid "Isikukood"
 msgstr "Isikukood"
 
-#: components/payslip.js:191
+#: components/payslip.js:190
 #: components/pdf.js:193
 msgid "Kinnipidamised"
 msgstr "Kinnipidamised"
 
-#: components/payslip.js:204
+#: components/payslip.js:203
 #: components/pdf.js:210
-#: pages/index.js:430
+#: pages/index.js:429
 msgid "Kogumispension"
 msgstr "Kogumispension"
 
@@ -51,11 +51,11 @@ msgstr "Kogumispension"
 msgid "Kogumispensioni makse määr on <0>liitunutele 2%</0> ja <1>mitteliitunutele 0%</1>. Kogumispensioniga liitumist saab kontrollida"
 msgstr "Kogumispensioni makse määr on <0>liitunutele 2%</0> ja <1>mitteliitunutele 0%</1>. Kogumispensioniga liitumist saab kontrollida"
 
-#: pages/index.js:378
+#: pages/index.js:377
 msgid "Kogumispensioniga liitunud (2%)"
 msgstr "Kogumispensioniga liitunud (2%)"
 
-#: pages/index.js:477
+#: pages/index.js:476
 msgid "Koosta palgateatis"
 msgstr "Koosta palgateatis"
 
@@ -63,7 +63,7 @@ msgstr "Koosta palgateatis"
 msgid "kuus <0>725 EUR</0>"
 msgstr "kuus <0>725 EUR</0>"
 
-#: pages/index.js:280
+#: pages/index.js:279
 msgid "Mahaarvamised:"
 msgstr "Mahaarvamised:"
 
@@ -71,7 +71,7 @@ msgstr "Mahaarvamised:"
 msgid "Maksuinfo 2023"
 msgstr "Maksuinfo 2023"
 
-#: pages/index.js:306
+#: pages/index.js:305
 msgid "Maksuvaba tulu"
 msgstr "Maksuvaba tulu"
 
@@ -79,7 +79,7 @@ msgstr "Maksuvaba tulu"
 msgid "Maksuvaba tulu varieeruv 0...7848 / 12 ="
 msgstr "Maksuvaba tulu varieeruv 0...7848 / 12 ="
 
-#: components/payslip.js:169
+#: components/payslip.js:168
 #: components/pdf.js:166
 msgid "Märkus"
 msgstr "Märkus"
@@ -88,26 +88,34 @@ msgstr "Märkus"
 msgid "Neto töötasu"
 msgstr "Neto töötasu"
 
-#: components/payslip.js:229
-#: pages/index.js:224
-#: pages/index.js:459
+#: components/payslip.js:228
+#: pages/index.js:223
+#: pages/index.js:458
 msgid "Netopalk"
 msgstr "Netopalk"
 
-#: components/layout.js:16
+#: components/layout.js:19
+#~ msgid ""
+#~ "Palgakalkulaator aitab arvestada netopalga, brutopalga, tööandja\n"
+#~ "kulu, maksud ja luua töötajale palgalehe."
+#~ msgstr ""
+#~ "Palgakalkulaator aitab arvestada netopalga, brutopalga, tööandja\n"
+#~ "kulu, maksud ja luua töötajale palgalehe."
+
+#: components/layout.js:19
 msgid "Palgakalkulaator aitab arvestada netopalga, brutopalga, tööandja kulu, maksud ja luua töötajale palgalehe."
 msgstr "Palgakalkulaator aitab arvestada netopalga, brutopalga, tööandja kulu, maksud ja luua töötajale palgalehe."
 
-#: components/payslip.js:62
+#: components/payslip.js:61
 msgid "Palgaleht"
 msgstr "Palgaleht"
 
-#: components/payslip.js:144
+#: components/payslip.js:143
 #: components/pdf.js:117
 msgid "Periood"
 msgstr "Periood"
 
-#: components/payslip.js:278
+#: components/payslip.js:277
 msgid "Salvesta PDF"
 msgstr "Salvesta PDF"
 
@@ -115,9 +123,9 @@ msgstr "Salvesta PDF"
 msgid "siit"
 msgstr "siit"
 
-#: components/payslip.js:248
+#: components/payslip.js:247
 #: components/pdf.js:275
-#: pages/index.js:400
+#: pages/index.js:399
 msgid "Sotsiaalmaks"
 msgstr "Sotsiaalmaks"
 
@@ -125,7 +133,7 @@ msgstr "Sotsiaalmaks"
 msgid "Sotsiaalmaksu määr on 33%"
 msgstr "Sotsiaalmaksu määr on 33%"
 
-#: pages/index.js:293
+#: pages/index.js:292
 msgid "Sotsiaalmaksu min. kuumäär"
 msgstr "Sotsiaalmaksu min. kuumäär"
 
@@ -133,39 +141,39 @@ msgstr "Sotsiaalmaksu min. kuumäär"
 msgid "Sotsiaalmaksu minimaalne kohustus Töölepingu puhul on <0>654 EUR</0> x 0,33% ="
 msgstr "Sotsiaalmaksu minimaalne kohustus Töölepingu puhul on <0>654 EUR</0> x 0,33% ="
 
-#: pages/index.js:253
+#: pages/index.js:252
 msgid "Summa tüüp"
 msgstr "Summa tüüp"
 
-#: components/payslip.js:282
+#: components/payslip.js:281
 #: components/pdf.js:314
 msgid "Tasumisele kuuluv neto töötasu"
 msgstr "Tasumisele kuuluv neto töötasu"
 
-#: components/payslip.js:108
+#: components/payslip.js:107
 #: components/pdf.js:130
 msgid "Tööandja"
 msgstr "Tööandja"
 
-#: components/payslip.js:264
+#: components/payslip.js:263
 #: components/pdf.js:300
-#: pages/index.js:222
-#: pages/index.js:391
+#: pages/index.js:221
+#: pages/index.js:390
 msgid "Tööandja kulu"
 msgstr "Tööandja kulu"
 
-#: components/payslip.js:237
+#: components/payslip.js:236
 #: components/pdf.js:260
 msgid "Tööandja maksud"
 msgstr "Tööandja maksud"
 
-#: components/payslip.js:256
+#: components/payslip.js:255
 #: components/pdf.js:287
-#: pages/index.js:408
+#: pages/index.js:407
 msgid "Tööandja töötuskindlustusmakse"
 msgstr "Tööandja töötuskindlustusmakse"
 
-#: pages/index.js:352
+#: pages/index.js:351
 msgid "Tööandja töötuskindlustusmakse (0.8%)"
 msgstr "Tööandja töötuskindlustusmakse (0.8%)"
 
@@ -173,18 +181,18 @@ msgstr "Tööandja töötuskindlustusmakse (0.8%)"
 msgid "tööandjale <0>0.8%</0>"
 msgstr "tööandjale <0>0.8%</0>"
 
-#: components/payslip.js:120
+#: components/payslip.js:119
 #: components/pdf.js:142
 msgid "Töötaja"
 msgstr "Töötaja"
 
-#: components/payslip.js:212
+#: components/payslip.js:211
 #: components/pdf.js:222
-#: pages/index.js:438
+#: pages/index.js:437
 msgid "Töötaja töötuskindlustusmakse"
 msgstr "Töötaja töötuskindlustusmakse"
 
-#: pages/index.js:365
+#: pages/index.js:364
 msgid "Töötaja töötuskindlustusmakse (1.6%)"
 msgstr "Töötaja töötuskindlustusmakse (1.6%)"
 
@@ -200,9 +208,9 @@ msgstr "Töötasu alammäär (miinimumpalk) on:"
 msgid "Töötuskindlustusmakse määrad on:"
 msgstr "Töötuskindlustusmakse määrad on:"
 
-#: components/payslip.js:220
+#: components/payslip.js:219
 #: components/pdf.js:234
-#: pages/index.js:446
+#: pages/index.js:445
 msgid "Tulumaks"
 msgstr "Tulumaks"
 
