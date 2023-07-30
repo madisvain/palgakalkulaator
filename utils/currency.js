@@ -1,6 +1,6 @@
-import { format } from "mathjs";
-
-const formatCurrency = (amount, symbol) =>
-  `${format(amount, { notation: "fixed", precision: 2 })} ${symbol}`;
+const formatCurrency = (amount) =>
+  new Intl.NumberFormat("et-EE", { style: "currency", currency: "EUR" }).format(
+    amount
+  );
 
 export default formatCurrency;

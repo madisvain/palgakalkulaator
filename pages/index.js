@@ -404,7 +404,7 @@ const Index = () => {
                       </h4>
                     </td>
                     <td className="font-general text-xl lg:text-2xl text-right whitespace-nowrap">
-                      {formatCurrency(salaryFund, "€")}
+                      {formatCurrency(salaryFund)}
                     </td>
                   </tr>
                   <tr>
@@ -412,7 +412,7 @@ const Index = () => {
                       <Trans>Sotsiaalmaks</Trans>
                     </td>
                     <td className="text-right whitespace-nowrap">
-                      {formatCurrency(socialTax, "€")}
+                      {formatCurrency(socialTax)}
                     </td>
                   </tr>
                   <tr>
@@ -420,7 +420,7 @@ const Index = () => {
                       <Trans>Tööandja töötuskindlustusmakse</Trans>
                     </td>
                     <td className="text-right whitespace-nowrap">
-                      {formatCurrency(employerUnemploymentInsuranceTax, "€")}
+                      {formatCurrency(employerUnemploymentInsuranceTax)}
                     </td>
                   </tr>
                 </tbody>
@@ -434,7 +434,7 @@ const Index = () => {
                       </h4>
                     </td>
                     <td className="font-general text-xl lg:text-2xl text-right whitespace-nowrap">
-                      {grossSalary ? formatCurrency(grossSalary, "€") : "-"}
+                      {grossSalary ? formatCurrency(grossSalary) : "-"}
                     </td>
                   </tr>
                   <tr>
@@ -442,7 +442,7 @@ const Index = () => {
                       <Trans>Kogumispension</Trans>
                     </td>
                     <td className="text-right">
-                      {formatCurrency(fundedPension, "€")}
+                      {formatCurrency(fundedPension)}
                     </td>
                   </tr>
                   <tr>
@@ -450,7 +450,7 @@ const Index = () => {
                       <Trans>Töötaja töötuskindlustusmakse</Trans>
                     </td>
                     <td className="text-right whitespace-nowrap">
-                      {formatCurrency(employeeUnemploymentInsuranceTax, "€")}
+                      {formatCurrency(employeeUnemploymentInsuranceTax)}
                     </td>
                   </tr>
                   <tr>
@@ -458,7 +458,7 @@ const Index = () => {
                       <Trans>Tulumaks</Trans>
                     </td>
                     <td className="text-right whitespace-nowrap">
-                      {formatCurrency(incomeTax, "€")}
+                      {formatCurrency(incomeTax)}
                     </td>
                   </tr>
                 </tbody>
@@ -472,7 +472,7 @@ const Index = () => {
                       </h4>
                     </td>
                     <td className="font-general text-xl lg:text-2xl text-right whitespace-nowrap">
-                      {formatCurrency(netSalary, "€")}
+                      {formatCurrency(netSalary)}
                     </td>
                   </tr>
                 </tbody>

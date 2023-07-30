@@ -183,7 +183,7 @@ const PayslipPDF = ({
               </View>
               <View style={styles.section}>
                 <Text style={[styles.text, styles.strong, styles.right]}>
-                  {formatCurrency(grossSalary, "€")}
+                  {formatCurrency(grossSalary)}
                 </Text>
               </View>
             </View>
@@ -196,10 +196,7 @@ const PayslipPDF = ({
               <View style={styles.section}>
                 <Text style={[styles.text, styles.right]}>
                   {formatCurrency(
-                    fundedPension +
-                      employeeUnemploymentInsuranceTax +
-                      incomeTax,
-                    "€"
+                    fundedPension + employeeUnemploymentInsuranceTax + incomeTax
                   )}
                 </Text>
               </View>
@@ -212,7 +209,7 @@ const PayslipPDF = ({
               </View>
               <View style={styles.section}>
                 <Text style={[styles.text, styles.small, styles.right]}>
-                  {formatCurrency(fundedPension, "€")}
+                  {formatCurrency(fundedPension)}
                 </Text>
               </View>
             </View>
@@ -224,7 +221,7 @@ const PayslipPDF = ({
               </View>
               <View style={styles.section}>
                 <Text style={[styles.text, styles.small, styles.right]}>
-                  {formatCurrency(employeeUnemploymentInsuranceTax, "€")}
+                  {formatCurrency(employeeUnemploymentInsuranceTax)}
                 </Text>
               </View>
             </View>
@@ -236,7 +233,7 @@ const PayslipPDF = ({
               </View>
               <View style={styles.section}>
                 <Text style={[styles.text, styles.small, styles.right]}>
-                  {formatCurrency(incomeTax, "€")}
+                  {formatCurrency(incomeTax)}
                 </Text>
               </View>
             </View>
@@ -250,7 +247,7 @@ const PayslipPDF = ({
               </View>
               <View style={styles.section}>
                 <Text style={[styles.text, styles.right]}>
-                  {formatCurrency(netSalary, "€")}
+                  {formatCurrency(netSalary)}
                 </Text>
               </View>
             </View>
@@ -262,10 +259,7 @@ const PayslipPDF = ({
               </View>
               <View style={styles.section}>
                 <Text style={[styles.text, styles.medium, styles.right]}>
-                  {formatCurrency(
-                    socialTax + employerUnemploymentInsuranceTax,
-                    "€"
-                  )}
+                  {formatCurrency(socialTax + employerUnemploymentInsuranceTax)}
                 </Text>
               </View>
             </View>
@@ -277,7 +271,7 @@ const PayslipPDF = ({
               </View>
               <View style={styles.section}>
                 <Text style={[styles.text, styles.small, styles.right]}>
-                  {formatCurrency(socialTax, "€")}
+                  {formatCurrency(socialTax)}
                 </Text>
               </View>
             </View>
@@ -289,7 +283,7 @@ const PayslipPDF = ({
               </View>
               <View style={styles.section}>
                 <Text style={[styles.text, styles.small, styles.right]}>
-                  {formatCurrency(employerUnemploymentInsuranceTax, "€")}
+                  {formatCurrency(employerUnemploymentInsuranceTax)}
                 </Text>
               </View>
             </View>
@@ -302,7 +296,7 @@ const PayslipPDF = ({
               </View>
               <View style={styles.section}>
                 <Text style={[styles.text, styles.right]}>
-                  {formatCurrency(salaryFund, "€")}
+                  {formatCurrency(salaryFund)}
                 </Text>
               </View>
             </View>
@@ -314,7 +308,7 @@ const PayslipPDF = ({
             <Trans>Tasumisele kuuluv neto töötasu</Trans>
           </Text>
           <Text style={[styles.text, styles.strong, styles.right]}>
-            {formatCurrency(netSalary, "€")}
+            {formatCurrency(netSalary)}
           </Text>
         </View>
         <Image style={styles.qr} src="/qr.png" />

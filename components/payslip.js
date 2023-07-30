@@ -182,7 +182,7 @@ const Payslip = ({
                     <Trans>Brutopalk</Trans>
                   </h4>
                   <h4 className="whitespace-nowrap">
-                    {formatCurrency(grossSalary, "€")}
+                    {formatCurrency(grossSalary)}
                   </h4>
                 </div>
                 <div className="flex flex-row mb-3">
@@ -193,8 +193,7 @@ const Payslip = ({
                     {formatCurrency(
                       fundedPension +
                         employeeUnemploymentInsuranceTax +
-                        incomeTax,
-                      "€"
+                        incomeTax
                     )}
                   </h5>
                 </div>
@@ -203,7 +202,7 @@ const Payslip = ({
                     <Trans>Kogumispension</Trans>
                   </div>
                   <div className="leading-relaxed text-base whitespace-nowrap">
-                    {formatCurrency(fundedPension, "€")}
+                    {formatCurrency(fundedPension)}
                   </div>
                 </div>
                 <div className="flex flex-row mb-2">
@@ -211,7 +210,7 @@ const Payslip = ({
                     <Trans>Töötaja töötuskindlustusmakse</Trans>
                   </div>
                   <div className="leading-relaxed text-base whitespace-nowrap">
-                    {formatCurrency(employeeUnemploymentInsuranceTax, "€")}
+                    {formatCurrency(employeeUnemploymentInsuranceTax)}
                   </div>
                 </div>
                 <div className="flex flex-row mb-6">
@@ -219,7 +218,7 @@ const Payslip = ({
                     <Trans>Tulumaks</Trans>
                   </div>
                   <div className="leading-relaxed text-base whitespace-nowrap">
-                    {formatCurrency(incomeTax, "€")}
+                    {formatCurrency(incomeTax)}
                   </div>
                 </div>
 
@@ -228,7 +227,7 @@ const Payslip = ({
                     <Trans>Netopalk</Trans>
                   </h4>
                   <h4 className="whitespace-nowrap">
-                    {formatCurrency(netSalary, "€")}
+                    {formatCurrency(netSalary)}
                   </h4>
                 </div>
                 <div className="flex flex-row mb-3">
@@ -237,8 +236,7 @@ const Payslip = ({
                   </h5>
                   <h5 className="whitespace-nowrap">
                     {formatCurrency(
-                      socialTax + employerUnemploymentInsuranceTax,
-                      "€"
+                      socialTax + employerUnemploymentInsuranceTax
                     )}
                   </h5>
                 </div>
@@ -247,7 +245,7 @@ const Payslip = ({
                     <Trans>Sotsiaalmaks</Trans>
                   </div>
                   <div className="leading-relaxed text-base whitespace-nowrap">
-                    {formatCurrency(socialTax, "€")}
+                    {formatCurrency(socialTax)}
                   </div>
                 </div>
                 <div className="flex flex-row mb-6">
@@ -255,7 +253,7 @@ const Payslip = ({
                     <Trans>Tööandja töötuskindlustusmakse</Trans>
                   </div>
                   <div className="leading-relaxed text-base whitespace-nowrap">
-                    {formatCurrency(employerUnemploymentInsuranceTax, "€")}
+                    {formatCurrency(employerUnemploymentInsuranceTax)}
                   </div>
                 </div>
                 <div className="flex flex-row">
@@ -263,7 +261,7 @@ const Payslip = ({
                     <Trans>Tööandja kulu</Trans>
                   </h4>
                   <h4 className="whitespace-nowrap">
-                    {formatCurrency(salaryFund, "€")}
+                    {formatCurrency(salaryFund)}
                   </h4>
                 </div>
               </div>
@@ -280,9 +278,7 @@ const Payslip = ({
                 <h6 className="font-semibold mb-1">
                   <Trans>Tasumisele kuuluv neto töötasu</Trans>
                 </h6>
-                <h3 className="font-semibold">
-                  {formatCurrency(netSalary, "€")}
-                </h3>
+                <h3 className="font-semibold">{formatCurrency(netSalary)}</h3>
               </div>
             </div>
           </div>

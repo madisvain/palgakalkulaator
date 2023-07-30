@@ -4,8 +4,11 @@
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/
 
 const { withSentryConfig } = require("@sentry/nextjs");
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
+});
 
-const moduleExports = {
+const moduleExports = withBundleAnalyzer({
   i18n: {
     locales: ["en", "et"],
     defaultLocale: "et",
@@ -18,7 +21,7 @@ const moduleExports = {
   sentry: {
     hideSourceMaps: true, // Hide source code in Sentry
   },
-};
+});
 
 const sentryWebpackPluginOptions = {
   // Additional config options for the Sentry Webpack plugin. Keep in mind that

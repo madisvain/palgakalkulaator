@@ -186,45 +186,45 @@ describe("Salary calculator", () => {
       cy.contains("h4", "Tööandja kulu")
         .parent()
         .next("td")
-        .should("contain", `${formatCurrency(scenario["total"], "€")}`);
+        .should("contain", `${formatCurrency(scenario["total"])}`);
 
       cy.contains("td", "Sotsiaalmaks")
         .next("td")
-        .should("contain", `${formatCurrency(scenario["socialTax"], "€")}`);
+        .should("contain", `${formatCurrency(scenario["socialTax"])}`);
 
       cy.contains("td", "Tööandja töötuskindlustusmakse")
         .next("td")
         .should(
           "contain",
-          `${formatCurrency(scenario["employerUnemploymentInsurance"], "€")}`
+          `${formatCurrency(scenario["employerUnemploymentInsurance"])}`
         );
 
       // Bruto
       cy.contains("h4", "Brutopalk")
         .parent()
         .next("td")
-        .should("contain", `${formatCurrency(scenario["gross"], "€")}`);
+        .should("contain", `${formatCurrency(scenario["gross"])}`);
 
       cy.contains("td", "Kogumispension")
         .next("td")
-        .should("contain", `${formatCurrency(scenario["fundedPension"], "€")}`);
+        .should("contain", `${formatCurrency(scenario["fundedPension"])}`);
 
       cy.contains("td", "Töötaja töötuskindlustusmakse")
         .next("td")
         .should(
           "contain",
-          `${formatCurrency(scenario["employeeUnemploymentInsurance"], "€")}`
+          `${formatCurrency(scenario["employeeUnemploymentInsurance"])}`
         );
 
       cy.contains("td", "Tulumaks")
         .next("td")
-        .should("contain", `${formatCurrency(scenario["incomeTax"], "€")}`);
+        .should("contain", `${formatCurrency(scenario["incomeTax"])}`);
 
       // Neto
       cy.contains("h4", "Netopalk")
         .parent()
         .next("td")
-        .should("contain", `${formatCurrency(scenario["net"], "€")}`);
+        .should("contain", `${formatCurrency(scenario["net"])}`);
     });
   });
 });
