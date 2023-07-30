@@ -17,14 +17,14 @@ Palgakalkulaator aitab arvestada netopalga, brutopalga, tööandja kulu, maksud 
 - Palgateatise koostamine (pdf formaadis)
 
 ## Tarkvararaamistikud
-- Vercel paigaldus
-- Next.js (React.js) raamistik
-- Tailwind CSS raamistik
-- Lingui.js tõlgeteks
-- Math.js
-- Sentry vigade monitoorimiseks
-- Cypress automaattestid
-- React PDF palgalehe genereerimiseks
+- [Vercel](https://vercel.com/) paigaldus
+- [Next.js](https://nextjs.org/) (React.js) raamistik
+- [Tailwind](https://tailwindcss.com/) CSS raamistik
+- [Lingui.js](https://lingui.dev/) tõlgeteks
+- [Math.js](https://mathjs.org/)
+- [Sentry](https://sentry.io/) vigade monitoorimiseks
+- [Cypress](https://www.cypress.io/) automaattestid
+- [React PDF](https://react-pdf.org/) palgalehe genereerimiseks
 
 ## Litsents
 
