@@ -242,6 +242,43 @@ const grossScenarios = [
       fundedPension: false,
     },
   },
+  // Tax free income issue
+  {
+    total: 669.0,
+    socialTax: 165.0,
+    employerUnemploymentInsurance: 4.0,
+    gross: 500,
+    fundedPension: 0,
+    employeeUnemploymentInsurance: 8.0,
+    incomeTax: 0,
+    net: 492.0,
+    deductions: {
+      socialTaxMinimum: false,
+      taxFreeIncome: true,
+      taxFreeIncomeAmount: 654,
+      employerUnemploymentInsurance: true,
+      employeeUnemploymentInsurance: true,
+      fundedPension: false,
+    },
+  },
+  {
+    total: 719.82,
+    socialTax: 215.82,
+    employerUnemploymentInsurance: 4.0,
+    gross: 500,
+    fundedPension: 0,
+    employeeUnemploymentInsurance: 8.0,
+    incomeTax: 78.4,
+    net: 413.6,
+    deductions: {
+      socialTaxMinimum: true,
+      taxFreeIncome: true,
+      taxFreeIncomeAmount: 100,
+      employerUnemploymentInsurance: true,
+      employeeUnemploymentInsurance: true,
+      fundedPension: false,
+    },
+  },
 ];
 
 describe("Salary calculator", () => {

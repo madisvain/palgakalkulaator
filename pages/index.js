@@ -101,11 +101,12 @@ const Index = () => {
         // Function to solve
         const func = (x) => {
           let tf = 0; // Tax free income
-
-          if (x <= 1200) {
-            tf = min([values.amount, 654]);
-          } else if (x > 1200 && x < 2100) {
-            tf = `(7848 - (7848 / 10800) * (x * 12 - 14400)) / 12`;
+          if (values.taxFreeIncome) {
+            if (x <= 1200) {
+              tf = min([values.amount, values.taxFreeIncomeAmount, 654]);
+            } else if (x > 1200 && x < 2100) {
+              tf = `(7848 - (7848 / 10800) * (x * 12 - 14400)) / 12`;
+            }
           }
 
           const eq = parse(
@@ -133,6 +134,8 @@ const Index = () => {
     values.amountType,
     values.amount,
     values.socialTaxMinimum,
+    values.taxFreeIncome,
+    values.taxFreeIncomeAmount,
     values.employerUnemploymentInsurance,
     values.employeeUnemploymentInsurance,
     values.fundedPension,
