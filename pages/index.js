@@ -242,6 +242,7 @@ const Index = () => {
           name="description"
           content={t`Palgakalkulaator aitab arvestada netopalga, brutopalga, tööandja kulu, maksud ja luua töötajale palgalehe.`}
         />
+        <link rel="icon" href="/favicon.svg" />
       </Head>
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
