@@ -240,20 +240,23 @@ const Index = () => {
   return (
     <>
       <Head>
-        <title>Palgakalkulaator</title>
+        <title>{t`Palgakalkulaator ja palgaleht 2023 - Arveldaja OÜ`}</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta
           name="description"
-          content={t`Palgakalkulaator aitab arvestada netopalga, brutopalga, tööandja kulu, maksud ja luua töötajale palgalehe.`}
+          content={t`Palgakalkulaator aitab arvestada netopalga, brutopalga, tööandja kulu, maksud ja luua kerge vaevaga töötajale saatmiseks palgalehe.`}
         />
         <link rel="icon" href="/favicon.svg" />
 
         {/* Open Graph */}
-        <meta property="og:title" content="Palgakalkulaator" />
+        <meta
+          property="og:title"
+          content={t`Palgakalkulaator ja palgaleht 2023 - Arveldaja OÜ`}
+        />
         <meta
           property="og:description"
-          content={t`Palgakalkulaator aitab arvestada netopalga, brutopalga, tööandja kulu, maksud ja luua töötajale palgalehe.`}
+          content={t`Palgakalkulaator aitab arvestada netopalga, brutopalga, tööandja kulu, maksud ja luua kerge vaevaga töötajale saatmiseks palgalehe.`}
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.palgakalkulaator.ee/" />
@@ -292,8 +295,8 @@ const Index = () => {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebApplication",
-              name: "Palgakalkulaator",
-              description: t`Palgakalkulaator aitab arvestada netopalga, brutopalga, tööandja kulu, maksud ja luua töötajale palgalehe.`,
+              name: t`Palgakalkulaator ja palgaleht 2023 - Arveldaja OÜ`,
+              description: t`Palgakalkulaator aitab arvestada netopalga, brutopalga, tööandja kulu, maksud ja luua kerge vaevaga töötajale saatmiseks palgalehe.`,
               url: "https://www.palgakalkulaator.ee/",
               image: "https://www.palgakalkulaator.ee/og-image.png",
               applicationCategory: "BusinessApplication",
