@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { t, Trans } from "@lingui/macro";
 import { useLingui } from "@lingui/react";
 import { useForm } from "react-hook-form";
@@ -42,6 +43,7 @@ const bisectionMethodAdvanced = (func, rightSide, lowerBound, upperBound) => {
 
 const Index = () => {
   useLingui();
+  const router = useRouter();
 
   const {
     register,
@@ -246,6 +248,69 @@ const Index = () => {
           content={t`Palgakalkulaator aitab arvestada netopalga, brutopalga, tööandja kulu, maksud ja luua töötajale palgalehe.`}
         />
         <link rel="icon" href="/favicon.svg" />
+
+        {/* Open Graph */}
+        <meta property="og:title" content="Palgakalkulaator" />
+        <meta
+          property="og:description"
+          content={t`Palgakalkulaator aitab arvestada netopalga, brutopalga, tööandja kulu, maksud ja luua töötajale palgalehe.`}
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.palgakalkulaator.ee/" />
+
+        {/* Hreflang */}
+        <link
+          rel="alternate"
+          hrefLang="et"
+          href="https://www.palgakalkulaator.ee/"
+        />
+        <link
+          rel="alternate"
+          hrefLang="en"
+          href="https://www.palgakalkulaator.ee/en"
+        />
+        <link
+          rel="alternate"
+          hreflang="x-default"
+          href="https://www.palgakalkulaator.ee/"
+        />
+
+        {/* Canonical */}
+        <link
+          rel="canonical"
+          href={
+            router.locale == "en"
+              ? `https://www.palgakalkulaator.ee/en/`
+              : `https://www.palgakalkulaator.ee/`
+          }
+        />
+
+        {/* Schema markup */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebApplication",
+              name: "Palgakalkulaator",
+              description: t`Palgakalkulaator aitab arvestada netopalga, brutopalga, tööandja kulu, maksud ja luua töötajale palgalehe.`,
+              url: "https://www.palgakalkulaator.ee/",
+              image: "https://www.palgakalkulaator.ee/og-image.png",
+              applicationCategory: "BusinessApplication",
+              operatingSystem: "All",
+              aggregateRating: {
+                "@type": "AggregateRating",
+                ratingValue: "5",
+                ratingCount: "1",
+              },
+              offers: {
+                "@type": "Offer",
+                price: "0",
+                priceCurrency: "EUR",
+              },
+            }),
+          }}
+        />
       </Head>
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
