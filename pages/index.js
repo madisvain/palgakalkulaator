@@ -280,7 +280,7 @@ const Index = () => {
           rel="canonical"
           href={
             router.locale == "en"
-              ? `https://www.palgakalkulaator.ee/en/`
+              ? `https://www.palgakalkulaator.ee/en`
               : `https://www.palgakalkulaator.ee/`
           }
         />
