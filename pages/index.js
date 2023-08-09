@@ -1,20 +1,24 @@
 import React, { useMemo, useState } from "react";
 import Head from "next/head";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { t, Trans } from "@lingui/macro";
 import { useLingui } from "@lingui/react";
 import { useForm } from "react-hook-form";
-import { parse } from "mathjs/number";
+import { parse } from "mathjs/lib/esm/number";
 import max from "lodash/max";
 import min from "lodash/min";
 import round from "lodash/round";
 
-import Payslip from "components/payslip";
 import TaxInfo from "components/tax-info";
 import formatCurrency from "utils/currency";
 import { loadCatalog } from "utils/lingui";
 
 const DEFAULT_GROSS_AMOUNT = 1000;
+
+const Payslip = dynamic(() => import("components/payslip"), {
+  ssr: false,
+});
 
 const bisectionMethodAdvanced = (func, rightSide, lowerBound, upperBound) => {
   const tolerance = 0.0001;
@@ -274,7 +278,7 @@ const Index = () => {
         />
         <link
           rel="alternate"
-          hreflang="x-default"
+          hrefLang="x-default"
           href="https://www.palgakalkulaator.ee/"
         />
 
@@ -559,7 +563,12 @@ const Index = () => {
               className="flex justify-center items-center w-full h-[66px] bg-green font-semibold"
               onClick={() => {
                 setShowPayslip(true);
-                document.getElementById("payslip").scrollIntoView();
+                // Delay scroll to payslip to allow for the payslip to render
+                setTimeout(() => {
+                  document
+                    .getElementById("payslip")
+                    .scrollIntoView(true, { behavior: "smooth" });
+                }, 100);
               }}
             >
               <Trans>Koosta palgateatis</Trans>
