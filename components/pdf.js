@@ -5,6 +5,7 @@ import {
   Page,
   Text,
   View,
+  Link,
   Document,
   StyleSheet,
 } from "@react-pdf/renderer";
@@ -18,6 +19,10 @@ Font.register({
   family: "General",
   fonts: [
     { src: "/fonts/general/GeneralSans-Medium.ttf" },
+    {
+      src: "/fonts/general/GeneralSans-Regular.ttf",
+      fontStyle: "italic",
+    },
     {
       src: "/fonts/general/GeneralSans-Bold.ttf",
       fontWeight: "bold",
@@ -65,6 +70,10 @@ const styles = StyleSheet.create({
   small: {
     fontSize: 10,
   },
+  xsmall: {
+    fontSize: 7,
+    fontStyle: "italic",
+  },
   right: {
     textAlign: "right",
   },
@@ -83,6 +92,13 @@ const styles = StyleSheet.create({
     right: 35,
     width: 60,
     height: 60,
+  },
+  logo: {
+    position: "absolute",
+    bottom: 35,
+    left: 35,
+    width: 110,
+    height: 16,
   },
 });
 
@@ -103,6 +119,7 @@ const PayslipPDF = ({
   incomeTax,
   employeeUnemploymentInsuranceTax,
   employerUnemploymentInsuranceTax,
+  taxFreeIncome,
 }) => (
   <I18nProvider i18n={i18n}>
     <Document>
@@ -237,6 +254,18 @@ const PayslipPDF = ({
                 </Text>
               </View>
             </View>
+            <View style={styles.row}>
+              <View style={styles.section}>
+                <Text style={[styles.text, styles.xsmall, styles.padded8]}>
+                  <Trans>Arvestatud tulumaksuvaba miinimum</Trans>
+                </Text>
+              </View>
+              <View style={styles.section}>
+                <Text style={[styles.text, styles.xsmall]}>
+                  {formatCurrency(taxFreeIncome)}
+                </Text>
+              </View>
+            </View>
 
             {/* Net salary */}
             <View style={[styles.row, styles.space]}>
@@ -311,7 +340,13 @@ const PayslipPDF = ({
             {formatCurrency(netSalary)}
           </Text>
         </View>
-        <Image style={styles.qr} src="/qr.png" />
+
+        {/* Logo */}
+        <Link src="https://www.palgakalkulaator.ee" style={styles.logo}>
+          <Image src="/logo-with-text.png" />
+        </Link>
+        {/* QR code  */}
+        {/* <Image style={styles.qr} src="/qr.png" /> */}
       </Page>
     </Document>
   </I18nProvider>

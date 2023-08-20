@@ -21,23 +21,27 @@ msgstr "0…654 EUR/month"
 msgid "215,82 EUR/kuus"
 msgstr "215,82 EUR/month"
 
-#: components/payslip.js:182 pages/index.js:234 pages/index.js:509
+#: components/payslip.js:223 components/pdf.js:260 pages/index.js:538
+msgid "Arvestatud tulumaksuvaba miinimum"
+msgstr "Used tax-free income minimum"
+
+#: components/payslip.js:184 pages/index.js:238 pages/index.js:510
 msgid "Brutopalk"
 msgstr "Gross salary"
 
-#: components/pdf.js:181
+#: components/pdf.js:198
 msgid "Brutotöötasu"
 msgstr "Gross salary"
 
-#: components/payslip.js:131 components/pdf.js:154
+#: components/payslip.js:133 components/pdf.js:171
 msgid "Isikukood"
 msgstr "Personal code"
 
-#: components/payslip.js:190 components/pdf.js:193
+#: components/payslip.js:192 components/pdf.js:210
 msgid "Kinnipidamised"
 msgstr "Deducations"
 
-#: components/payslip.js:202 components/pdf.js:207 pages/index.js:518
+#: components/payslip.js:204 components/pdf.js:224 pages/index.js:519
 msgid "Kogumispension"
 msgstr "Funded pension"
 
@@ -45,11 +49,11 @@ msgstr "Funded pension"
 msgid "Kogumispensioni makse määr on <0>liitunutele 2%</0> ja <1>mitteliitunutele 0%</1>. Kogumispensioniga liitumist saab kontrollida"
 msgstr "The rate of funded pension payment is <0>2% for members</0> and <1>0% for non-members</1>. Funded pension subscription can be verified"
 
-#: pages/index.js:466
+#: pages/index.js:467
 msgid "Kogumispensioniga liitunud (2%)"
 msgstr "Funded pension subscribers (2%)"
 
-#: pages/index.js:565
+#: pages/index.js:578
 msgid "Koosta palgateatis"
 msgstr "Create a payslip"
 
@@ -57,7 +61,7 @@ msgstr "Create a payslip"
 msgid "kuus <0>725 EUR</0>"
 msgstr "monthly <0>725 EUR</0>"
 
-#: pages/index.js:368
+#: pages/index.js:372
 msgid "Mahaarvamised:"
 msgstr "Deductions:"
 
@@ -65,7 +69,7 @@ msgstr "Deductions:"
 msgid "Maksuinfo 2023"
 msgstr "Tax information 2023"
 
-#: pages/index.js:394
+#: pages/index.js:398
 msgid "Maksuvaba tulu"
 msgstr "Tax-free income"
 
@@ -73,35 +77,35 @@ msgstr "Tax-free income"
 msgid "Maksuvaba tulu varieeruv 0...7848 / 12 ="
 msgstr "Tax-free income varies 0…7848 / 12 ="
 
-#: components/payslip.js:168 components/pdf.js:166
+#: components/payslip.js:170 components/pdf.js:183
 msgid "Märkus"
 msgstr "Notes"
 
-#: components/pdf.js:245
+#: components/pdf.js:274
 msgid "Neto töötasu"
 msgstr "Net salary"
 
-#: components/payslip.js:227 pages/index.js:235 pages/index.js:547
+#: components/payslip.js:236 pages/index.js:239 pages/index.js:555
 msgid "Netopalk"
 msgstr "Net salary"
 
-#: pages/index.js:248 pages/index.js:259 pages/index.js:299
+#: pages/index.js:252 pages/index.js:263 pages/index.js:303
 msgid "Palgakalkulaator aitab arvestada netopalga, brutopalga, tööandja kulu, maksud ja luua kerge vaevaga töötajale saatmiseks palgalehe."
 msgstr "Salary calculator helps to calculate net salary, gross salary, employer’s costs, taxes, and easily create a payslip for sending to the employee."
 
-#: pages/index.js:243 pages/index.js:255 pages/index.js:298
+#: pages/index.js:247 pages/index.js:259 pages/index.js:302
 msgid "Palgakalkulaator ja palgaleht 2023 - Arveldaja OÜ"
 msgstr "Salary calculator and payslips 2023 - Arveldaja OÜ"
 
-#: components/payslip.js:61
+#: components/payslip.js:62
 msgid "Palgaleht"
 msgstr "Payslip"
 
-#: components/payslip.js:143 components/pdf.js:117
+#: components/payslip.js:145 components/pdf.js:134
 msgid "Periood"
 msgstr "Period"
 
-#: components/payslip.js:275
+#: components/payslip.js:284
 msgid "Salvesta PDF"
 msgstr "Save PDF"
 
@@ -109,7 +113,7 @@ msgstr "Save PDF"
 msgid "siit"
 msgstr "here"
 
-#: components/payslip.js:245 components/pdf.js:269 pages/index.js:488
+#: components/payslip.js:254 components/pdf.js:298 pages/index.js:489
 msgid "Sotsiaalmaks"
 msgstr "Social tax"
 
@@ -117,7 +121,7 @@ msgstr "Social tax"
 msgid "Sotsiaalmaksu määr on 33%"
 msgstr "Social tax is 33%"
 
-#: pages/index.js:381
+#: pages/index.js:385
 msgid "Sotsiaalmaksu min. kuumäär"
 msgstr "Soocial tax monthly minimum"
 
@@ -125,32 +129,32 @@ msgstr "Soocial tax monthly minimum"
 msgid "Sotsiaalmaksu minimaalne kohustus Töölepingu puhul on <0>654 EUR</0> x 0,33% ="
 msgstr "The minimum obligation of social tax for an Employment Contract is <0>654 EUR</0> x 0,33% ="
 
-#: pages/index.js:341
+#: pages/index.js:345
 msgid "Summa tüüp"
 msgstr "Sum type"
 
-#: components/payslip.js:279 components/pdf.js:308
+#: components/payslip.js:288 components/pdf.js:337
 msgid "Tasumisele kuuluv neto töötasu"
 msgstr "Payable net salary"
 
-#: components/payslip.js:107 components/pdf.js:130
+#: components/payslip.js:109 components/pdf.js:147
 msgid "Tööandja"
 msgstr "Employer"
 
-#: components/payslip.js:261 components/pdf.js:294 pages/index.js:233
-#: pages/index.js:479
+#: components/payslip.js:270 components/pdf.js:323 pages/index.js:237
+#: pages/index.js:480
 msgid "Tööandja kulu"
 msgstr "Employer expense"
 
-#: components/payslip.js:235 components/pdf.js:257
+#: components/payslip.js:244 components/pdf.js:286
 msgid "Tööandja maksud"
 msgstr "Employer taxes"
 
-#: components/payslip.js:253 components/pdf.js:281 pages/index.js:496
+#: components/payslip.js:262 components/pdf.js:310 pages/index.js:497
 msgid "Tööandja töötuskindlustusmakse"
 msgstr "Employer unemployment insurance tax"
 
-#: pages/index.js:440
+#: pages/index.js:441
 msgid "Tööandja töötuskindlustusmakse (0.8%)"
 msgstr "Employer unemployment insurance (0.8%)"
 
@@ -158,15 +162,15 @@ msgstr "Employer unemployment insurance (0.8%)"
 msgid "tööandjale <0>0.8%</0>"
 msgstr "for employer <0>0.8%</0>"
 
-#: components/payslip.js:119 components/pdf.js:142
+#: components/payslip.js:121 components/pdf.js:159
 msgid "Töötaja"
 msgstr "Employee"
 
-#: components/payslip.js:210 components/pdf.js:219 pages/index.js:526
+#: components/payslip.js:212 components/pdf.js:236 pages/index.js:527
 msgid "Töötaja töötuskindlustusmakse"
 msgstr "Employee unemployment insurance tax"
 
-#: pages/index.js:453
+#: pages/index.js:454
 msgid "Töötaja töötuskindlustusmakse (1.6%)"
 msgstr "Employee unemployment insurance (1.6%)"
 
@@ -182,7 +186,7 @@ msgstr "The minimum wage (minimum salary) is:"
 msgid "Töötuskindlustusmakse määrad on:"
 msgstr "The rates of unemployment insurance contributions are:"
 
-#: components/payslip.js:218 components/pdf.js:231 pages/index.js:534
+#: components/payslip.js:220 components/pdf.js:248 pages/index.js:535
 msgid "Tulumaks"
 msgstr "Income tax"
 

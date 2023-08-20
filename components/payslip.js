@@ -47,6 +47,7 @@ const Payslip = ({
   incomeTax,
   employeeUnemploymentInsuranceTax,
   employerUnemploymentInsuranceTax,
+  taxFreeIncome,
 }) => {
   const router = useRouter();
 
@@ -78,6 +79,7 @@ const Payslip = ({
         incomeTax={incomeTax}
         employeeUnemploymentInsuranceTax={employeeUnemploymentInsuranceTax}
         employerUnemploymentInsuranceTax={employerUnemploymentInsuranceTax}
+        taxFreeIncome={taxFreeIncome}
       />
     )
       .toBlob()
@@ -216,6 +218,13 @@ const Payslip = ({
                 <div className="flex flex-row mb-6">
                   <div className="grow leading-relaxed text-base pl-6">
                     <Trans>Tulumaks</Trans>
+                    <br />
+                    <span className="text-xs italic">
+                      <Trans>Arvestatud tulumaksuvaba miinimum</Trans>
+                    </span>
+                    <span class="text-xs font-bold ml-1">
+                      {formatCurrency(taxFreeIncome)}
+                    </span>
                   </div>
                   <div className="leading-relaxed text-base whitespace-nowrap">
                     {formatCurrency(incomeTax)}
