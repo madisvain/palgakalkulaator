@@ -401,11 +401,8 @@ const Index = () => {
                         <span
                           contentEditable
                           suppressContentEditableWarning
+                          name="taxFreeIncomeAmount"
                           className="font-general text-lg leading-[1.3] px-2 py-1 border-b border-dark-blue focus:outline-none"
-                          {...register("taxFreeIncomeAmount", {
-                            required:
-                              "Maksuvaba tulu väärtus peab olema määratud",
-                          })}
                           onInput={(e) => {
                             if (e.currentTarget.textContent) {
                               setValue(
@@ -475,7 +472,7 @@ const Index = () => {
           </div>
           <div className="basis-3/5">
             <div className="pt-4 pb-3 px-4 md:pt-8 md:pb-6 md:px-8 lg:pt-16 lg:pb-12 lg:px-16 bg-white">
-              <table className="w-full border-separate border-spacing-y-3 mb-10">
+              <table className="w-full border-separate border-spacing-y-3 mb-6">
                 <tbody>
                   <tr>
                     <td>
@@ -505,7 +502,7 @@ const Index = () => {
                   </tr>
                 </tbody>
               </table>
-              <table className="w-full border-separate border-spacing-y-3 mb-10">
+              <table className="w-full border-separate border-spacing-y-3 mb-6">
                 <tbody>
                   <tr>
                     <td>
@@ -536,6 +533,13 @@ const Index = () => {
                   <tr>
                     <td>
                       <Trans>Tulumaks</Trans>
+                      <br />
+                      <span className="text-xs italic">
+                        <Trans>Arvestatud tulumaksuvaba miinimum</Trans>
+                      </span>
+                      <span class="text-xs font-bold ml-1">
+                        {formatCurrency(taxFreeIncome)}
+                      </span>
                     </td>
                     <td className="text-right whitespace-nowrap">
                       {formatCurrency(incomeTax)}
@@ -602,6 +606,7 @@ const Index = () => {
             socialTax={socialTax}
             employeeUnemploymentInsuranceTax={employeeUnemploymentInsuranceTax}
             employerUnemploymentInsuranceTax={employerUnemploymentInsuranceTax}
+            taxFreeIncome={taxFreeIncome}
           />
         </div>
       </div>
