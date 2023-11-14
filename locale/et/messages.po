@@ -27,6 +27,10 @@ msgstr "215,82 EUR/kuus"
 msgid "Arvestatud tulumaksuvaba miinimum"
 msgstr "Arvestatud tulumaksuvaba miinimum"
 
+#: components/footer.js:65
+msgid "Avatud lähtekood"
+msgstr "Avatud lähtekood"
+
 #: components/payslip.js:184
 #: pages/index.js:238
 #: pages/index.js:510
