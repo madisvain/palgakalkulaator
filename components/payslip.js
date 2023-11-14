@@ -222,7 +222,7 @@ const Payslip = ({
                     <span className="text-xs italic">
                       <Trans>Arvestatud tulumaksuvaba miinimum</Trans>
                     </span>
-                    <span class="text-xs font-bold ml-1">
+                    <span className="text-xs font-bold ml-1">
                       {formatCurrency(taxFreeIncome)}
                     </span>
                   </div>

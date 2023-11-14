@@ -2125,6 +2125,11 @@ fd-slicer@~1.1.0:
   dependencies:
     pend "~1.2.0"
 
+fflate@^0.4.1:
+  version "0.4.8"
+  resolved "https://registry.yarnpkg.com/fflate/-/fflate-0.4.8.tgz#f90b82aefbd8ac174213abb338bd7ef848f0f5ae"
+  integrity sha512-FJqqoDBR00Mdj9ppamLa/Y7vxm+PRmNWA67N846RvsoYVMKB4q3y/de5PA7gUmRMYK/8CMz2GDZQmCRN1wBcWA==
+
 figures@^3.0.0, figures@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/figures/-/figures-3.2.0.tgz#625c18bd293c604dc4a8ddb2febf0c88341746af"
@@ -3239,6 +3244,13 @@ postcss@^8.4.28:
     nanoid "^3.3.6"
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
+
+posthog-js@^1.89.2:
+  version "1.89.2"
+  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.89.2.tgz#85da870a512a730330544ab946034c55a3d27a44"
+  integrity sha512-v+HHB4caoxD9LzyOAIqYTLwFdXbTmSE74J95YngFjOdSAD26Wdqfc/KfumbuXBCh1/9KS5hWoSI8VwffrJYluA==
+  dependencies:
+    fflate "^0.4.1"
 
 pretty-bytes@^5.6.0:
   version "5.6.0"
