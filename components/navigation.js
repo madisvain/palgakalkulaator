@@ -1,13 +1,8 @@
-import React, { useState } from "react";
-
 import Link from "next/link";
-import Hamburger from "hamburger-react";
 
 import LanguageDropdown from "./language";
 
 const Navigation = ({ scrollToContact }) => {
-  const [menuOpen, setMenuOpen] = useState(false);
-
   return (
     <nav>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
