@@ -3,7 +3,6 @@ import "styles/globals.css";
 
 import { i18n } from "@lingui/core";
 import { I18nProvider } from "@lingui/react";
-import { Analytics } from "@vercel/analytics/react";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 import { useEffect } from "react";
@@ -91,9 +90,6 @@ function App({ Component, pageProps }) {
             <Navigation />
             <Component {...pageProps} />
             <Footer />
-
-            {/* Analytics */}
-            <Analytics />
           </div>
         </I18nProvider>
       </PostHogProvider>
