@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2024-01-07 - day 0
+
+* Ammendments to the Estonian tax system for 2024
+
 ## 2023-07-30 - day 0 🚀 liftoff
 
 Introducing the Palgakalkulaator.ee - a powerful tool for instant salary and tax calculations and seamless payslip creation.

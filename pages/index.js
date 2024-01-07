@@ -244,7 +244,7 @@ const Index = () => {
   return (
     <>
       <Head>
-        <title>{t`Palgakalkulaator ja palgaleht 2023 - Arveldaja OÜ`}</title>
+        <title>{t`Palgakalkulaator ja palgaleht 2024 - Arveldaja OÜ`}</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta
@@ -256,7 +256,7 @@ const Index = () => {
         {/* Open Graph */}
         <meta
           property="og:title"
-          content={t`Palgakalkulaator ja palgaleht 2023 - Arveldaja OÜ`}
+          content={t`Palgakalkulaator ja palgaleht 2024 - Arveldaja OÜ`}
         />
         <meta
           property="og:description"
@@ -299,7 +299,7 @@ const Index = () => {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebApplication",
-              name: t`Palgakalkulaator ja palgaleht 2023 - Arveldaja OÜ`,
+              name: t`Palgakalkulaator ja palgaleht 2024 - Arveldaja OÜ`,
               description: t`Palgakalkulaator aitab arvestada netopalga, brutopalga, tööandja kulu, maksud ja luua kerge vaevaga töötajale saatmiseks palgalehe.`,
               url: "https://www.palgakalkulaator.ee/",
               image: "https://www.palgakalkulaator.ee/og-image.png",

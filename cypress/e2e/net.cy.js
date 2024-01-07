@@ -129,8 +129,8 @@ const netScenarios = [
   },
   // Tax free income issue
   {
-    total: 738.64,
-    socialTax: 215.82,
+    total: 762.07,
+    socialTax: 239.25,
     employerUnemploymentInsurance: 4.15,
     gross: 518.67,
     fundedPension: 10.37,
@@ -147,8 +147,8 @@ const netScenarios = [
     },
   },
   {
-    total: 869.35,
-    socialTax: 215.82,
+    total: 892.78,
+    socialTax: 239.25,
     employerUnemploymentInsurance: 5.19,
     gross: 648.34,
     fundedPension: 12.97,

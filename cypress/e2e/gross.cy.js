@@ -262,8 +262,8 @@ const grossScenarios = [
     },
   },
   {
-    total: 719.82,
-    socialTax: 215.82,
+    total: 743.25,
+    socialTax: 239.25,
     employerUnemploymentInsurance: 4.0,
     gross: 500,
     fundedPension: 0,

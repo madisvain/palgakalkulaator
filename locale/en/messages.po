@@ -113,8 +113,8 @@ msgstr "Salary calculator helps to calculate net salary, gross salary, employer�
 #: pages/index.js:247
 #: pages/index.js:259
 #: pages/index.js:302
-msgid "Palgakalkulaator ja palgaleht 2023 - Arveldaja OÜ"
-msgstr "Salary calculator and payslips 2023 - Arveldaja OÜ"
+msgid "Palgakalkulaator ja palgaleht 2024 - Arveldaja OÜ"
+msgstr "Salary calculator and payslips 2024 - Arveldaja OÜ"
 
 #: components/payslip.js:62
 msgid "Palgaleht"
