@@ -10,7 +10,7 @@ const TaxInfo = () => {
           </div>
           <div className="basis-3/5">
             <h4 className="mb-6">
-              <Trans>Maksuinfo 2023</Trans>
+              <Trans>Maksuinfo 2024</Trans>
             </h4>
             <ul className="list-outside list-disc space-y-4 ml-4">
               <li>
@@ -50,10 +50,10 @@ const TaxInfo = () => {
               <li>
                 <Trans>
                   Sotsiaalmaksu minimaalne kohustus Töölepingu puhul on{" "}
-                  <strong>654 EUR</strong> x 0,33% =
+                  <strong>725 EUR</strong> x 0,33% =
                 </Trans>{" "}
                 <strong>
-                  <Trans>215,82 EUR/kuus</Trans>
+                  <Trans>239,25 EUR/kuus</Trans>
                 </strong>{" "}
                 <a
                   href="https://www.riigiteataja.ee/akt/128122017076?leiaKehtiv#para2lg2"
@@ -120,7 +120,7 @@ const TaxInfo = () => {
                 <ul className="list-outside list-disc ml-8">
                   <li>
                     <Trans>
-                      kuus <strong>725 EUR</strong>
+                      kuus <strong>820 EUR</strong>
                     </Trans>{" "}
                     <a
                       href="https://www.riigiteataja.ee/akt/113122022033"
@@ -132,7 +132,7 @@ const TaxInfo = () => {
                   </li>
                   <li>
                     <Trans>
-                      tunnis <strong>4.3 EUR</strong>
+                      tunnis <strong>4.86 EUR</strong>
                     </Trans>{" "}
                     <a
                       href="https://www.riigiteataja.ee/akt/113122022033"

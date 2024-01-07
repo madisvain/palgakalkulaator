@@ -18,8 +18,8 @@ msgid "0...654 EUR/kuus"
 msgstr "0...654 EUR/kuus"
 
 #: components/tax-info.js:56
-msgid "215,82 EUR/kuus"
-msgstr "215,82 EUR/kuus"
+msgid "239,25 EUR/kuus"
+msgstr "239,25 EUR/kuus"
 
 #: components/payslip.js:223
 #: components/pdf.js:260
@@ -70,16 +70,16 @@ msgid "Koosta palgateatis"
 msgstr "Koosta palgateatis"
 
 #: components/tax-info.js:122
-msgid "kuus <0>725 EUR</0>"
-msgstr "kuus <0>725 EUR</0>"
+msgid "kuus <0>820 EUR</0>"
+msgstr "kuus <0>820 EUR</0>"
 
 #: pages/index.js:372
 msgid "Mahaarvamised:"
 msgstr "Mahaarvamised:"
 
 #: components/tax-info.js:13
-msgid "Maksuinfo 2023"
-msgstr "Maksuinfo 2023"
+msgid "Maksuinfo 2024"
+msgstr "Maksuinfo 2024"
 
 #: pages/index.js:398
 msgid "Maksuvaba tulu"
@@ -241,5 +241,5 @@ msgid "Tulumaksu kinnipidamise määr on"
 msgstr "Tulumaksu kinnipidamise määr on"
 
 #: components/tax-info.js:134
-msgid "tunnis <0>4.3 EUR</0>"
-msgstr "tunnis <0>4.3 EUR</0>"
+msgid "tunnis <0>4.86 EUR</0>"
+msgstr "tunnis <0>4.86 EUR</0>"

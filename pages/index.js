@@ -75,9 +75,9 @@ const Index = () => {
       // Salary fund
       if (values.amountType === "total") {
         // Social tax minimum ensurement
-        if (values.socialTaxMinimum && values.amount <= 654) {
+        if (values.socialTaxMinimum && values.amount <= 725) {
           const func = (x) => {
-            const minimum = 215.82; // 654 * 0.33
+            const minimum = 239.25; // 725 * 0.33
             const eq = parse(`${minimum} + (x * 0.008) + x`);
             const code = eq.compile();
             const result = code.evaluate({ x });
@@ -208,7 +208,7 @@ const Index = () => {
 
   const socialTax = useMemo(() => {
     if (!(grossSalary > 0)) return 0;
-    if (values.socialTaxMinimum && grossSalary <= 654) return 215.82;
+    if (values.socialTaxMinimum && grossSalary <= 725) return 239.25;
     return round(grossSalary * 0.33, 2);
   }, [grossSalary, values.socialTaxMinimum]);
 
