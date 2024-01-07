@@ -148,8 +148,12 @@ msgid "Sotsiaalmaksu min. kuumäär"
 msgstr "Soocial tax monthly minimum"
 
 #: components/tax-info.js:51
-msgid "Sotsiaalmaksu minimaalne kohustus Töölepingu puhul on <0>654 EUR</0> x 0,33% ="
-msgstr "The minimum obligation of social tax for an Employment Contract is <0>654 EUR</0> x 0,33% ="
+#~ msgid "Sotsiaalmaksu minimaalne kohustus Töölepingu puhul on <0>654 EUR</0> x 0,33% ="
+#~ msgstr "The minimum obligation of social tax for an Employment Contract is <0>654 EUR</0> x 0,33% ="
+
+#: components/tax-info.js:51
+msgid "Sotsiaalmaksu minimaalne kohustus Töölepingu puhul on <0>725 EUR</0> x 0,33% ="
+msgstr ""
 
 #: pages/index.js:345
 msgid "Summa tüüp"

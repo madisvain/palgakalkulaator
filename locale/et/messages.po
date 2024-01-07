@@ -125,8 +125,14 @@ msgstr "Palgakalkulaator aitab arvestada netopalga, brutopalga, tööandja kulu,
 #: pages/index.js:247
 #: pages/index.js:259
 #: pages/index.js:302
-msgid "Palgakalkulaator ja palgaleht 2023 - Arveldaja OÜ"
-msgstr "Palgakalkulaator ja palgaleht 2023 - Arveldaja OÜ"
+#~ msgid "Palgakalkulaator ja palgaleht 2023 - Arveldaja OÜ"
+#~ msgstr "Palgakalkulaator ja palgaleht 2023 - Arveldaja OÜ"
+
+#: pages/index.js:247
+#: pages/index.js:259
+#: pages/index.js:302
+msgid "Palgakalkulaator ja palgaleht 2024 - Arveldaja OÜ"
+msgstr "Palgakalkulaator ja palgaleht 2024 - Arveldaja OÜ"
 
 #: components/payslip.js:62
 msgid "Palgaleht"
@@ -160,8 +166,12 @@ msgid "Sotsiaalmaksu min. kuumäär"
 msgstr "Sotsiaalmaksu min. kuumäär"
 
 #: components/tax-info.js:51
-msgid "Sotsiaalmaksu minimaalne kohustus Töölepingu puhul on <0>654 EUR</0> x 0,33% ="
-msgstr "Sotsiaalmaksu minimaalne kohustus Töölepingu puhul on <0>654 EUR</0> x 0,33% ="
+#~ msgid "Sotsiaalmaksu minimaalne kohustus Töölepingu puhul on <0>654 EUR</0> x 0,33% ="
+#~ msgstr "Sotsiaalmaksu minimaalne kohustus Töölepingu puhul on <0>654 EUR</0> x 0,33% ="
+
+#: components/tax-info.js:51
+msgid "Sotsiaalmaksu minimaalne kohustus Töölepingu puhul on <0>725 EUR</0> x 0,33% ="
+msgstr "Sotsiaalmaksu minimaalne kohustus Töölepingu puhul on <0>725 EUR</0> x 0,33% ="
 
 #: pages/index.js:345
 msgid "Summa tüüp"

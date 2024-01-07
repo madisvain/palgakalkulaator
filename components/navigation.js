@@ -19,6 +19,9 @@ const Navigation = ({ scrollToContact }) => {
               <h1 className="general text-xl font-medium color-dark-blue">
                 Palgakalkulaator
               </h1>
+              <h1 className="general text-xl font-medium color-dark-blue border-dark-blue border rounded-sm px-1 ml-2">
+                2024 🎉
+              </h1>
             </Link>
           </div>
 
