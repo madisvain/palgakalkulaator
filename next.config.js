@@ -14,7 +14,7 @@ const moduleExports = withBundleAnalyzer({
     defaultLocale: "et",
     localeDetection: false,
   },
-  reactStrictMode: true,
+  reactStrictMode: false,
   experimental: {
     swcPlugins: [["@lingui/swc-plugin", {}]],
   },

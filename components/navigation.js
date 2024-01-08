@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import LanguageDropdown from "./language";
 
-const Navigation = ({ scrollToContact }) => {
+const Navigation = () => {
   return (
     <nav>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

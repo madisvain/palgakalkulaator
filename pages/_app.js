@@ -5,8 +5,6 @@ import { i18n } from "@lingui/core";
 import { I18nProvider } from "@lingui/react";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
-import { useEffect } from "react";
-import { useRouter } from "next/router";
 
 import Footer from "components/footer";
 import Navigation from "components/navigation";
@@ -43,29 +41,25 @@ const general = localFont({
 function App({ Component, pageProps }) {
   useLinguiInit(pageProps.translation);
 
-  const router = useRouter();
-
   return (
-    <>
+    <div className={`${inter.variable} ${general.variable}`}>
       <I18nProvider i18n={i18n}>
-        <div className={`${inter.variable} ${general.variable}`}>
-          <div className="background">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-
-          <Navigation />
-          <Component {...pageProps} />
-          <Footer />
+        <div className="background">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
+
+        <Navigation />
+        <Component {...pageProps} />
+        <Footer />
       </I18nProvider>
-    </>
+    </div>
   );
 }
 
