@@ -2,6 +2,7 @@ import "react-day-picker/dist/style.css";
 import "styles/globals.css";
 
 import { i18n } from "@lingui/core";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { I18nProvider } from "@lingui/react";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
@@ -59,6 +60,7 @@ function App({ Component, pageProps }) {
         <Component {...pageProps} />
         <Footer />
       </I18nProvider>
+      <SpeedInsights />
     </div>
   );
 }
