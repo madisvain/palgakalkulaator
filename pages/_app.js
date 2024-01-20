@@ -4,6 +4,7 @@ import "styles/globals.css";
 import { i18n } from "@lingui/core";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { I18nProvider } from "@lingui/react";
+import { Toaster } from "react-hot-toast";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 
@@ -61,6 +62,14 @@ function App({ Component, pageProps }) {
         <Footer />
       </I18nProvider>
       <SpeedInsights />
+      <Toaster
+        toastOptions={{
+          style: {
+            fontSize: "14px",
+            borderRadius: 0,
+          },
+        }}
+      />
     </div>
   );
 }
