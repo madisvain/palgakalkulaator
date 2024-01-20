@@ -2,7 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
-## 2024-01-07 - day 0
+## 2024-01-20 - day 174
+
+* 🛠️ Fixing duplicate H1 tags
+* 🌟 Locale based number formatting
+* 🌟 Click to copy functionality
+* 🌟 Clear input of first click
+
+## 2024-01-07 - day 161
 
 * Ammendments to the Estonian tax system for 2024
 
