@@ -16,12 +16,10 @@ const Navigation = () => {
                 height={32}
                 width={32}
               />
-              <h1 className="general text-xl font-medium color-dark-blue">
-                Palgakalkulaator
-              </h1>
-              <h1 className="general text-xl font-medium color-dark-blue border-dark-blue border rounded-sm px-1 ml-2">
+              <h1 className="general text-xl font-medium color-dark-blue">Palgakalkulaator</h1>
+              <div className="inline-block align-middle general text-lg font-medium color-dark-blue border-dark-blue border rounded-sm px-1 pt-[2px] ml-2">
                 2024 🎉
-              </h1>
+              </div>
             </Link>
           </div>
 
@@ -34,13 +32,7 @@ const Navigation = () => {
               >
                 Arveldaja.com
                 <div className="ml-2 inline-flex">
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 12 12"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                       d="M2.5625 1.3125H10.6875V9.4375M1.3125 10.6875L10.6875 1.3125"
                       stroke="#181A33"
