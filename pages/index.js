@@ -13,6 +13,7 @@ import max from "lodash/max";
 import min from "lodash/min";
 import replace from "lodash/replace";
 import round from "lodash/round";
+import toNumber from "lodash/toNumber";
 
 import TaxInfo from "components/tax-info";
 import formatCurrency from "utils/currency";
@@ -75,7 +76,6 @@ const Index = () => {
   const grossSalary = useMemo(() => {
     let grossSalaryValue = null;
 
-    console.log(values.amount, values.amountType);
     if (values.amount > 0) {
       // Salary fund
       if (values.amountType === "total") {
@@ -122,9 +122,12 @@ const Index = () => {
         };
 
         // solve the equation
-        grossSalaryValue = bisectionMethodAdvanced(func, values.amount, values.amount, values.amount * 2);
-        console.log(grossSalaryValue);
-        return grossSalaryValue;
+        grossSalaryValue = bisectionMethodAdvanced(
+          func,
+          toNumber(values.amount),
+          toNumber(values.amount),
+          toNumber(values.amount * 2)
+        );
       }
 
       // Always return a value rounded to two decimal places
@@ -278,7 +281,8 @@ const Index = () => {
                     // valueAsNumber: true,
                     onChange: (e) => {
                       if (e.target.value) {
-                        setValue("amount", replace(replace(e.target.value, ",", "."), /[^0-9.,]/g, ""), {
+                        const value = replace(replace(e.target.value, ",", "."), /[^0-9.,]/g, "");
+                        setValue("amount", toNumber(value), {
                           shouldDirty: true,
                         });
                       }
