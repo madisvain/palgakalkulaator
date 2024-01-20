@@ -1,5 +1,5 @@
-const formatCurrency = (amount) =>
-  new Intl.NumberFormat("et-EE", { style: "currency", currency: "EUR" }).format(
+const formatCurrency = (amount, locale = "et-EE") =>
+  new Intl.NumberFormat(locale, { style: "currency", currency: "EUR" }).format(
     amount
   );
 
