@@ -2,6 +2,7 @@ import "react-day-picker/dist/style.css";
 import "styles/globals.css";
 
 import { i18n } from "@lingui/core";
+import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { I18nProvider } from "@lingui/react";
 import { Toaster } from "react-hot-toast";
@@ -70,15 +71,7 @@ function App({ Component, pageProps }) {
           },
         }}
       />
-      {/* Simple Analytics */}
-      <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
-      <noscript>
-        <img
-          src="https://queue.simpleanalyticscdn.com/noscript.gif"
-          alt=""
-          referrerpolicy="no-referrer-when-downgrade"
-        />
-      </noscript>
+      <Analytics />
     </div>
   );
 }
