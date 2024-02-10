@@ -282,7 +282,7 @@ const Index = () => {
                     onChange: (e) => {
                       if (e.target.value) {
                         const value = replace(replace(e.target.value, ",", "."), /[^0-9.,]/g, "");
-                        setValue("amount", toNumber(value), {
+                        setValue("amount", value, {
                           shouldDirty: true,
                         });
                       }
