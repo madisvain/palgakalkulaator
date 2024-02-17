@@ -72,6 +72,7 @@ function App({ Component, pageProps }) {
         }}
       />
       <Analytics />
+      <script defer data-domain="palgakalkulaator.ee" src="https://plausible.io/js/script.js"></script>
     </div>
   );
 }

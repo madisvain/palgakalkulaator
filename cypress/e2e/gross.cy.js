@@ -242,6 +242,25 @@ const grossScenarios = [
       fundedPension: false,
     },
   },
+  // Test with decimal
+  {
+    total: 1330.67,
+    socialTax: 330.17,
+    employerUnemploymentInsurance: 0,
+    gross: 1000.5,
+    fundedPension: 0,
+    employeeUnemploymentInsurance: 0,
+    incomeTax: 200.1,
+    net: 800.4,
+    deductions: {
+      socialTaxMinimum: false,
+      taxFreeIncome: false,
+      taxFreeIncomeAmount: 654,
+      employerUnemploymentInsurance: false,
+      employeeUnemploymentInsurance: false,
+      fundedPension: false,
+    },
+  },
   // Tax free income issue
   {
     total: 669.0,
@@ -304,9 +323,7 @@ describe("Salary calculator", () => {
       }
 
       // Tax free income
-      cy.get('span[name="taxFreeIncomeAmount"]')
-        .clear()
-        .type(scenario["deductions"]["taxFreeIncomeAmount"]);
+      cy.get('span[name="taxFreeIncomeAmount"]').clear().type(scenario["deductions"]["taxFreeIncomeAmount"]);
       if (scenario["deductions"]["taxFreeIncome"]) {
         cy.get('input[name="taxFreeIncome"]').check();
       } else {
@@ -346,10 +363,7 @@ describe("Salary calculator", () => {
 
       cy.contains("td", "Tööandja töötuskindlustusmakse")
         .next("td")
-        .should(
-          "contain",
-          `${formatCurrency(scenario["employerUnemploymentInsurance"])}`
-        );
+        .should("contain", `${formatCurrency(scenario["employerUnemploymentInsurance"])}`);
 
       // Bruto
       cy.contains("h4", "Brutopalk")
@@ -363,10 +377,7 @@ describe("Salary calculator", () => {
 
       cy.contains("td", "Töötaja töötuskindlustusmakse")
         .next("td")
-        .should(
-          "contain",
-          `${formatCurrency(scenario["employeeUnemploymentInsurance"])}`
-        );
+        .should("contain", `${formatCurrency(scenario["employeeUnemploymentInsurance"])}`);
 
       cy.contains("td", "Tulumaks")
         .next("td")
