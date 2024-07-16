@@ -314,13 +314,14 @@ const Index = () => {
                   {amountTypes.map((amountType) => (
                     <div key={amountType.id}>
                       <div className="flex items-center">
-                        <input
-                          value={amountType.id}
-                          type="radio"
-                          {...register("amountType")}
-                          className="h-4 w-4 border-gray-300 text-dark-blue focus:ring-transparent"
-                        />
                         <label htmlFor={amountType.id} className="ml-2 block text-sm font-semibold">
+                          <input
+                            id={amountType.id}
+                            value={amountType.id}
+                            type="radio"
+                            {...register("amountType")}
+                            className="h-4 w-4 border-gray-300 text-dark-blue focus:ring-transparent"
+                          />{" "}
                           {amountType.title}
                         </label>
                       </div>
