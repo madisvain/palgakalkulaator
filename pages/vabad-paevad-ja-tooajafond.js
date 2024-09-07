@@ -74,7 +74,7 @@ const Index = () => {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebApplication",
-              name: t`Tööajafond 2024 - Palgakalkulaator`,
+              name: t`Palgakalkulaator ja palgaleht 2024 - Arveldaja OÜ`,
               description: t`Palgakalkulaator aitab arvestada netopalga, brutopalga, tööandja kulu, maksud ja luua kerge vaevaga töötajale saatmiseks palgalehe.`,
               url: "https://www.palgakalkulaator.ee/",
               image: "https://www.palgakalkulaator.ee/og-image.png",
