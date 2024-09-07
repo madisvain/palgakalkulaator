@@ -4,7 +4,7 @@ const TaxInfo = () => {
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row gap-4 pt-12 pb-16 lg:pt-24 lg:pb-32 items-center">
+        <div className="flex flex-col md:flex-row gap-4 pt-12 pb-16 lg:pt-24 lg:pb-32 items-center border-b border-b-[#E9E7E5]">
           <div className="basis-2/5">
             <img src="./taxes.svg" alt="Taxes" height={389} width={389} />
           </div>
@@ -14,8 +14,7 @@ const TaxInfo = () => {
             </h4>
             <ul className="list-outside list-disc space-y-4 ml-4">
               <li>
-                <Trans>Tulumaksu kinnipidamise määr on</Trans>{" "}
-                <strong className="font-bold">20%</strong>{" "}
+                <Trans>Tulumaksu kinnipidamise määr on</Trans> <strong className="font-bold">20%</strong>{" "}
                 <a
                   href="https://www.riigiteataja.ee/akt/128122017077?leiaKehtiv#para4lg1"
                   className="font-semibold text-xs underline underline-offset-4"
@@ -49,8 +48,7 @@ const TaxInfo = () => {
               </li>
               <li>
                 <Trans>
-                  Sotsiaalmaksu minimaalne kohustus Töölepingu puhul on{" "}
-                  <strong>725 EUR</strong> x 0,33% =
+                  Sotsiaalmaksu minimaalne kohustus Töölepingu puhul on <strong>725 EUR</strong> x 0,33% =
                 </Trans>{" "}
                 <strong>
                   <Trans>239,25 EUR/kuus</Trans>
@@ -94,9 +92,8 @@ const TaxInfo = () => {
               </li>
               <li>
                 <Trans>
-                  Kogumispensioni makse määr on <strong>liitunutele 2%</strong>{" "}
-                  ja <strong>mitteliitunutele 0%</strong>. Kogumispensioniga
-                  liitumist saab kontrollida
+                  Kogumispensioni makse määr on <strong>liitunutele 2%</strong> ja <strong>mitteliitunutele 0%</strong>.
+                  Kogumispensioniga liitumist saab kontrollida
                 </Trans>{" "}
                 <a
                   href="https://www.pensionikeskus.ee/raamatupidajale/ii-sammas/liitumiskontroll/"

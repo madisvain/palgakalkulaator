@@ -13,27 +13,31 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: components/tax-info.js:30
+#: components/tax-info.js:29
 msgid "0...654 EUR/kuus"
 msgstr "0...654 EUR/kuus"
 
-#: components/tax-info.js:56
+#: components/tax-info.js:54
 msgid "239,25 EUR/kuus"
 msgstr "239,25 EUR/kuus"
 
+#: pages/vabad-paevad-ja-tooajafond.js:103
+msgid "Aastal 2024 on riigipühadest tulenevalt <0>{0}</0> vaba päeva, millest <1>{holidaysOnWorkingDays}</1> on tööpäevadel."
+msgstr "Aastal 2024 on riigipühadest tulenevalt <0>{0}</0> vaba päeva, millest <1>{holidaysOnWorkingDays}</1> on tööpäevadel."
+
 #: components/payslip.js:223
 #: components/pdf.js:260
-#: pages/index.js:530
+#: pages/index.js:531
 msgid "Arvestatud tulumaksuvaba miinimum"
 msgstr "Arvestatud tulumaksuvaba miinimum"
 
 #: components/footer.js:65
-msgid "Avatud lähtekood"
-msgstr "Avatud lähtekood"
+#~ msgid "Avatud lähtekood"
+#~ msgstr "Avatud lähtekood"
 
 #: components/payslip.js:184
 #: pages/index.js:206
-#: pages/index.js:478
+#: pages/index.js:479
 msgid "Brutopalk"
 msgstr "Brutopalk"
 
@@ -41,10 +45,38 @@ msgstr "Brutopalk"
 msgid "Brutotöötasu"
 msgstr "Brutotöötasu"
 
+#: pages/vabad-paevad-ja-tooajafond.js:215
+msgid "Eesti Vabariigi aastapäev"
+msgstr "Eesti Vabariigi aastapäev"
+
+#: utils/holidays.js:49
+msgid "Esimene jõulupüha"
+msgstr "Esimene jõulupüha"
+
+#: utils/holidays.js:40
+msgid "Iseseisvuspäev"
+msgstr "Iseseisvuspäev"
+
 #: components/payslip.js:133
 #: components/pdf.js:171
 msgid "Isikukood"
 msgstr "Isikukood"
+
+#: utils/holidays.js:46
+msgid "Jaanipäev"
+msgstr "Jaanipäev"
+
+#: pages/vabad-paevad-ja-tooajafond.js:221
+msgid "jõululaupäev"
+msgstr "jõululaupäev"
+
+#: utils/holidays.js:48
+msgid "Jõululaupäev"
+msgstr "Jõululaupäev"
+
+#: utils/holidays.js:43
+msgid "Kevadpüha"
+msgstr "Kevadpüha"
 
 #: components/payslip.js:192
 #: components/pdf.js:210
@@ -53,27 +85,35 @@ msgstr "Kinnipidamised"
 
 #: components/payslip.js:204
 #: components/pdf.js:224
-#: pages/index.js:495
+#: pages/index.js:496
 msgid "Kogumispension"
 msgstr "Kogumispension"
 
-#: components/tax-info.js:96
+#: components/tax-info.js:94
 msgid "Kogumispensioni makse määr on <0>liitunutele 2%</0> ja <1>mitteliitunutele 0%</1>. Kogumispensioniga liitumist saab kontrollida"
 msgstr "Kogumispensioni makse määr on <0>liitunutele 2%</0> ja <1>mitteliitunutele 0%</1>. Kogumispensioniga liitumist saab kontrollida"
 
-#: pages/index.js:411
+#: pages/index.js:412
 msgid "Kogumispensioniga liitunud (2%)"
 msgstr "Kogumispensioniga liitunud (2%)"
 
-#: pages/index.js:582
+#: pages/vabad-paevad-ja-tooajafond.js:138
+msgid "Kokku"
+msgstr "Kokku"
+
+#: pages/index.js:583
 msgid "Koosta palgateatis"
 msgstr "Koosta palgateatis"
 
-#: components/tax-info.js:122
+#: pages/vabad-paevad-ja-tooajafond.js:118
+msgid "Kuu"
+msgstr "Kuu"
+
+#: components/tax-info.js:119
 msgid "kuus <0>820 EUR</0>"
 msgstr "kuus <0>820 EUR</0>"
 
-#: pages/index.js:335
+#: pages/index.js:336
 msgid "Mahaarvamised:"
 msgstr "Mahaarvamised:"
 
@@ -81,11 +121,11 @@ msgstr "Mahaarvamised:"
 msgid "Maksuinfo 2024"
 msgstr "Maksuinfo 2024"
 
-#: pages/index.js:355
+#: pages/index.js:356
 msgid "Maksuvaba tulu"
 msgstr "Maksuvaba tulu"
 
-#: components/tax-info.js:28
+#: components/tax-info.js:27
 msgid "Maksuvaba tulu varieeruv 0...7848 / 12 ="
 msgstr "Maksuvaba tulu varieeruv 0...7848 / 12 ="
 
@@ -94,13 +134,17 @@ msgstr "Maksuvaba tulu varieeruv 0...7848 / 12 ="
 msgid "Märkus"
 msgstr "Märkus"
 
+#: utils/holidays.js:44
+msgid "Nelipühade 1. püha"
+msgstr "Nelipühade 1. püha"
+
 #: components/pdf.js:274
 msgid "Neto töötasu"
 msgstr "Neto töötasu"
 
 #: components/payslip.js:236
 #: pages/index.js:207
-#: pages/index.js:553
+#: pages/index.js:554
 msgid "Netopalk"
 msgstr "Netopalk"
 
@@ -115,6 +159,9 @@ msgstr "Netopalk"
 #: pages/index.js:221
 #: pages/index.js:229
 #: pages/index.js:253
+#: pages/vabad-paevad-ja-tooajafond.js:42
+#: pages/vabad-paevad-ja-tooajafond.js:50
+#: pages/vabad-paevad-ja-tooajafond.js:78
 msgid "Palgakalkulaator aitab arvestada netopalga, brutopalga, tööandja kulu, maksud ja luua kerge vaevaga töötajale saatmiseks palgalehe."
 msgstr "Palgakalkulaator aitab arvestada netopalga, brutopalga, tööandja kulu, maksud ja luua kerge vaevaga töötajale saatmiseks palgalehe."
 
@@ -146,25 +193,29 @@ msgstr "Palgaleht"
 msgid "Periood"
 msgstr "Periood"
 
+#: pages/vabad-paevad-ja-tooajafond.js:121
+msgid "Riigipüha"
+msgstr "Riigipüha"
+
 #: components/payslip.js:284
 msgid "Salvesta PDF"
 msgstr "Salvesta PDF"
 
-#: components/tax-info.js:107
+#: components/tax-info.js:104
 msgid "siit"
 msgstr "siit"
 
 #: components/payslip.js:254
 #: components/pdf.js:298
-#: pages/index.js:441
+#: pages/index.js:442
 msgid "Sotsiaalmaks"
 msgstr "Sotsiaalmaks"
 
-#: components/tax-info.js:41
+#: components/tax-info.js:40
 msgid "Sotsiaalmaksu määr on 33%"
 msgstr "Sotsiaalmaksu määr on 33%"
 
-#: pages/index.js:345
+#: pages/index.js:346
 msgid "Sotsiaalmaksu min. kuumäär"
 msgstr "Sotsiaalmaksu min. kuumäär"
 
@@ -172,7 +223,7 @@ msgstr "Sotsiaalmaksu min. kuumäär"
 #~ msgid "Sotsiaalmaksu minimaalne kohustus Töölepingu puhul on <0>654 EUR</0> x 0,33% ="
 #~ msgstr "Sotsiaalmaksu minimaalne kohustus Töölepingu puhul on <0>654 EUR</0> x 0,33% ="
 
-#: components/tax-info.js:51
+#: components/tax-info.js:50
 msgid "Sotsiaalmaksu minimaalne kohustus Töölepingu puhul on <0>725 EUR</0> x 0,33% ="
 msgstr "Sotsiaalmaksu minimaalne kohustus Töölepingu puhul on <0>725 EUR</0> x 0,33% ="
 
@@ -180,10 +231,26 @@ msgstr "Sotsiaalmaksu minimaalne kohustus Töölepingu puhul on <0>725 EUR</0> x
 msgid "Summa tüüp"
 msgstr "Summa tüüp"
 
+#: utils/holidays.js:41
+msgid "Suur reede"
+msgstr "Suur reede"
+
+#: utils/holidays.js:47
+msgid "Taasiseseisvumispäev"
+msgstr "Taasiseseisvumispäev"
+
 #: components/payslip.js:288
 #: components/pdf.js:337
 msgid "Tasumisele kuuluv neto töötasu"
 msgstr "Tasumisele kuuluv neto töötasu"
+
+#: utils/holidays.js:50
+msgid "Teine jõulupüha"
+msgstr "Teine jõulupüha"
+
+#: pages/vabad-paevad-ja-tooajafond.js:77
+msgid "Tööajafond 2024 - Palgakalkulaator"
+msgstr "Tööajafond 2024 - Palgakalkulaator"
 
 #: components/payslip.js:109
 #: components/pdf.js:147
@@ -193,7 +260,7 @@ msgstr "Tööandja"
 #: components/payslip.js:270
 #: components/pdf.js:323
 #: pages/index.js:205
-#: pages/index.js:424
+#: pages/index.js:425
 msgid "Tööandja kulu"
 msgstr "Tööandja kulu"
 
@@ -204,17 +271,29 @@ msgstr "Tööandja maksud"
 
 #: components/payslip.js:262
 #: components/pdf.js:310
-#: pages/index.js:457
+#: pages/index.js:458
 msgid "Tööandja töötuskindlustusmakse"
 msgstr "Tööandja töötuskindlustusmakse"
 
-#: pages/index.js:391
+#: pages/index.js:392
 msgid "Tööandja töötuskindlustusmakse (0.8%)"
 msgstr "Tööandja töötuskindlustusmakse (0.8%)"
 
-#: components/tax-info.js:82
+#: components/tax-info.js:80
 msgid "tööandjale <0>0.8%</0>"
 msgstr "tööandjale <0>0.8%</0>"
+
+#: pages/vabad-paevad-ja-tooajafond.js:143
+msgid "tööpäeva"
+msgstr "tööpäeva"
+
+#: pages/vabad-paevad-ja-tooajafond.js:124
+msgid "Tööpäevi (tööaeg E-R)"
+msgstr "Tööpäevi (tööaeg E-R)"
+
+#: pages/vabad-paevad-ja-tooajafond.js:109
+msgid "Tööpäevi on kokku <0>{0}</0> ja <1>{1}</1> töötundi tööajafondi."
+msgstr "Tööpäevi on kokku <0>{0}</0> ja <1>{1}</1> töötundi tööajafondi."
 
 #: components/payslip.js:121
 #: components/pdf.js:159
@@ -223,29 +302,41 @@ msgstr "Töötaja"
 
 #: components/payslip.js:212
 #: components/pdf.js:236
-#: pages/index.js:511
+#: pages/index.js:512
 msgid "Töötaja töötuskindlustusmakse"
 msgstr "Töötaja töötuskindlustusmakse"
 
-#: pages/index.js:401
+#: pages/index.js:402
 msgid "Töötaja töötuskindlustusmakse (1.6%)"
 msgstr "Töötaja töötuskindlustusmakse (1.6%)"
 
-#: components/tax-info.js:70
+#: components/tax-info.js:68
 msgid "töötajale <0>1.6%</0>"
 msgstr "töötajale <0>1.6%</0>"
 
-#: components/tax-info.js:119
+#: components/tax-info.js:116
 msgid "Töötasu alammäär (miinimumpalk) on:"
 msgstr "Töötasu alammäär (miinimumpalk) on:"
 
-#: components/tax-info.js:67
+#: pages/vabad-paevad-ja-tooajafond.js:127
+msgid "Töötunde (tööaeg 9-17)"
+msgstr "Töötunde (tööaeg 9-17)"
+
+#: pages/vabad-paevad-ja-tooajafond.js:147
+msgid "töötundi"
+msgstr "töötundi"
+
+#: pages/vabad-paevad-ja-tooajafond.js:197
+msgid "Töötundide arvutuses on arvestatud lühendatud tööpäevadega vastavalt <0>töölepingu seaduse § 53</0> ja pühade ja tähtpäevade seadusest lühendatakse eelnevat tööpäeva kolme tunni võrra järgnevatel pühadel:"
+msgstr "Töötundide arvutuses on arvestatud lühendatud tööpäevadega vastavalt <0>töölepingu seaduse § 53</0> ja pühade ja tähtpäevade seadusest lühendatakse eelnevat tööpäeva kolme tunni võrra järgnevatel pühadel:"
+
+#: components/tax-info.js:65
 msgid "Töötuskindlustusmakse määrad on:"
 msgstr "Töötuskindlustusmakse määrad on:"
 
 #: components/payslip.js:220
 #: components/pdf.js:248
-#: pages/index.js:527
+#: pages/index.js:528
 msgid "Tulumaks"
 msgstr "Tulumaks"
 
@@ -253,6 +344,48 @@ msgstr "Tulumaks"
 msgid "Tulumaksu kinnipidamise määr on"
 msgstr "Tulumaksu kinnipidamise määr on"
 
-#: components/tax-info.js:134
+#: components/tax-info.js:131
 msgid "tunnis <0>4.86 EUR</0>"
 msgstr "tunnis <0>4.86 EUR</0>"
+
+#: utils/holidays.js:42
+msgid "Ülestõusmispühade 1. püha"
+msgstr "Ülestõusmispühade 1. püha"
+
+#: pages/vabad-paevad-ja-tooajafond.js:212
+msgid "uusaasta"
+msgstr "uusaasta"
+
+#: utils/holidays.js:39
+msgid "Uusaasta"
+msgstr "Uusaasta"
+
+#: pages/vabad-paevad-ja-tooajafond.js:206
+#~ msgid "uusaastale"
+#~ msgstr "uusaastale"
+
+#: pages/vabad-paevad-ja-tooajafond.js:181
+msgid "Vabad ja lühendatud tööpäevad 2024"
+msgstr "Vabad ja lühendatud tööpäevad 2024"
+
+#: pages/vabad-paevad-ja-tooajafond.js:37
+#: pages/vabad-paevad-ja-tooajafond.js:47
+#: pages/vabad-paevad-ja-tooajafond.js:100
+msgid "Vabad päevad ja tööajafond 2024"
+msgstr "Vabad päevad ja tööajafond 2024"
+
+#: pages/vabad-paevad-ja-tooajafond.js:184
+msgid "Vabade päevade tabel on koostatud <0>Pühade ja tähtpäevade seaduse</0> alusel."
+msgstr "Vabade päevade tabel on koostatud <0>Pühade ja tähtpäevade seaduse</0> alusel."
+
+#: pages/vabad-paevad-ja-tooajafond.js:218
+msgid "võidupüha"
+msgstr "võidupüha"
+
+#: utils/holidays.js:45
+msgid "Võidupüha"
+msgstr "Võidupüha"
+
+#: pages/vabad-paevad-ja-tooajafond.js:212
+#~ msgid "võidupühale"
+#~ msgstr "võidupühale"

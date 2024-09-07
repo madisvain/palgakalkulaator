@@ -270,7 +270,7 @@ const Index = () => {
         />
       </Head>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="w-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col mt-12 mb-14 space-y-12 md:flex-row lg:mt-24 lg:mb-28 md:space-x-4 md:space-y-0">
           <div className="basis-2/5">
             <form>

@@ -11,7 +11,7 @@ const Navigation = () => {
             <Link href="/" className="flex flex-shrink-0 items-center">
               <img
                 className="block h-8 w-auto mr-[10px]"
-                src="./logo.svg"
+                src="/logo.svg"
                 alt="Palgakalkulaator.ee logo"
                 height={32}
                 width={32}
@@ -23,7 +23,15 @@ const Navigation = () => {
             </Link>
           </div>
 
-          <ul className="flex space-x-8">
+          <ul className="flex space-x-6">
+            <li className="hidden md:inline-flex items-center ">
+              <Link
+                href="/vabad-paevad-ja-tooajafond"
+                className="p-1 text-base font-semibold text-dark-blue hover:underline"
+              >
+                Vabad päevad
+              </Link>
+            </li>
             <li className="hidden md:inline-flex items-center ">
               <Link
                 href="https://www.arveldaja.com/"

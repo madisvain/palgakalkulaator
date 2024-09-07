@@ -2,8 +2,6 @@ import "react-day-picker/dist/style.css";
 import "styles/globals.css";
 
 import { i18n } from "@lingui/core";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import { I18nProvider } from "@lingui/react";
 import { Toaster } from "react-hot-toast";
 import { Inter } from "next/font/google";
@@ -58,11 +56,12 @@ function App({ Component, pageProps }) {
           <span></span>
         </div>
 
-        <Navigation />
-        <Component {...pageProps} />
-        <Footer />
+        <main className="min-h-screen flex flex-col justify-between">
+          <Navigation />
+          <Component {...pageProps} />
+          <Footer />
+        </main>
       </I18nProvider>
-      <SpeedInsights />
       <Toaster
         toastOptions={{
           style: {
@@ -71,7 +70,6 @@ function App({ Component, pageProps }) {
           },
         }}
       />
-      <Analytics />
       <script defer data-domain="palgakalkulaator.ee" src="https://plausible.io/js/script.js"></script>
     </div>
   );
