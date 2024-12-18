@@ -139,7 +139,7 @@ const Index = ({ year, setYear }) => {
             }
           }
 
-          const eq = parse(`x - ${fp} - ${eu} - ((x - ${tf} - ${fp} - ${eu}) * 0.2)`);
+          const eq = parse(`x - ${fp} - ${eu} - ((x - ${tf} - ${fp} - ${eu}) * 0.22)`);
           const code = eq.compile();
           const result = code.evaluate({ x });
           return result;
