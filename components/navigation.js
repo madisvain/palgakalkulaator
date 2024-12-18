@@ -29,8 +29,8 @@ const Navigation = ({ year, setYear }) => {
             {years.map((y) => (
               <Link href={y === currentYear ? `/${basePath}` : `${basePath}/${y}`} key={y}>
                 <div
-                  className={`inline-block align-middle general text-lg font-medium color-dark-blue border-dark-blue border rounded-sm px-1 pt-[2px] ml-2 ${
-                    y !== year && "opacity-60 hover:opacity-100 border-transparent"
+                  className={`inline-block align-middle general text-lg font-medium bg-green color-dark-blue border-dark-blue border rounded-sm px-1 pt-[2px] ml-2 ${
+                    y !== year && "opacity-60 hover:opacity-100 bg-transparent border-transparent"
                   }`}
                 >
                   {y === year ? <strong>{y}</strong> : y}
