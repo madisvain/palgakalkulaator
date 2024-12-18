@@ -80,8 +80,8 @@ const FreeDays = ({ setYear }) => {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebApplication",
-              name: t`Palgakalkulaator ja palgaleht 2024 - Arveldaja OÜ`,
-              description: t`Palgakalkulaator aitab arvestada netopalga, brutopalga, tööandja kulu, maksud ja luua kerge vaevaga töötajale saatmiseks palgalehe.`,
+              name: t`Palgakalkulaator - arvuta palk ja maksud 2024`,
+              description: t`Palgakalkulaator aitab arvutada palga ja maksud (netopalga, brutopalga, tööandja kulu) ja luua palgalehe.`,
               url: "https://www.palgakalkulaator.ee/",
               image: "https://www.palgakalkulaator.ee/og-image.png",
               applicationCategory: "BusinessApplication",
