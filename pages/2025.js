@@ -15,7 +15,7 @@ import replace from "lodash/replace";
 import round from "lodash/round";
 import toNumber from "lodash/toNumber";
 
-import TaxInfo from "components/2024/tax-info";
+import TaxInfo from "components/2025/tax-info";
 import formatCurrency from "utils/currency";
 import { loadCatalog } from "utils/lingui";
 
@@ -54,9 +54,9 @@ const Index = ({ year, setYear }) => {
   useLingui();
   const router = useRouter();
 
-  // Set year 2024
+  // Set year 2025
   useEffect(() => {
-    setYear(2024);
+    setYear(2025);
   }, []);
 
   const {
@@ -73,10 +73,29 @@ const Index = ({ year, setYear }) => {
       employeeUnemploymentInsurance: true,
       employerUnemploymentInsurance: true,
       fundedPension: true,
+      pensionRate: "2",
     },
   });
 
   const values = watch();
+
+  // If funded pension unchecked 0% rate, if checked 2% rate is default
+  const fundedPensionCheckbox = watch("fundedPension");
+  useEffect(() => {
+    if (!fundedPensionCheckbox) {
+      setValue("pensionRate", "0");
+    } else {
+      setValue("pensionRate", "2");
+    }
+  }, [fundedPensionCheckbox]);
+  const fundedPensionRateRadio = watch("pensionRate");
+  useEffect(() => {
+    if (fundedPensionRateRadio === "0") {
+      setValue("fundedPension", false);
+    } else {
+      setValue("fundedPension", true);
+    }
+  }, [fundedPensionRateRadio]);
 
   const grossSalary = useMemo(() => {
     let grossSalaryValue = null;
@@ -85,9 +104,9 @@ const Index = ({ year, setYear }) => {
       // Salary fund
       if (values.amountType === "total") {
         // Social tax minimum ensurement
-        if (values.socialTaxMinimum && values.amount <= 725) {
+        if (values.socialTaxMinimum && values.amount <= 820) {
           const func = (x) => {
-            const minimum = 239.25; // 725 * 0.33
+            const minimum = 270.6; // 820 * 0.33
             const eq = parse(`${minimum} + (x * 0.008) + x`);
             const code = eq.compile();
             const result = code.evaluate({ x });
@@ -106,7 +125,7 @@ const Index = ({ year, setYear }) => {
         grossSalaryValue = values.amount;
       } else if (values.amountType === "net") {
         // Net
-        const fp = values.fundedPension ? `x * 0.02` : 0; // Funded pension
+        const fp = values.fundedPension ? `x * ${values.pensionRate / 100}` : 0; // Funded pension
         const eu = values.employeeUnemploymentInsurance ? `x * 0.016` : 0; // Employee unemployment insurance
 
         // Function to solve
@@ -120,7 +139,7 @@ const Index = ({ year, setYear }) => {
             }
           }
 
-          const eq = parse(`x - ${fp} - ${eu} - ((x - ${tf} - ${fp} - ${eu}) * 0.2)`);
+          const eq = parse(`x - ${fp} - ${eu} - ((x - ${tf} - ${fp} - ${eu}) * 0.22)`);
           const code = eq.compile();
           const result = code.evaluate({ x });
           return result;
@@ -148,6 +167,7 @@ const Index = ({ year, setYear }) => {
     values.employerUnemploymentInsurance,
     values.employeeUnemploymentInsurance,
     values.fundedPension,
+    values.pensionRate,
   ]);
 
   // Employer unemployment insurance
@@ -165,8 +185,8 @@ const Index = ({ year, setYear }) => {
   // Funded pension
   const fundedPension = useMemo(() => {
     if (!(grossSalary > 0) || !values.fundedPension) return 0;
-    return round(grossSalary * 0.02, 2);
-  }, [values.fundedPension, grossSalary]);
+    return round((grossSalary * values.pensionRate) / 100, 2);
+  }, [values.fundedPension, values.pensionRate, grossSalary]);
 
   // Tax free income
   const taxFreeIncome = useMemo(() => {
@@ -187,12 +207,19 @@ const Index = ({ year, setYear }) => {
   const incomeTax = useMemo(() => {
     if (!(grossSalary > 0) || grossSalary < taxFreeIncome) return 0;
 
-    return max([round((grossSalary - taxFreeIncome - fundedPension - employeeUnemploymentInsuranceTax) * 0.2, 2), 0]);
-  }, [grossSalary, taxFreeIncome, fundedPension, values.employeeUnemploymentInsurance, values.fundedPension]);
+    return max([round((grossSalary - taxFreeIncome - fundedPension - employeeUnemploymentInsuranceTax) * 0.22, 2), 0]);
+  }, [
+    grossSalary,
+    taxFreeIncome,
+    fundedPension,
+    values.employeeUnemploymentInsurance,
+    values.fundedPension,
+    values.pensionRate,
+  ]);
 
   const socialTax = useMemo(() => {
     if (!(grossSalary > 0)) return 0;
-    if (values.socialTaxMinimum && grossSalary <= 725) return 239.25;
+    if (values.socialTaxMinimum && grossSalary <= 820) return 270.6;
     return round(grossSalary * 0.33, 2);
   }, [grossSalary, values.socialTaxMinimum]);
 
@@ -211,6 +238,12 @@ const Index = ({ year, setYear }) => {
     { id: "gross", title: <Trans>Brutopalk</Trans> },
     { id: "net", title: <Trans>Netopalk</Trans> },
   ];
+  const pensionRates = [
+    { id: "0", title: "0%" },
+    { id: "2", title: "2%" },
+    { id: "4", title: "4%" },
+    { id: "6", title: "6%" },
+  ];
 
   const [firstClick, setFirstClick] = useState(true);
   const [showPayslip, setShowPayslip] = useState(false);
@@ -218,7 +251,7 @@ const Index = ({ year, setYear }) => {
   return (
     <>
       <Head>
-        <title>{t`Palgakalkulaator - arvuta palk ja maksud 2024`}</title>
+        <title>{t`Palgakalkulaator - arvuta palk ja maksud 2025`}</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta
@@ -228,7 +261,7 @@ const Index = ({ year, setYear }) => {
         <link rel="icon" href="/favicon.svg" />
 
         {/* Open Graph */}
-        <meta property="og:title" content={t`Palgakalkulaator - arvuta palk ja maksud 2024`} />
+        <meta property="og:title" content={t`Palgakalkulaator - arvuta palk ja maksud 2025`} />
         <meta
           property="og:description"
           content={t`Palgakalkulaator aitab arvutada palga ja maksud (netopalga, brutopalga, tööandja kulu) ja luua palgalehe.`}
@@ -254,7 +287,7 @@ const Index = ({ year, setYear }) => {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebApplication",
-              name: t`Palgakalkulaator - arvuta palk ja maksud 2024`,
+              name: t`Palgakalkulaator - arvuta palk ja maksud 2025`,
               description: t`Palgakalkulaator aitab arvutada palga ja maksud (netopalga, brutopalga, tööandja kulu) ja luua palgalehe.`,
               url: "https://www.palgakalkulaator.ee/",
               image: "https://www.palgakalkulaator.ee/og-image.png",
@@ -407,14 +440,30 @@ const Index = ({ year, setYear }) => {
                     <Trans>Töötaja töötuskindlustusmakse (1.6%)</Trans>
                   </label>
                 </div>
-                <div className="flex items-center">
+                <div className="flex items-top">
                   <input
                     {...register("fundedPension")}
                     type="checkbox"
                     className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                   />
-                  <label htmlFor="fundedPension" className="text-sm font-semibold ml-2">
-                    <Trans>Kogumispensioniga liitunud (2%)</Trans>
+                  <label className="text-sm font-semibold ml-2">
+                    <Trans>Kogumispensioniga liitunud</Trans>
+                    <div className="flex items-center gap-2 mt-2">
+                      {pensionRates.map((rate) => (
+                        <div className="flex items-center" key={rate.id}>
+                          <label htmlFor={rate.id} className="flex items-center text-sm font-semibold">
+                            <input
+                              id={rate.id}
+                              value={rate.id}
+                              type="radio"
+                              {...register("pensionRate")}
+                              className="h-4 w-4 border-gray-300 text-dark-blue focus:ring-transparent"
+                            />
+                            <span className="ml-2">{rate.title}</span>
+                          </label>
+                        </div>
+                      ))}
+                    </div>
                   </label>
                 </div>
               </fieldset>

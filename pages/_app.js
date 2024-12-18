@@ -1,6 +1,7 @@
 import "react-day-picker/dist/style.css";
 import "styles/globals.css";
 
+import { useState } from "react";
 import { i18n } from "@lingui/core";
 import { I18nProvider } from "@lingui/react";
 import { Toaster } from "react-hot-toast";
@@ -42,6 +43,8 @@ const general = localFont({
 function App({ Component, pageProps }) {
   useLinguiInit(pageProps.translation);
 
+  const [year, setYear] = useState(new Date().getFullYear());
+
   return (
     <div className={`${inter.variable} ${general.variable}`}>
       <I18nProvider i18n={i18n}>
@@ -57,8 +60,8 @@ function App({ Component, pageProps }) {
         </div>
 
         <main className="min-h-screen flex flex-col justify-between">
-          <Navigation />
-          <Component {...pageProps} />
+          <Navigation year={year} setYear={setYear} />
+          <Component {...pageProps} year={year} setYear={setYear} />
           <Footer />
         </main>
       </I18nProvider>

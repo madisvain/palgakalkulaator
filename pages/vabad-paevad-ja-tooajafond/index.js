@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Head from "next/head";
 import dayjs from "dayjs";
 import { useRouter } from "next/router";
@@ -19,9 +19,15 @@ import "dayjs/locale/et";
 import localeData from "dayjs/plugin/localeData";
 dayjs.extend(localeData);
 
-const Index = () => {
+const FreeDays = ({ setYear }) => {
   useLingui();
   const router = useRouter();
+
+  // Set year 2024
+  useEffect(() => {
+    setYear(2024);
+  }, []);
+
   dayjs.locale(router.locale);
 
   const months = dayjs.months();
@@ -74,8 +80,8 @@ const Index = () => {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebApplication",
-              name: t`Palgakalkulaator ja palgaleht 2024 - Arveldaja OÜ`,
-              description: t`Palgakalkulaator aitab arvestada netopalga, brutopalga, tööandja kulu, maksud ja luua kerge vaevaga töötajale saatmiseks palgalehe.`,
+              name: t`Palgakalkulaator - arvuta palk ja maksud 2024`,
+              description: t`Palgakalkulaator aitab arvutada palga ja maksud (netopalga, brutopalga, tööandja kulu) ja luua palgalehe.`,
               url: "https://www.palgakalkulaator.ee/",
               image: "https://www.palgakalkulaator.ee/og-image.png",
               applicationCategory: "BusinessApplication",
@@ -132,7 +138,7 @@ const Index = () => {
             <tr>
               <td
                 className="border border-transparent border-r-dark-blue text-right px-4 py-2 bg-transparent"
-                colspan="2"
+                colSpan="2"
               >
                 <strong>
                   <Trans>Kokku</Trans>
@@ -151,7 +157,7 @@ const Index = () => {
           <tbody>
             {months.map((month, index) => {
               return (
-                <tr className={index === dayjs().month() ? "bg-blue-100" : "bg-white"}>
+                <tr className={index === dayjs().month() && dayjs().year() === 2024 ? "bg-blue-100" : "bg-white"}>
                   <td className="border border-dark-blue px-2 py-2">{month}</td>
                   <td className="border border-dark-blue px-2 py-2">
                     <ul className="list-inside list-none">
@@ -239,4 +245,4 @@ export const getStaticProps = async (ctx) => {
   };
 };
 
-export default Index;
+export default FreeDays;
