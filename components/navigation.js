@@ -1,13 +1,21 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { Trans } from "@lingui/macro";
 
 import LanguageDropdown from "./language";
 
-const Navigation = () => {
+const Navigation = ({ year, setYear }) => {
+  const router = useRouter();
+  const years = [2024, 2025];
+  const currentYear = new Date().getFullYear();
+
+  const basePath = router.pathname.split("/")[1].replace(/\d+/g, "");
+
   return (
     <nav>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-20 justify-between">
-          <div className="flex">
+          <div className="flex items-center">
             <Link href="/" className="flex flex-shrink-0 items-center">
               <img
                 className="block h-8 w-auto mr-[10px]"
@@ -17,10 +25,18 @@ const Navigation = () => {
                 width={32}
               />
               <h1 className="general text-xl font-medium color-dark-blue">Palgakalkulaator</h1>
-              <div className="inline-block align-middle general text-lg font-medium color-dark-blue border-dark-blue border rounded-sm px-1 pt-[2px] ml-2">
-                2024 🎉
-              </div>
             </Link>
+            {years.map((y) => (
+              <Link href={y === currentYear ? `/${basePath}` : `${basePath}/${y}`} key={y}>
+                <div
+                  className={`inline-block align-middle general text-lg font-medium color-dark-blue border-dark-blue border rounded-sm px-1 pt-[2px] ml-2 ${
+                    y !== year && "opacity-60 hover:opacity-100 border-transparent"
+                  }`}
+                >
+                  {y === year ? <strong>{y}</strong> : y}
+                </div>
+              </Link>
+            ))}
           </div>
 
           <ul className="flex space-x-6">
@@ -29,7 +45,7 @@ const Navigation = () => {
                 href="/vabad-paevad-ja-tooajafond"
                 className="p-1 text-base font-semibold text-dark-blue hover:underline"
               >
-                Vabad päevad
+                <Trans>Vabad päevad</Trans>
               </Link>
             </li>
             <li className="hidden md:inline-flex items-center ">

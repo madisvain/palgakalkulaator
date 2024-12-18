@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Head from "next/head";
 import dayjs from "dayjs";
 import { useRouter } from "next/router";
@@ -19,22 +19,28 @@ import "dayjs/locale/et";
 import localeData from "dayjs/plugin/localeData";
 dayjs.extend(localeData);
 
-const Index = () => {
+const FreeDays = ({ setYear }) => {
   useLingui();
   const router = useRouter();
+
+  // Set year 2025
+  useEffect(() => {
+    setYear(2025);
+  }, []);
+
   dayjs.locale(router.locale);
 
   const months = dayjs.months();
-  const holidays = getHolidaysByMonth(2024);
-  const workingDays = getWorkingdaysByMonth(2024);
-  const workingHours = getWorkingHoursByMonth(2024);
+  const holidays = getHolidaysByMonth(2025);
+  const workingDays = getWorkingdaysByMonth(2025);
+  const workingHours = getWorkingHoursByMonth(2025);
 
   const holidaysOnWorkingDays = filter(flatMap(holidays), "isWorkday").length;
 
   return (
     <>
       <Head>
-        <title>{t`Vabad päevad ja tööajafond 2024`}</title>
+        <title>{t`Vabad päevad ja tööajafond 2025`}</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta
@@ -44,7 +50,7 @@ const Index = () => {
         <link rel="icon" href="/favicon.svg" />
 
         {/* Open Graph */}
-        <meta property="og:title" content={t`Vabad päevad ja tööajafond 2024`} />
+        <meta property="og:title" content={t`Vabad päevad ja tööajafond 2025`} />
         <meta
           property="og:description"
           content={t`Palgakalkulaator aitab arvestada netopalga, brutopalga, tööandja kulu, maksud ja luua kerge vaevaga töötajale saatmiseks palgalehe.`}
@@ -74,7 +80,7 @@ const Index = () => {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebApplication",
-              name: t`Palgakalkulaator ja palgaleht 2024 - Arveldaja OÜ`,
+              name: t`Palgakalkulaator ja palgaleht 2025 - Arveldaja OÜ`,
               description: t`Palgakalkulaator aitab arvestada netopalga, brutopalga, tööandja kulu, maksud ja luua kerge vaevaga töötajale saatmiseks palgalehe.`,
               url: "https://www.palgakalkulaator.ee/",
               image: "https://www.palgakalkulaator.ee/og-image.png",
@@ -97,11 +103,11 @@ const Index = () => {
 
       <div className="w-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h4 className="mb-6">
-          <Trans>Vabad päevad ja tööajafond 2024</Trans>
+          <Trans>Vabad päevad ja tööajafond 2025</Trans>
         </h4>
         <p className="my-6">
           <Trans>
-            Aastal 2024 on riigipühadest tulenevalt <strong>{sumBy(values(holidays), "length")}</strong> vaba päeva,
+            Aastal 2025 on riigipühadest tulenevalt <strong>{sumBy(values(holidays), "length")}</strong> vaba päeva,
             millest <strong>{holidaysOnWorkingDays}</strong> on tööpäevadel.
           </Trans>
         </p>
@@ -132,7 +138,7 @@ const Index = () => {
             <tr>
               <td
                 className="border border-transparent border-r-dark-blue text-right px-4 py-2 bg-transparent"
-                colspan="2"
+                colSpan="2"
               >
                 <strong>
                   <Trans>Kokku</Trans>
@@ -151,7 +157,7 @@ const Index = () => {
           <tbody>
             {months.map((month, index) => {
               return (
-                <tr className={index === dayjs().month() ? "bg-blue-100" : "bg-white"}>
+                <tr className={index === dayjs().month() && dayjs().year() === 2025 ? "bg-blue-100" : "bg-white"}>
                   <td className="border border-dark-blue px-2 py-2">{month}</td>
                   <td className="border border-dark-blue px-2 py-2">
                     <ul className="list-inside list-none">
@@ -178,7 +184,7 @@ const Index = () => {
             </div>
             <div className="basis-3/5">
               <h4 className="mb-6">
-                <Trans>Vabad ja lühendatud tööpäevad 2024</Trans>
+                <Trans>Vabad ja lühendatud tööpäevad 2025</Trans>
               </h4>
               <p className="mb-4">
                 <Trans>
@@ -239,4 +245,4 @@ export const getStaticProps = async (ctx) => {
   };
 };
 
-export default Index;
+export default FreeDays;
