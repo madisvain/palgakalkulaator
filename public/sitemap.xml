@@ -2,18 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://www.palgakalkulaator.ee</loc>
-        <lastmod>2024-09-06</lastmod>
+        <lastmod>2024-12-18</lastmod>
+    </url>
+    <url>
+        <loc>https://www.palgakalkulaator.ee/2025</loc>
+        <lastmod>2024-12-18</lastmod>
     </url>
     <url>
         <loc>https://www.palgakalkulaator.ee/en</loc>
-        <lastmod>2024-09-06</lastmod>
+        <lastmod>2024-12-18</lastmod>
+    </url>
+    <url>
+        <loc>https://www.palgakalkulaator.ee/en/2025</loc>
+        <lastmod>2024-12-18</lastmod>
     </url>
     <url>
         <loc>https://www.palgakalkulaator.ee/vabad-paevad-ja-tooajafond</loc>
-        <lastmod>2024-09-07</lastmod>
+        <lastmod>2024-12-18</lastmod>
+    </url>
+    <url>
+        <loc>https://www.palgakalkulaator.ee/vabad-paevad-ja-tooajafond/2025</loc>
+        <lastmod>2024-12-18</lastmod>
     </url>
     <url>
         <loc>https://www.palgakalkulaator.ee/en/vabad-paevad-ja-tooajafond</loc>
-        <lastmod>2024-09-07</lastmod>
+        <lastmod>2024-12-18</lastmod>
+    </url>
+    <url>
+        <loc>https://www.palgakalkulaator.ee/en/vabad-paevad-ja-tooajafond/2025</loc>
+        <lastmod>2024-12-18</lastmod>
     </url>
 </urlset>
