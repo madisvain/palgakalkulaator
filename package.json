@@ -22,7 +22,7 @@
     "date-fns": "^2.30.0",
     "hamburger-react": "^2.5.0",
     "lodash": "^4.17.21",
-    "mathjs": "^12.0.0",
+    "mathjs": "^12.4.3",
     "next": "14.0.4",
     "react": "18.2.0",
     "react-copy-to-clipboard": "^5.1.0",

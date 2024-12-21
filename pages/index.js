@@ -116,7 +116,7 @@ const Index = ({ year, setYear }) => {
             if (x <= 1200) {
               tf = min([values.amount, values.taxFreeIncomeAmount, 654]);
             } else if (x > 1200 && x < 2100) {
-              tf = `(7848 - (7848 / 10800) * (x * 12 - 14400)) / 12`;
+              tf = min([values.amount, values.taxFreeIncomeAmount, (7848 - (7848 / 10800) * (x * 12 - 14400)) / 12]);
             }
           }
 
@@ -173,11 +173,10 @@ const Index = ({ year, setYear }) => {
     if (!values.taxFreeIncome || !(grossSalary > 0)) return 0;
 
     const amount = values.taxFreeIncomeAmount;
-
     if (grossSalary <= 1200) {
-      return min([654, values.amount, amount]);
+      return min([654, amount, amount]);
     } else if (grossSalary > 1200 && grossSalary < 2100) {
-      return round((7848 - (7848 / 10800) * (grossSalary * 12 - 14400)) / 12, 2);
+      return min([654, amount, (7848 - (7848 / 10800) * (grossSalary * 12 - 14400)) / 12]);
     } else if (grossSalary >= 2100) {
       return 0;
     }
@@ -369,6 +368,10 @@ const Index = ({ year, setYear }) => {
                           onInput={(e) => {
                             if (e.currentTarget.textContent) {
                               setValue("taxFreeIncomeAmount", e.currentTarget.textContent, {
+                                shouldDirty: true,
+                              });
+                            } else {
+                              setValue("taxFreeIncomeAmount", 0, {
                                 shouldDirty: true,
                               });
                             }
